@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name"></string>
+
+    <string-array name="branch_array">
+        <item>Comp</item>
+        <item>IT</item>
+        <item>ENTC</item>
+    </string-array>
+
+    <string name="new_user"><u> New user ? Click to Register</u> </string>
+
+    <string name="ok">OK</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_login">Sign in</string>
+
+
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_upload_company">UploadCompany</string>
+
+</resources>
