@@ -15,12 +15,12 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-public class RegisterActivity extends AppCompatActivity {
+public class StudentRegActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_student_reg);
         Switch sw = (Switch) findViewById(R.id.placed);
         sw.setTextOff("NO");
         sw.setTextOn("YES");
@@ -71,18 +71,20 @@ public class RegisterActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        Toast.makeText(StudentRegActivity.this, "Please Wait ", Toast.LENGTH_SHORT).show();
 
         RegisterStudent data = new RegisterStudent();
         String res = data.execute(obj.toString()).get();
         Log.i("My_tag", "response  " + res);
 
         if (res == null)
-            Toast.makeText(RegisterActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StudentRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
         else
         {
-            Toast.makeText(RegisterActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StudentRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
             SessionManager sessionManager  = new SessionManager(this);
             sessionManager.createLoginSession(name,email);
+            startService(new Intent(getBaseContext(), MyFirebaseInstanceIDService.class));
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(i);
             finish();

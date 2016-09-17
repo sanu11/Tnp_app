@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startService(new Intent(getBaseContext(), MyFirebaseInstanceIDService.class));
         setContentView(R.layout.activity_home);
         sessionManager=new SessionManager(getApplicationContext());
         if(sessionManager.isLoggedIn()==false)
@@ -101,9 +102,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_upcoming) {
-            Intent intent = new Intent(this, CompanyActivity.class);
+            Intent intent = new Intent(this, CompanyRegActivity.class);
             startActivity(intent);
-            finish();
             // Handle the camera action
         } else if (id == R.id.nav_past) {
 

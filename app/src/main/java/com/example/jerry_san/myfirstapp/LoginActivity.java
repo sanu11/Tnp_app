@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
+            Log.i("My_tag",email);
             logincheckServer = new LoginCheckServer();
             String res = null;
             try {
@@ -99,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public  void  onClickRegister(View v)
     {
-        Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+        Intent i = new Intent(getApplicationContext(), StudentRegActivity.class);
         startActivity(i);
         finish();
         return;

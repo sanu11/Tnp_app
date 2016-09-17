@@ -25,7 +25,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".StudentRegActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -38,9 +38,26 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         </activity>
         <activity android:name=".LoginActivity" />
         <activity
-            android:name=".CompanyActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:name=".CompanyRegActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Defining Services -->
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".GeneralMessageActivity"
+            android:label="@string/title_activity_general_message"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
