@@ -16,7 +16,7 @@ import java.net.URL;
 /**
  * Created by jerry-san on 9/14/16.
  */
-public class GeneralMessagetoServer extends AsyncTask<String,String,String >  {
+public class SendMessagetoServer extends AsyncTask<String,String,String >  {
 
         protected String doInBackground(String... params) {
         String JsonResponse = null;
@@ -26,7 +26,7 @@ public class GeneralMessagetoServer extends AsyncTask<String,String,String >  {
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://tnp-app.herokuapp.com/message/");
+            URL url = new URL("http://tnp-app.herokuapp.com/notify/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 

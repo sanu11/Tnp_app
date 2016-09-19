@@ -68,7 +68,8 @@ public class SessionManager {
      * Get stored session data
      * */
 
-    public String[] getUserDetails(){
+    public String[] getUserDetails()
+    {
 
         String array[]=new String[2];
 
@@ -78,6 +79,8 @@ public class SessionManager {
         array[0]=name;
         array[1]=email;
 
+        Log.i("My_tag"," In sessionmanager name " + name);
+        Log.i("My_tag","email "+ email);
         return array;
     }
 

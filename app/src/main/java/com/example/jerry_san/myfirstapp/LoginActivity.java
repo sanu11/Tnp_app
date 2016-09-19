@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickLogin(View v) {
 
         EditText user = (EditText) findViewById(R.id.username);
-        EditText pass = (EditText) findViewById(R.id.name);
+        EditText pass = (EditText) findViewById(R.id.password);
         String email = user.getText().toString();
         String password = pass.getText().toString();
 
@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.i("My_tag",email);
             logincheckServer = new LoginCheckServer();
             String res = null;
+
             try {
                 res = logincheckServer.execute(obj.toString()).get();
             } catch (InterruptedException e) {
@@ -89,12 +90,20 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
 
             }
+        }
+
+        else
+        {
+            alertDialogBuilder.setMessage("Enter all Details");
+            alertDialogBuilder.show();
 
         }
     }
 
-    @Override
+
+@Override
     public void onBackPressed() {
+    finish();
         //do nothing
     }
 

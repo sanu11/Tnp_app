@@ -22,25 +22,35 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         //Displaying data in log
         //It is optional
         Log.i(TAG, "From: " + remoteMessage.getFrom());
-        Log.i(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
 
         //Calling method to generate notification
-        sendNotification(remoteMessage.getNotification().getBody());
+
+        String title=remoteMessage.getData().get("title");
+        String body=remoteMessage.getData().get("body");
+        Log.i("My_tag",title + " " + body) ;
+        sendNotification(title,body);
+
     }
 
     //This method is only generating push notification
     //It is same as we did in earlier posts
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, HomeActivity.class);
+    private void sendNotification(String title, String body ) {
+        Log.i("My_tag","notify");
+
+        Intent intent = new Intent(this, MessageDisplayActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("body",body);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
+        Log.i("My_tag","notify");
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Firebase Push Notification")
-                .setContentText(messageBody)
+                .setContentTitle(title)
+                .setContentText(body)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);

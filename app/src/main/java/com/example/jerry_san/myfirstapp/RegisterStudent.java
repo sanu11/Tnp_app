@@ -75,8 +75,6 @@ public class RegisterStudent extends AsyncTask<String,String,String >
             }
             return null;
 
-
-
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -95,7 +93,6 @@ public class RegisterStudent extends AsyncTask<String,String,String >
         }
         return null;
     }
-
 
 
     @Override

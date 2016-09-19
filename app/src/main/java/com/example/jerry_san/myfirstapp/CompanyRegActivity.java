@@ -2,19 +2,28 @@ package com.example.jerry_san.myfirstapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class CompanyRegActivity extends AppCompatActivity {
 
@@ -69,31 +78,36 @@ public class CompanyRegActivity extends AppCompatActivity {
                 String day1 = String.valueOf(selectedDay);
 
                 TextView tv;
+//
+//                if (vv.getId() == R.id.start_date) {
+//                    tv = (TextView) findViewById(R.id.start_date);
+//                    assert tv != null;
+//                    tv.setText(year1 +"-" + month1 + "-" + day1);
+//                }
+//
+//                else if (vv.getId() == R.id.end_date) {
+//                    tv = (TextView) findViewById(R.id.end_date);
+//                    assert tv != null;
+//                    tv.setText(year1 +"-" + month1 + "-" + day1);
+//                }
 
-                if (vv.getId() == R.id.start_date) {
-                    tv = (TextView) findViewById(R.id.start_date);
-                    tv.setText(day1 + "/" + month1 + "/" + year1);
-                }
-
-                else if (vv.getId() == R.id.end_date) {
-                    tv = (TextView) findViewById(R.id.end_date);
-                    tv.setText(day1 + "/" + month1 + "/" + year1);
-                }
-
-                else if(vv.getId()==R.id.ppt_date) {
+                if(vv.getId()==R.id.ppt_date) {
                     tv = (TextView) findViewById(R. id.ppt_date);
-                    tv.setText(day1 + "/" + month1 + "/" + year1);
+                    assert tv != null;
+                    tv.setText(year1 +"-" + month1 + "-" + day1);
+
                 }
 
-                else if(vv.getId()==R.id.apti_date)  {
-                    tv = (TextView) findViewById(R.id.apti_date);
-                    tv.setText(day1 + "/" + month1 + "/" + year1);
-                }
-
-                else if(vv.getId()==R.id.interview_date) {
-                    tv = (TextView) findViewById(R.id.interview_date);
-                    tv.setText(day1 + "/" + month1 + "/" + year1);
-                }
+//
+//                else if(vv.getId()==R.id.apti_date)  {
+//                    tv = (TextView) findViewById(R.id.apti_date);
+//                    tv.setText(day1 + "/" + month1 + "/" + year1);
+//                }
+//
+//                else if(vv.getId()==R.id.interview_date) {
+//                    tv = (TextView) findViewById(R.id.interview_date);
+//                    tv.setText(day1 + "/" + month1 + "/" + year1);
+//                }
 
             }
 
@@ -133,20 +147,20 @@ public class CompanyRegActivity extends AppCompatActivity {
                             .append(pad(hour)).append(":")
                             .append(pad(min)));
                 }
-
-                else if (vv.getId() == R.id.apti_time) {
-                    tv = (TextView) findViewById(R.id.apti_time);
-                    tv.setText(new StringBuilder()
-                            .append(pad(hour)).append(":")
-                            .append(pad(min)));
-                }
-
-                else if (vv.getId() == R.id.interview_time) {
-                    tv = (TextView) findViewById(R.id.interview_time);
-                    tv.setText(new StringBuilder()
-                            .append(pad(hour)).append(":")
-                            .append(pad(min)));
-                }
+//
+//                else if (vv.getId() == R.id.apti_time) {
+//                    tv = (TextView) findViewById(R.id.apti_time);
+//                    tv.setText(new StringBuilder()
+//                            .append(pad(hour)).append(":")
+//                            .append(pad(min)));
+//                }
+//
+//                else if (vv.getId() == R.id.interview_time) {
+//                    tv = (TextView) findViewById(R.id.interview_time);
+//                    tv.setText(new StringBuilder()
+//                            .append(pad(hour)).append(":")
+//                            .append(pad(min)));
+//                }
 
             }
         }, 10, 00, false);
@@ -155,15 +169,58 @@ public class CompanyRegActivity extends AppCompatActivity {
 
     }
 
-    public void Reg_company(View v) {
+    public void Reg_company(View v) throws ExecutionException, InterruptedException {
 
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.criteria);
         EditText e3 = (EditText) findViewById(R.id.salary);
+        EditText e4 = (EditText) findViewById(R.id.other_details);
+        Spinner e5  = (Spinner) findViewById(R.id.back);
+        TextView e6 = (TextView) findViewById(R.id.ppt_date);
+        TextView e7=(TextView) findViewById(R.id.ppt_time);
 
         String name = e1.getText().toString();
         float critera = Float.parseFloat(e2.getText().toString());
         float salary = Float.parseFloat(e3.getText().toString());
+        String other_details=e4.getText().toString().toString();
+        String back= String.valueOf(e5.getSelectedItem());
+        String date=e6.getText().toString();
+        String time =e7.getText().toString();
+
+        String dateTime=date+" " + time;
+
+        Log.i("My_tag",dateTime);
+
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("name", name);
+            obj.put("criteria", critera);
+            obj.put("salary", salary);
+            obj.put("other_details", other_details);
+            obj.put("back", back);
+            obj.put("ppt_date", dateTime);
+
+            Log.i("My_tag", obj.toString(0));
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Toast.makeText(CompanyRegActivity.this, "Please Wait ", Toast.LENGTH_SHORT).show();
+
+        RegisterCompany data = new RegisterCompany();
+        String res = data.execute(obj.toString()).get();
+        Log.i("My_tag", "response  " + res);
+
+        if (res == null)
+            Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
+        else {
+
+            Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
+
 
     }
 

@@ -2,6 +2,7 @@ package com.example.jerry_san.myfirstapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,63 +14,75 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     SessionManager sessionManager ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startService(new Intent(getBaseContext(), MyFirebaseInstanceIDService.class));
         setContentView(R.layout.activity_home);
+
         sessionManager=new SessionManager(getApplicationContext());
-        if(sessionManager.isLoggedIn()==false)
-        {
+
+        if(sessionManager.isLoggedIn()==false) {
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
+
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        else {
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+            Log.i("My_tag", "start");
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
 
-        String title="Welcome";
-        CharSequence cs=title.subSequence(0,title.length());
-        drawer.setDrawerTitle(Gravity.LEFT,cs);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        //get session details
-        String array[]= sessionManager.getUserDetails();
+            String title = "Welcome";
+            CharSequence cs = title.subSequence(0, title.length());
+            drawer.setDrawerTitle(Gravity.LEFT, cs);
 
-        String u=array[0];
-        String e=array[1];
+            //get session details
+            String array[] = sessionManager.getUserDetails();
 
-        TextView email= (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
-        TextView user= (TextView) navigationView.getHeaderView(0).findViewById(R.id.username);
+            String u = array[0];
+            String e = array[1];
 
-        CharSequence username=u.subSequence(0,u.length());
-        CharSequence email_id=e.subSequence(0,e.length());
+            TextView email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
+            TextView user = (TextView) navigationView.getHeaderView(0).findViewById(R.id.username);
 
-        user.setText(username);
-        email.setText(email_id);
+            CharSequence username = u.subSequence(0, u.length());
+            CharSequence email_id = e.subSequence(0, e.length());
 
+            user.setText(username);
+            email.setText(email_id);
+
+        }
     }
 
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-    }else {}
+        }
+        else {
+            finish();
+        }
     }
 
     //            super.onBackPressed();
@@ -108,13 +121,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_past) {
 
         } else if (id == R.id.nav_notifications) {
+            Intent intent = new Intent(this, MessageActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_log_out) {
+            sessionManager.logoutUser();
+            finish();
+
 
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_log_out) {
-            sessionManager.logoutUser();
 
         }
 

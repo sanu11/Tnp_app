@@ -36,8 +36,8 @@ public class StudentRegActivity extends AppCompatActivity {
         EditText e4 = (EditText) findViewById(R.id.phone);
         Spinner e5 = (Spinner) findViewById(R.id.branch);
         EditText e6 = (EditText) findViewById(R.id.average);
-        Switch e7=(Switch) findViewById(R.id.placed);
-        Switch e8=(Switch) findViewById(R.id.active_back);
+        Switch e7 = (Switch) findViewById(R.id.placed);
+        Switch e8 = (Switch) findViewById(R.id.active_back);
 
         String name = e1.getText().toString();
         String email = e2.getText().toString();
@@ -45,16 +45,16 @@ public class StudentRegActivity extends AppCompatActivity {
         String phone = e4.getText().toString();
         String branch = String.valueOf(e5.getSelectedItem());
         float average = Float.parseFloat(e6.getText().toString());
-        String placed=null;
-        String active_back=null;
-        if(e7.isChecked())
-            placed="YES";
+        String placed = null;
+        String active_back = null;
+        if (e7.isChecked())
+            placed = "YES";
         else
-            placed="NO";
-        if(e8.isChecked())
-            active_back="YES";
+            placed = "NO";
+        if (e8.isChecked())
+            active_back = "YES";
         else
-            active_back="NO";
+            active_back = "NO";
 
         JSONObject obj = new JSONObject();
         try {
@@ -71,6 +71,7 @@ public class StudentRegActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         Toast.makeText(StudentRegActivity.this, "Please Wait ", Toast.LENGTH_SHORT).show();
 
         RegisterStudent data = new RegisterStudent();
@@ -79,17 +80,24 @@ public class StudentRegActivity extends AppCompatActivity {
 
         if (res == null)
             Toast.makeText(StudentRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
-        else
-        {
+        else {
+
             Toast.makeText(StudentRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
-            SessionManager sessionManager  = new SessionManager(this);
-            sessionManager.createLoginSession(name,email);
-            startService(new Intent(getBaseContext(), MyFirebaseInstanceIDService.class));
+            SessionManager sessionManager = new SessionManager(this);
+            sessionManager.createLoginSession(name, email);
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(i);
             finish();
         }
-
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(i);
+        finish();
+        //do nothing
+
+    }
 }

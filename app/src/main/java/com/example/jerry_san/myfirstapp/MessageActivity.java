@@ -13,13 +13,13 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-public class GeneralMessageActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
 
-    GeneralMessagetoServer sendMessage;
+    SendMessagetoServer sendMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_message);
+        setContentView(R.layout.activity_message);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,17 +34,20 @@ public class GeneralMessageActivity extends AppCompatActivity {
     }
 
     public void  onClickPost(View v) {
-        EditText editText = (EditText) findViewById(R.id.content);
-        String message = editText.getText().toString();
+        EditText editText = (EditText) findViewById(R.id.title);
+        EditText editText2 = (EditText) findViewById(R.id.body);
+        String title = editText.getText().toString();
+        String body = editText2.getText().toString();
         JSONObject obj = new JSONObject();
         try {
-            obj.put("message", message);
+            obj.put("title",title);
+            obj.put("body", body);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        sendMessage = new GeneralMessagetoServer();
+        sendMessage = new SendMessagetoServer();
         String res = null;
         try {
             res = sendMessage.execute(obj.toString()).get();
