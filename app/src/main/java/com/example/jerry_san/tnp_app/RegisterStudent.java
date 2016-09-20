@@ -1,10 +1,7 @@
-package com.example.jerry_san.myfirstapp;
+package com.example.jerry_san.tnp_app;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
-
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

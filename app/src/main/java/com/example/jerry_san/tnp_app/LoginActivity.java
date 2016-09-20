@@ -1,4 +1,4 @@
-package com.example.jerry_san.myfirstapp;
+package com.example.jerry_san.tnp_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;

@@ -1,14 +1,14 @@
-package com.example.jerry_san.myfirstapp;
+package com.example.jerry_san.tnp_app;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,6 +29,7 @@ public class CompanyRegActivity extends AppCompatActivity {
 
 
     int hour, min;
+    boolean flag=false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -38,25 +39,14 @@ public class CompanyRegActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_reg);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     private static String pad(int c) {
@@ -78,39 +68,14 @@ public class CompanyRegActivity extends AppCompatActivity {
                 String day1 = String.valueOf(selectedDay);
 
                 TextView tv;
-//
-//                if (vv.getId() == R.id.start_date) {
-//                    tv = (TextView) findViewById(R.id.start_date);
-//                    assert tv != null;
-//                    tv.setText(year1 +"-" + month1 + "-" + day1);
-//                }
-//
-//                else if (vv.getId() == R.id.end_date) {
-//                    tv = (TextView) findViewById(R.id.end_date);
-//                    assert tv != null;
-//                    tv.setText(year1 +"-" + month1 + "-" + day1);
-//                }
 
                 if(vv.getId()==R.id.ppt_date) {
-                    tv = (TextView) findViewById(R. id.ppt_date);
+                    tv = (TextView) findViewById(R.id.ppt_date);
                     assert tv != null;
                     tv.setText(year1 +"-" + month1 + "-" + day1);
 
                 }
-
-//
-//                else if(vv.getId()==R.id.apti_date)  {
-//                    tv = (TextView) findViewById(R.id.apti_date);
-//                    tv.setText(day1 + "/" + month1 + "/" + year1);
-//                }
-//
-//                else if(vv.getId()==R.id.interview_date) {
-//                    tv = (TextView) findViewById(R.id.interview_date);
-//                    tv.setText(day1 + "/" + month1 + "/" + year1);
-//                }
-
             }
-
         },2016,9,10);
 
             datePickerDialog.show();
@@ -128,39 +93,12 @@ public class CompanyRegActivity extends AppCompatActivity {
                 hour = hourOfDay;
                 min = minute;
 
-                if (vv.getId() == R.id.start_time) {
-                    tv = (TextView) findViewById(R.id.start_time);
-                    tv.setText(new StringBuilder()
-                            .append(pad(hour)).append(":")
-                            .append(pad(min)));
-                }
-                else if (vv.getId() == R.id.end_time) {
-                    tv = (TextView) findViewById(R.id.end_time);
-                    tv.setText(new StringBuilder()
-                            .append(pad(hour)).append(":")
-                            .append(pad(min)));
-                }
-
-                else if (vv.getId() == R.id.ppt_time) {
+                 if (vv.getId() == R.id.ppt_time) {
                     tv = (TextView) findViewById(R.id.ppt_time);
                     tv.setText(new StringBuilder()
                             .append(pad(hour)).append(":")
                             .append(pad(min)));
                 }
-//
-//                else if (vv.getId() == R.id.apti_time) {
-//                    tv = (TextView) findViewById(R.id.apti_time);
-//                    tv.setText(new StringBuilder()
-//                            .append(pad(hour)).append(":")
-//                            .append(pad(min)));
-//                }
-//
-//                else if (vv.getId() == R.id.interview_time) {
-//                    tv = (TextView) findViewById(R.id.interview_time);
-//                    tv.setText(new StringBuilder()
-//                            .append(pad(hour)).append(":")
-//                            .append(pad(min)));
-//                }
 
             }
         }, 10, 00, false);
@@ -168,6 +106,21 @@ public class CompanyRegActivity extends AppCompatActivity {
     timePickerDialog.show();
 
     }
+
+
+    public void onClickCheckbox(View v) {
+        CheckBox box = (CheckBox) findViewById(R.id.checkBox);
+        TextView criteria = (TextView) findViewById(R.id.criteria);
+        if ( box.isChecked())
+            criteria.setVisibility(View.GONE);
+        else
+        {
+            criteria.setVisibility(View.VISIBLE);
+            flag = true;
+        }
+
+    }
+
 
     public void Reg_company(View v) throws ExecutionException, InterruptedException {
 
@@ -180,21 +133,24 @@ public class CompanyRegActivity extends AppCompatActivity {
         TextView e7=(TextView) findViewById(R.id.ppt_time);
 
         String name = e1.getText().toString();
-        float critera = Float.parseFloat(e2.getText().toString());
+        float criteria;
+        if(flag)
+            criteria = Float.parseFloat(e2.getText().toString());
+        else
+            criteria=0;
         float salary = Float.parseFloat(e3.getText().toString());
-        String other_details=e4.getText().toString().toString();
+        String other_details=e4.getText().toString();
         String back= String.valueOf(e5.getSelectedItem());
         String date=e6.getText().toString();
         String time =e7.getText().toString();
 
         String dateTime=date+" " + time;
 
-        Log.i("My_tag",dateTime);
-
         JSONObject obj = new JSONObject();
         try {
             obj.put("name", name);
-            obj.put("criteria", critera);
+
+            obj.put("criteria", criteria);
             obj.put("salary", salary);
             obj.put("other_details", other_details);
             obj.put("back", back);
@@ -210,19 +166,24 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         RegisterCompany data = new RegisterCompany();
         String res = data.execute(obj.toString()).get();
-        Log.i("My_tag", "response  " + res);
+        Log.i("My_tag", "Response  " + res);
 
-        if (res == null)
+        if (res == null) {
             Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
-        else {
-
-            Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
-            finish();
-
+            Log.i("My_tag","Registration Unsuccessful");
         }
+
+        else {
+        Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
+        Log.i("My_tag","Registration Successful");
+
+        finish();
+
+    }
 
 
     }
+
 
     @Override
     public void onStart() {
@@ -239,7 +200,7 @@ public class CompanyRegActivity extends AppCompatActivity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.jerry_san.myfirstapp/http/host/path")
+                Uri.parse("android-app://com.example.jerry_san.tnp_app/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -258,7 +219,7 @@ public class CompanyRegActivity extends AppCompatActivity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.jerry_san.myfirstapp/http/host/path")
+                Uri.parse("android-app://com.example.jerry_san.tnp_app/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

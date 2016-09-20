@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.jerry_san.tnp_app.UpdateCompanyActivity"
-    tools:showIn="@layout/activity_update_company">
+    tools:context="com.example.jerry_san.tnp_app.CompanyDisplayActivity"
+    tools:showIn="@layout/activity_company_display">
 
     <TextView
         android:layout_width="wrap_content"

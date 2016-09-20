@@ -1,5 +1,4 @@
-package com.example.jerry_san.myfirstapp;
-import android.provider.Settings;
+package com.example.jerry_san.tnp_app;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;

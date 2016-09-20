@@ -1,4 +1,4 @@
-package com.example.jerry_san.myfirstapp;
+package com.example.jerry_san.tnp_app;
 
 /**
  * Created by jerry-san on 8/30/16.

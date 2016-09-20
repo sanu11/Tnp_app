@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jerry_san.myfirstapp">
+    package="com.example.jerry_san.tnp_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -62,6 +62,10 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity
             android:name=".UpdateCompanyActivity"
             android:label="@string/title_activity_update_company"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".CompanyDisplayActivity"
+            android:label="@string/title_activity_company_display"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
