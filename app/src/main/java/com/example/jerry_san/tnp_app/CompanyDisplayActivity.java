@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import static java.security.AccessController.getContext;
+
 public class CompanyDisplayActivity extends AppCompatActivity {
 
     boolean flag=false;
@@ -78,6 +80,9 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         assert textview6 != null;
         textview6.setText(time);
+
+
+        //add to local database
 
 
 

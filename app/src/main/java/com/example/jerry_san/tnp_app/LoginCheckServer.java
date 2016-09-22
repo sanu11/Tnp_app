@@ -37,7 +37,7 @@ public class LoginCheckServer extends AsyncTask<String,String,String >
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept", "application/json");
 
-            Log.i("My_tag","in login check server");
+            Log.i("My_tag","Connecting server for Login...");
 
             // is output buffer writter
             Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
@@ -54,7 +54,6 @@ public class LoginCheckServer extends AsyncTask<String,String,String >
                 return null;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
-            Log.i("My_tag","in");
 
             String inputLine;
             while ((inputLine = reader.readLine()) != null)
@@ -66,7 +65,7 @@ public class LoginCheckServer extends AsyncTask<String,String,String >
 
             //response data
             JsonResponse = buffer.toString();
-            Log.i("My_tag",JsonResponse+"  data");
+//            Log.i("My_tag",JsonResponse+"  data");
 
             try {
                 //send to post execute

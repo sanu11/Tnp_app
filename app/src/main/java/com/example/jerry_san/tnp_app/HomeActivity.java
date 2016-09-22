@@ -115,7 +115,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, CompanyRegActivity.class);
             startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_past) {
+        } else if (id == R.id.nav_stats) {
+            Intent intent = new Intent(this, CompanyListActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_notifications) {
             Intent intent = new Intent(this, MessageActivity.class);

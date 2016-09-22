@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(i);
                 finish();
-
+                Log.i("My_tag","Login Successful");
             }
         }
 

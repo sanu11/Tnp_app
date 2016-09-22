@@ -74,8 +74,7 @@ public class SessionManager {
         array[0]=name;
         array[1]=email;
 
-        Log.i("My_tag"," In sessionmanager name " + name);
-        Log.i("My_tag","email "+ email);
+        Log.i("My_tag","Logged in to "+ email);
         return array;
     }
 
@@ -86,7 +85,7 @@ public class SessionManager {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
-        Log.i("My_tag","log out");
+        Log.i("My_tag","Logged out");
         // After logout redirect user to Loing Activity
         Intent i = new Intent(_context, LoginActivity.class);
         // Closing all the Activities

@@ -21,11 +21,11 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Displaying data in log
         //It is optional
-        Log.i(TAG, "From: " + remoteMessage.getFrom());
+        Log.i(TAG, "Notification received From: " + remoteMessage.getFrom());
 
         //Calling method to generate notification
         String type=remoteMessage.getData().get("type") ;
-        Log.i("My_tag",type);
+
         if(type.equals("gen_msg")) {
             String title = remoteMessage.getData().get("title");
             String body = remoteMessage.getData().get("body");
@@ -41,7 +41,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
             String back = remoteMessage.getData().get("back");
             String other_details = remoteMessage.getData().get("other_details");
             String date_time  = remoteMessage.getData().get("ppt_date");
-
+//            Log.i("My_tag",salary);
             sendNotification(name,criteria,salary,back,other_details,date_time);
 
 
@@ -56,6 +56,16 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         intent.putExtra("back",back);
         intent.putExtra("other_details",other_details);
         intent.putExtra("date_time",date_time);
+
+        //add to local database
+        LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
+        boolean res= localDatabase.insert(name,criteria,salary,back,date_time,other_details);
+        if(res)
+            Log.i("My_tag","YES");
+        else
+            Log.i("My_tag","NO");
+
+        localDatabase.display();
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -74,7 +84,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
-        Log.i("My_tag"," Company Notifcation sent");
+        Log.i("My_tag","Company Notification sent");
 
     }
 
@@ -103,7 +113,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
-        Log.i("My_tag"," Message Notifcation sent");
+        Log.i("My_tag","Message Notifcation sent");
     }
 
 }

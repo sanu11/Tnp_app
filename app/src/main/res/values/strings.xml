@@ -10,6 +10,7 @@
 
     //back
     <string-array name="back_array">
+        <item>No Criteria</item>
         <item> Active Not Allowed</item>
         <item> Passive Not Allowed</item>
         <item>1 Active Allowed</item>
@@ -126,5 +127,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_company_display">CompanyDisplayActivity</string>
+    <string name="title_activity_company_list">CompanyListActivity</string>
 
 </resources>

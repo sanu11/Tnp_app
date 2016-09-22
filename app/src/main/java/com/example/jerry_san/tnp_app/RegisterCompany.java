@@ -62,7 +62,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
 
             //response data
             JsonResponse = buffer.toString();
-            Log.i("My_tag",JsonResponse);
+//            Log.i("My_tag",JsonResponse);
 
             try {
                 //send to post execute
