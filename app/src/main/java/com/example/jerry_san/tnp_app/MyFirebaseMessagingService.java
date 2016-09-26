@@ -60,12 +60,11 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
         boolean res= localDatabase.insert(name,criteria,salary,back,date_time,other_details);
-        if(res)
-            Log.i("My_tag","YES");
-        else
-            Log.i("My_tag","NO");
 
-        localDatabase.display();
+        if(res)
+            Log.i("My_tag","Added Successfully Locally");
+        else
+            Log.i("My_tag","Addition to Local database failed");
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,

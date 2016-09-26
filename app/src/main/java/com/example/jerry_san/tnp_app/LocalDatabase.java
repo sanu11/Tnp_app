@@ -15,7 +15,7 @@ public class LocalDatabase extends SQLiteOpenHelper
 
     public static final String db_name="Tnp.db";
     public static final  String table_name = "Company";
-    public static final  String col_0 = "C_id";
+    public static final  String col_0 = "_id";
 
     public static final  String col_1 = "Name";
     public static final  String col_2 = "Criteria";
@@ -91,17 +91,23 @@ public class LocalDatabase extends SQLiteOpenHelper
         }
         return isExist;
     }
-    public Cursor display()
-    {
+
+    public Cursor get_cursor() {
         SQLiteDatabase db=this.getWritableDatabase();
 
         Cursor res=db.rawQuery("select * from " + table_name,null);
-        int count=res.getCount();
-        
         res.moveToFirst();
-        String name = res.getString(1);
-        Log.i("My_tag",name);
         return res;
+
+    }
+
+    public Cursor getDetails(int position) {
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query="select * from " + table_name;
+        Cursor cur=db.rawQuery(query,null);
+        cur.moveToPosition(position);
+        return cur;
 
     }
 }
