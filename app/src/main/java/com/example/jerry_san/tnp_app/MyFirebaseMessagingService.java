@@ -14,6 +14,7 @@ import com.google.firebase.messaging.RemoteMessage;
 /**
  * Created by jerry-san on 9/11/16.
  */
+
 public class MyFirebaseMessagingService  extends FirebaseMessagingService{
     private static final String TAG ="My_tag";
 
@@ -48,18 +49,21 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         }
     }
 
-    private void sendNotification(String name, String criteria, String salary, String back, String other_details, String date_time) {
+    private void sendNotification(String name, String criteria, String salary, String back, String other_details, String ppt_date) {
         Intent intent = new Intent(this, CompanyDisplayActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("criteria",criteria);
         intent.putExtra("salary",salary);
         intent.putExtra("back",back);
         intent.putExtra("other_details",other_details);
-        intent.putExtra("date_time",date_time);
+        Log.i("My_tag",ppt_date);
+        intent.putExtra("ppt_date",ppt_date);
+
+
 
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        boolean res= localDatabase.insert(name,criteria,salary,back,date_time,other_details);
+        boolean res= localDatabase.company_insert(name,criteria,salary,back,ppt_date,other_details,0);
 
         if(res)
             Log.i("My_tag","Added Successfully Locally");
@@ -95,6 +99,13 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         intent.putExtra("title",title);
         intent.putExtra("body",body);
 
+        LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
+        boolean res= localDatabase.message_insert(title,body);
+        if(res)
+            Log.i("My_tag","Added Successfully Locally");
+        else
+            Log.i("My_tag","Addition to Local database failed");
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -112,7 +123,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
-        Log.i("My_tag","Message Notifcation sent");
+        Log.i("My_tag","Message Notification sent");
     }
 
 }

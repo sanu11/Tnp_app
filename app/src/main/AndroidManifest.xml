@@ -54,6 +54,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             </intent-filter>
         </service>
 
+
         <activity
             android:name=".MessageActivity"
             android:label="@string/title_activity_general_message"
@@ -67,7 +68,8 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name=".CompanyDisplayActivity"
             android:label="@string/title_activity_company_display"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".CompanyListActivity"></activity>
+        <activity android:name=".CompanyListActivity" />
+        <activity android:name=".MessageListActivity"></activity>
     </application>
 
 </manifest>

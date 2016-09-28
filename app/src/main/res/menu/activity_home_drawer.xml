@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_upcoming"
+            android:id="@+id/nav_upload_company"
             android:icon="@drawable/ic_menu_camera"
             android:title="Upload Company" />
         <item
@@ -11,13 +11,13 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Statistics" />
         <item
-            android:id="@+id/nav_notifications"
+            android:id="@+id/nav_send_message"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Notifications" />
+            android:title="Send Message" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_Notifications"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="Notifications" />
     </group>
 
     <item android:title="Communicate">

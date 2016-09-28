@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class CompanyListActivity extends AppCompatActivity {
@@ -22,15 +21,15 @@ public class CompanyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_list);
         localDatabase = new LocalDatabase(this);
-        Cursor cur = localDatabase.get_cursor();
+        Cursor cur = localDatabase.get_company_cursor();
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        String[] columns = new String[]{"Name"};
+        String[] columns = new String[]{"name"};
 
         int[] views = new int[]{R.id.company_name};
 
         if (cur.getCount() > 0) {
-             adapter = new SimpleCursorAdapter(this, R.layout.list_view_layout, cur, columns, views);
+             adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
 
             listView.setAdapter(adapter);
         } else {
@@ -45,22 +44,22 @@ public class CompanyListActivity extends AppCompatActivity {
 
                 ListView listView = (ListView) findViewById(R.id.listView);
 
-                Cursor cursor = localDatabase.getDetails(position);
+                Cursor cursor = localDatabase.getCompanyDetails(position);
                 String name = cursor.getString(1);
                 Log.i("My_tag",name);
                 Intent intent = new Intent(CompanyListActivity.this,CompanyDisplayActivity.class);
-                String criteria = String.valueOf(cursor.getFloat(cursor.getColumnIndex("Criteria")));
-                String salary = String.valueOf(cursor.getString(cursor.getColumnIndex("Salary")));
-                String back = cursor.getString(cursor.getColumnIndex("Back"));
-                String date_time = cursor.getString(cursor.getColumnIndex("Ppt_date_time"));
-                String other_details = cursor.getString(cursor.getColumnIndex("Other_details"));
+                String criteria = String.valueOf(cursor.getFloat(cursor.getColumnIndex("criteria")));
+                String salary = String.valueOf(cursor.getString(cursor.getColumnIndex("salary")));
+                String back = cursor.getString(cursor.getColumnIndex("back"));
+                String date_time = cursor.getString(cursor.getColumnIndex("ppt_date"));
+                String other_details = cursor.getString(cursor.getColumnIndex("other_details"));
 
                 intent.putExtra("name", name);
                 intent.putExtra("criteria", criteria);
                 intent.putExtra("salary", salary);
                 intent.putExtra("back", back);
                 intent.putExtra("other_details", other_details);
-                intent.putExtra("date_time", date_time);
+                intent.putExtra("ppt_date", date_time);
                 startActivity(intent);
 
             }

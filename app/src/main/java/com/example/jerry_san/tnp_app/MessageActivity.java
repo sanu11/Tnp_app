@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -51,6 +52,7 @@ public class MessageActivity extends AppCompatActivity {
         String res = null;
         try {
             res = sendMessage.execute(obj.toString()).get();
+            Log.i("My_tag",res);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

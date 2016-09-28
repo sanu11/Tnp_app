@@ -23,7 +23,5 @@ public class MessageDisplayActivity extends AppCompatActivity {
         textview.setText(title);
         textview2.setText(body);
 
-
-
     }
 }

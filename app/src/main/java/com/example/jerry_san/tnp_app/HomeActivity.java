@@ -23,6 +23,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         sessionManager=new SessionManager(getApplicationContext());
+        SyncDatabase sync = new SyncDatabase(this);
+        sync.execute();
 
         if(sessionManager.isLoggedIn()==false) {
 
@@ -111,29 +113,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_upcoming) {
+        if (id == R.id.nav_upload_company) {
             Intent intent = new Intent(this, CompanyRegActivity.class);
             startActivity(intent);
-            // Handle the camera action
+
         } else if (id == R.id.nav_stats) {
             Intent intent = new Intent(this, CompanyListActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_notifications) {
+        } else if (id == R.id.nav_send_message) {
             Intent intent = new Intent(this, MessageActivity.class);
             startActivity(intent);
+
+        }  else if (id == R.id.nav_Notifications) {
+            Intent intent = new Intent(this,MessageListActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_share) {
+
 
         } else if (id == R.id.nav_log_out) {
             sessionManager.logoutUser();
             finish();
 
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_share) {
-
-
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -34,12 +34,15 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         String back_str = getIntent().getExtras().getString("back");
         String other_det_str = getIntent().getExtras().getString("other_details");
-        String date_time_str = getIntent().getExtras().getString("date_time");
+        String date_time_str = getIntent().getExtras().getString("ppt_date");
 
         assert date_time_str != null;
+
+        Log.i("My_tag",date_time_str);
         String array[] = date_time_str.split("\\s+");
         String date_str=array[0];
         String time_str=array[1];
+
 
         Log.i("My_tag",criteria_str);
 
@@ -80,11 +83,6 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         assert textview6 != null;
         textview6.setText(time);
-
-
-        //add to local database
-
-
 
     }
 }
