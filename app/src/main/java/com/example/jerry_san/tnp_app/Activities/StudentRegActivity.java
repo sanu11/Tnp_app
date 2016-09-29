@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.example.jerry_san.tnp_app.R;
+import com.example.jerry_san.tnp_app.RESTCalls.RegisterStudent;
+import com.example.jerry_san.tnp_app.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;

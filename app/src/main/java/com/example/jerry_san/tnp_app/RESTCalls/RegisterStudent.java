@@ -1,8 +1,4 @@
-package com.example.jerry_san.tnp_app;
-
-/**
- * Created by jerry-san on 9/4/16.
- */
+package com.example.jerry_san.tnp_app.RESTCalls;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,7 +13,10 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RegisterCompany extends AsyncTask<String,String,String >
+/**
+ * Created by jerry-san on 8/15/16.
+ */
+public class RegisterStudent extends AsyncTask<String,String,String >
 {
     protected String doInBackground(String... params) {
         String JsonResponse = null;
@@ -27,7 +26,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://tnp-app.herokuapp.com/register_company/");
+            URL url = new URL("http://tnp-app.herokuapp.com/register_student/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -35,7 +34,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept", "application/json");
-            
+
             // is output buffer writter
             Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
             writer.write(JsonDATA);
@@ -52,6 +51,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
+
             String inputLine;
             while ((inputLine = reader.readLine()) != null)
                 buffer.append(inputLine + "\n");
@@ -62,11 +62,10 @@ public class RegisterCompany extends AsyncTask<String,String,String >
 
             //response data
             JsonResponse = buffer.toString();
-//            Log.i("My_tag",JsonResponse);
+            Log.i("My_tag",JsonResponse+"  data");
 
             try {
                 //send to post execute
-
                 return JsonResponse;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -91,7 +90,6 @@ public class RegisterCompany extends AsyncTask<String,String,String >
         }
         return null;
     }
-
 
 
     @Override

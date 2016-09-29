@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.DatabaseHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -29,9 +29,10 @@ public class LocalDatabase extends SQLiteOpenHelper
 
     public static final  String col_5 = "ppt_date";
     public static final  String col_6 = "other_details";
-    public static final  String col_7 = "reg_start_date";
-    public static final  String col_8 = "reg_end_date";
-    public static final  String col_9 = "hired_people";
+    public static final  String col_7 = "reg_link";
+    public static final  String col_8 = "reg_start";
+    public static final  String col_9 = "reg_end";
+    public static final  String col_10 = "hired_people";
 
 
     public LocalDatabase(Context context)
@@ -50,7 +51,7 @@ public class LocalDatabase extends SQLiteOpenHelper
         //create table for companies
         db.execSQL("create table " + table_1 + "( " + col_0
                 + " integer primary key autoincrement, " + col_1
-                + " text not null, " + col_2 + " real, " +col_3 + " real ," + col_4 + " text not null , " + col_5 +" text ,"  +col_6 +" text , " +col_7 + " text ,"+col_8 +"  text ,"+ col_9+" integer  );");
+                + " text not null, " + col_2 + " real, " +col_3 + " real ," + col_4 + " text not null , " + col_5 +" text ,"  +col_6 +" text , " +col_7 + " text ,"+col_8 +"  text ,"+ col_9+ " text ," +col_10 +  " integer  );");
 
         //create Table for storing notifications(general messages)
         db.execSQL("create table " + table_2 + "( _id integer primary key autoincrement , Title text , Body text )");
@@ -82,7 +83,7 @@ public class LocalDatabase extends SQLiteOpenHelper
         contentValues.put(col_4, back);
         contentValues.put(col_5, ppt_date_time);
         contentValues.put(col_6, other_details);
-        contentValues.put(col_9, hired);
+        contentValues.put(col_10, hired);
 
         long result=db.insert(table_1,null,contentValues);
         db.close();
@@ -112,7 +113,7 @@ public class LocalDatabase extends SQLiteOpenHelper
         contentValues.put(col_4, back);
         contentValues.put(col_5, ppt_date_time);
         contentValues.put(col_6, other_details);
-        contentValues.put(col_9, hired);
+        contentValues.put(col_10, hired);
 
         long result=db.insert(table_1,null,contentValues);
         db.close();
@@ -190,6 +191,17 @@ public class LocalDatabase extends SQLiteOpenHelper
             return false;
         return true;
 
+
+    }
+
+    public boolean company_update(String name, String reg_link, String reg_start, String reg_end,String other_details) {
+        SQLiteDatabase db=this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("reg_link",reg_link);
+        cv.put("reg_start",reg_start);
+        cv.put("reg_end",reg_end);
+        db.update(table_1, cv, "name= ' " + name + "'", null);
+        return true;
 
     }
 }

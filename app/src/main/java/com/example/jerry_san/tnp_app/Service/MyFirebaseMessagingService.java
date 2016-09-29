@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Service;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +9,11 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.Activities.CompanyDisplayActivity;
+import com.example.jerry_san.tnp_app.Activities.CompanyUpdateDisplayActivity;
+import com.example.jerry_san.tnp_app.Activities.MessageDisplayActivity;
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+import com.example.jerry_san.tnp_app.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 /**
@@ -34,7 +39,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
             sendNotification(title, body);
         }
 
-        else if(type.equals("company"))
+        else if(type.equals("company_reg"))
         {
             String name = remoteMessage.getData().get("name");
             String criteria = remoteMessage.getData().get("criteria");
@@ -42,11 +47,22 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
             String back = remoteMessage.getData().get("back");
             String other_details = remoteMessage.getData().get("other_details");
             String date_time  = remoteMessage.getData().get("ppt_date");
-//            Log.i("My_tag",salary);
             sendNotification(name,criteria,salary,back,other_details,date_time);
 
 
         }
+        else if(type.equals("company_update")){
+            String name = remoteMessage.getData().get("name");
+            String reg_link=remoteMessage.getData().get("reg_link");
+            String reg_start=remoteMessage.getData().get("reg_start");
+            String reg_end=remoteMessage.getData().get("reg_end");
+            String other_details=remoteMessage.getData().get("other_details");
+
+            sendNotification(name,reg_link,reg_start,reg_end,other_details);
+
+        }
+
+
     }
 
     private void sendNotification(String name, String criteria, String salary, String back, String other_details, String ppt_date) {
@@ -91,8 +107,6 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
     }
 
-    //This method is only generating push notification
-    //It is same as we did in earlier posts
     private void sendNotification(String title, String body ) {
 
         Intent intent = new Intent(this, MessageDisplayActivity.class);
@@ -125,5 +139,45 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         notificationManager.notify(0, notificationBuilder.build());
         Log.i("My_tag","Message Notification sent");
     }
+
+    private void sendNotification(String name, String reg_link, String reg_start, String reg_end, String other_details) {
+        Intent intent = new Intent(this, CompanyUpdateDisplayActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("reg_link",reg_link);
+        intent.putExtra("reg_start",reg_start);
+        intent.putExtra("reg_end",reg_end);
+        intent.putExtra("other_details",other_details);
+
+        //add to local database
+        LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
+        boolean res= localDatabase.company_update(name,reg_link,reg_start,reg_end,other_details);
+
+        if(res)
+            Log.i("My_tag","Updated Successfully Locally");
+        else
+            Log.i("My_tag","Updation to Local database failed");
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Company Details")
+                .setContentText(name)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, notificationBuilder.build());
+        Log.i("My_tag","Company  Update Notification sent");
+
+
+    }
+
 
 }

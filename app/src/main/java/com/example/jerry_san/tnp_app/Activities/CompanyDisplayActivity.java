@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,13 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.jerry_san.tnp_app.R;
 
 import static java.security.AccessController.getContext;
 
 public class CompanyDisplayActivity extends AppCompatActivity {
 
     boolean flag=false;
+    boolean length=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,9 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         String other_det_str = getIntent().getExtras().getString("other_details");
         String date_time_str = getIntent().getExtras().getString("ppt_date");
 
+        if(other_det_str.length()!=0)
+            length=true;
+
         assert date_time_str != null;
 
         Log.i("My_tag",date_time_str);
@@ -44,14 +51,13 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         String time_str=array[1];
 
 
-        Log.i("My_tag",criteria_str);
-
         TextView textview =(TextView) findViewById (R.id.name);
         TextView textview2 =(TextView) findViewById (R.id.criteria);
         TextView textview3 =(TextView) findViewById (R.id.salary);
         TextView textview4 =(TextView) findViewById (R.id.back);
         TextView textview5 =(TextView) findViewById (R.id.date);
         TextView textview6 =(TextView) findViewById (R.id.time);
+        TextView textView7=(TextView) findViewById(R.id.other_details) ;
 
         CharSequence name = name_str.subSequence(0, name_str.length());
         CharSequence criteria = null;
@@ -61,6 +67,9 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         CharSequence back = back_str.subSequence(0,back_str.length());
         CharSequence date = date_str.subSequence(0, date_str.length());
         CharSequence time= time_str.subSequence(0, time_str.length());
+        CharSequence other_details="";
+        if(length)
+            other_details=other_det_str.subSequence(0, other_det_str.length());
 
         assert textview != null;
         textview.setText(name);
@@ -83,6 +92,13 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         assert textview6 != null;
         textview6.setText(time);
+
+        if(length) {
+            textView7.setText(other_details);
+            LinearLayout ll =(LinearLayout) findViewById(R.id.linearLayout12);
+            Log.i("My_tag","viisible");
+            ll.setVisibility(View.VISIBLE);
+        }
 
     }
 }

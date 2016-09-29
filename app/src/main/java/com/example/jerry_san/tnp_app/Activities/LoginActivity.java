@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.jerry_san.tnp_app.RESTCalls.LoginCheckServer;
+import com.example.jerry_san.tnp_app.R;
+import com.example.jerry_san.tnp_app.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,8 +1,11 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.RESTCalls;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;

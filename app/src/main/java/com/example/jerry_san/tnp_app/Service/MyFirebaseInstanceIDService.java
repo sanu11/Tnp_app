@@ -1,6 +1,8 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Service;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.RESTCalls.SendTokenToServer;
+import com.example.jerry_san.tnp_app.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -15,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
     private static final String TAG = "My_tag";
-    private  SessionManager sessionManager;
+    private SessionManager sessionManager;
     @Override
 
 //  String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);

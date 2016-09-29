@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+import com.example.jerry_san.tnp_app.R;
 
 public class CompanyListActivity extends AppCompatActivity {
 
@@ -60,6 +63,9 @@ public class CompanyListActivity extends AppCompatActivity {
                 intent.putExtra("back", back);
                 intent.putExtra("other_details", other_details);
                 intent.putExtra("ppt_date", date_time);
+
+
+
                 startActivity(intent);
 
             }

@@ -7,25 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activities.CompanyDisplayActivity"
-    android:theme="@style/AppTheme"
-    android:background="#ffffff">
+    tools:context="com.example.jerry_san.tnp_app.Activities.CompanyUpdateDisplayActivity"
+    android:background="#ffffff"
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/linearLayout7"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="60dp"
-        android:id="@+id/linearLayout">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Company"
-            android:id="@+id/textView18"
+            android:id="@+id/textView29"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginLeft="2dp" />
@@ -36,25 +35,24 @@
             android:text="Morgan"
             android:id="@+id/name"
             android:textSize="20dp"
-            android:layout_marginLeft="50dp" />
+            android:layout_marginLeft="60dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="-2dp">
+        android:id="@+id/linearLayout8"
+        android:layout_below="@+id/linearLayout7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Criteria "
-            android:id="@+id/textView20"
+            android:text="Reg Link"
+            android:id="@+id/textView33"
             android:textSize="20dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold" />
@@ -62,18 +60,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="71"
-            android:id="@+id/criteria"
+            android:text="http://bit.ly/morgan_reg"
+            android:id="@+id/reg_link"
             android:textSize="20dp"
-            android:layout_marginLeft="70dp" />
+            android:layout_marginLeft="60dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout3"
-        android:layout_below="@+id/linearLayout2"
+        android:id="@+id/linearLayout9"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reg Start"
+            android:id="@+id/textView35"
+            android:textSize="20dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10-10-2016 10:00:00"
+            android:id="@+id/reg_start"
+            android:textSize="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout10"
+        android:layout_below="@+id/linearLayout9"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp">
@@ -81,8 +108,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Salary  "
-            android:id="@+id/textView19"
+            android:text="Reg End"
+            android:id="@+id/textView37"
             android:textSize="20dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold" />
@@ -90,127 +117,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="16"
-            android:id="@+id/salary"
+            android:text="10-10-2016 10:00:00"
+            android:id="@+id/reg_end"
             android:textSize="20dp"
-            android:layout_marginLeft="70dp" />
+            android:layout_marginLeft="80dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout4"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignRight="@+id/linearLayout3"
-        android:layout_alignEnd="@+id/linearLayout3"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back    "
-            android:id="@+id/textView22"
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Active not allowed"
-            android:id="@+id/back"
-            android:textSize="20dp"
-            android:layout_marginLeft="70dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout5"
-        android:layout_below="@+id/linearLayout4"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/linearLayout11"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date    "
-            android:id="@+id/textView27"
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="26-07-2016"
-            android:id="@+id/date"
-            android:textSize="20dp"
-            android:layout_marginLeft="70dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout6"
-        android:layout_below="@+id/linearLayout5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time  "
-            android:id="@+id/textView21"
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="08:00"
-            android:id="@+id/time"
-            android:textSize="20dp"
-            android:layout_marginLeft="80dp"
-            android:layout_weight="0.32" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company"
-        android:id="@+id/textView29"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="71dp"
-        android:layout_marginStart="71dp" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout12"
-        android:layout_below="@+id/linearLayout6"
-        android:layout_alignLeft="@+id/linearLayout2"
-        android:layout_alignStart="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout10"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:visibility="invisible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other Details"
-            android:id="@+id/textView32"
+            android:text="Other Info"
+            android:id="@+id/textView39"
             android:textSize="20dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold" />
@@ -218,10 +146,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other"
-            android:id="@+id/other_details"
+            android:id="@+id/textView40"
             android:textSize="20dp"
             android:layout_marginLeft="70dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Details"
+            android:id="@+id/other_details"
+            android:textSize="20dp"
+            android:layout_marginLeft="0dp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update "
+        android:id="@+id/textView36"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="107dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="20dp" />
 </RelativeLayout>

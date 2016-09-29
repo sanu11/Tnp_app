@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".CompanyRegActivity">
+    tools:context=".Activities.CompanyRegActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -16,7 +16,9 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
+        android:background="#ffffff">
         <LinearLayout android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="16dp"
@@ -49,6 +51,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Reg Link"
+                android:id="@+id/textView31"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reg_link"
+                android:hint="Link" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Other Details"
                 android:id="@+id/textView14"
                 android:textSize="18dp"
@@ -58,11 +75,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
                 android:id="@+id/other_details"
-                android:hint="Other Info"
-                android:layout_gravity="center_horizontal" />
+                android:hint="Other Info" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,21 +129,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Date"
-                    android:id="@+id/start_date"
+                    android:id="@+id/reg_start_date"
                     android:layout_weight="1"
                     android:textSize="17dp"
                     android:layout_marginLeft="10dp"
-                    android:onClick="onClickDate" />
+                    android:onClick="onClickRegDate" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Time"
-                    android:id="@+id/start_time"
+                    android:id="@+id/reg_start_time"
                     android:layout_weight="1"
                     android:textSize="17dp"
                     android:layout_marginLeft="64dp"
-                    android:onClick="onClickTime" />
+                    android:onClick="onClickRegTime" />
 
             </LinearLayout>
 
@@ -172,21 +186,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Date"
-                    android:id="@+id/end_date"
+                    android:id="@+id/reg_end_date"
                     android:layout_weight="1"
                     android:textSize="17dp"
                     android:layout_marginLeft="10dp"
-                    android:onClick="onClickDate" />
+                    android:onClick="onClickRegDate" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Time"
-                    android:id="@+id/end_time"
+                    android:id="@+id/reg_end_time"
                     android:layout_weight="1"
                     android:textSize="17dp"
                     android:layout_marginLeft="60dp"
-                    android:onClick="onClickTime" />
+                    android:onClick="onClickRegTime" />
 
             </LinearLayout>
 
@@ -199,7 +213,7 @@
                 android:text="submit"
                 android:textColor="#fff"
                 android:id="@+id/submit"
-                android:onClick="Reg_company" />
+                android:onClick="onClickUpdate" />
 
         </LinearLayout>
     </ScrollView>

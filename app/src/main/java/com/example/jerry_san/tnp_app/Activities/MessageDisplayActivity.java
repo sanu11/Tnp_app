@@ -1,8 +1,10 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.jerry_san.tnp_app.R;
 
 public class MessageDisplayActivity extends AppCompatActivity {
 

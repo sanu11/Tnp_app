@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.R;
+import com.example.jerry_san.tnp_app.RESTCalls.RegisterCompany;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -75,6 +77,7 @@ public class CompanyRegActivity extends AppCompatActivity {
                     tv.setText(year1 +"-" + month1 + "-" + day1);
 
                 }
+
             }
         },2016,9,10);
 
@@ -98,7 +101,7 @@ public class CompanyRegActivity extends AppCompatActivity {
                     tv.setText(new StringBuilder()
                             .append(pad(hour)).append(":")
                             .append(pad(min)));
-                }
+                 }
 
             }
         }, 10, 00, false);

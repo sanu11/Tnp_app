@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.jerry_san.tnp_app.R;
+import com.example.jerry_san.tnp_app.SessionManager;
+import com.example.jerry_san.tnp_app.RESTCalls.SyncDatabase;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -115,6 +119,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_upload_company) {
             Intent intent = new Intent(this, CompanyRegActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_update_company) {
+            Intent intent = new Intent(this, UpdateCompanyActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_stats) {

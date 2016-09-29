@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.Activities.LoginActivity;
+
 public class SessionManager {
     // Shared Preferences
     SharedPreferences pref;

@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app;
+package com.example.jerry_san.tnp_app.RESTCalls;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -14,11 +14,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by jerry-san on 8/15/16.
+ * Created by jerry-san on 9/14/16.
  */
-public class RegisterStudent extends AsyncTask<String,String,String >
-{
-    protected String doInBackground(String... params) {
+public class SendMessagetoServer extends AsyncTask<String,String,String >  {
+
+        protected String doInBackground(String... params) {
         String JsonResponse = null;
         String JsonDATA = params[0];
         HttpURLConnection urlConnection = null;
@@ -26,7 +26,7 @@ public class RegisterStudent extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://tnp-app.herokuapp.com/register_student/");
+            URL url = new URL("http://tnp-app.herokuapp.com/notify/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -50,7 +50,7 @@ public class RegisterStudent extends AsyncTask<String,String,String >
                 return null;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
-
+            Log.i("My_tag","in");
 
             String inputLine;
             while ((inputLine = reader.readLine()) != null)
@@ -72,6 +72,8 @@ public class RegisterStudent extends AsyncTask<String,String,String >
             }
             return null;
 
+
+
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -92,8 +94,9 @@ public class RegisterStudent extends AsyncTask<String,String,String >
     }
 
 
-    @Override
-    protected void onPreExecute() {
+
+        @Override
+        protected void onPreExecute() {
         // TODO Auto-generated method stub
 
         super.onPreExecute();
@@ -101,10 +104,11 @@ public class RegisterStudent extends AsyncTask<String,String,String >
     }
 
 
-    @Override
-    protected void onPostExecute(String args) {
+        @Override
+        protected void onPostExecute(String args) {
         // TODO Auto-generated method stub
 
 
     }
-}
+    }
+
