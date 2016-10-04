@@ -2,6 +2,7 @@ package com.example.jerry_san.tnp_app.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.jerry_san.tnp_app.R;
@@ -13,6 +14,12 @@ public class MessageDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_message_display);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         String t = getIntent().getExtras().getString("title");
         String b = getIntent().getExtras().getString("body");
 

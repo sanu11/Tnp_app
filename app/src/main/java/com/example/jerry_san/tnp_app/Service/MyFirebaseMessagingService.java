@@ -67,24 +67,21 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
     private void sendNotification(String name, String criteria, String salary, String back, String other_details, String ppt_date) {
         Intent intent = new Intent(this, CompanyDisplayActivity.class);
-        intent.putExtra("name",name);
-        intent.putExtra("criteria",criteria);
-        intent.putExtra("salary",salary);
-        intent.putExtra("back",back);
-        intent.putExtra("other_details",other_details);
-        Log.i("My_tag",ppt_date);
-        intent.putExtra("ppt_date",ppt_date);
-
-
 
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        boolean res= localDatabase.company_insert(name,criteria,salary,back,ppt_date,other_details,0);
+        long res= localDatabase.company_insert(name,criteria,salary,back,ppt_date,other_details,0);
 
-        if(res)
+        if(res>0)
             Log.i("My_tag","Added Successfully Locally");
         else
             Log.i("My_tag","Addition to Local database failed");
+
+        Log.i("My_tag"," pos " + String.valueOf(res));
+
+        int pos=(int)res;
+        pos--;
+        intent.putExtra("position",pos);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,

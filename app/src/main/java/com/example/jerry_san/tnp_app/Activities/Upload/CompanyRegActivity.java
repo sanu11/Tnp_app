@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app.Activities;
+package com.example.jerry_san.tnp_app.Activities.Upload;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -43,10 +43,13 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_reg);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
     }

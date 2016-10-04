@@ -76,6 +76,17 @@ public class SyncDatabase extends AsyncTask<String,String,String >
                     String ppt_date=arr[0] +" " + temp;
                     jObject.put("ppt_date",ppt_date);
 
+                    String arr2[]=jObject.getString("reg_start_date").split("T");
+                    temp= arr2[1].split("Z")[0];
+                    String reg_start=arr[0] + " " + temp;
+                    jObject.put("reg_start_date",reg_start);
+
+                    String arr3[]=jObject.getString("reg_end_date").split("T");
+                    temp= arr3[1].split("Z")[0];
+                    String reg_end=arr[0] + " " + temp;
+                    jObject.put("reg_end_date",reg_end);
+
+
                     boolean res=localDatabase.company_insert_json(jObject);
                     Log.i("My_tag",String.valueOf(res));
 

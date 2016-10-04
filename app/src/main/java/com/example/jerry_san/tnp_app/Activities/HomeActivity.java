@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
+import com.example.jerry_san.tnp_app.Activities.Upload.MessageActivity;
+import com.example.jerry_san.tnp_app.Activities.Upload.UpdateCompanyActivity;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.SessionManager;
 import com.example.jerry_san.tnp_app.RESTCalls.SyncDatabase;
@@ -43,6 +46,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Log.i("My_tag", "start");
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            toolbar.setTitle("");
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -137,8 +142,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this,MessageListActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_contact) {
+            Intent intent = new Intent(this,ContactActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_log_out) {
             sessionManager.logoutUser();

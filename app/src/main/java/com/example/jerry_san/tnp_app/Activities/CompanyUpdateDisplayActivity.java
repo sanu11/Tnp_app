@@ -2,6 +2,7 @@ package com.example.jerry_san.tnp_app.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.jerry_san.tnp_app.R;
@@ -12,6 +13,12 @@ public class CompanyUpdateDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_update_display);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         String name_str = getIntent().getExtras().getString("name");
         String reg_link_str = getIntent().getExtras().getString("reg_link");

@@ -3,6 +3,7 @@ package com.example.jerry_san.tnp_app.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,6 +26,12 @@ public class StudentRegActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_reg);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         Switch sw = (Switch) findViewById(R.id.placed);
         sw.setTextOff("NO");
         sw.setTextOn("YES");
@@ -36,7 +43,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.email);
-        EditText e3 = (EditText) findViewById(R.id.name);
+        EditText e3 = (EditText) findViewById(R.id.password);
         EditText e4 = (EditText) findViewById(R.id.phone);
         Spinner e5 = (Spinner) findViewById(R.id.branch);
         EditText e6 = (EditText) findViewById(R.id.average);

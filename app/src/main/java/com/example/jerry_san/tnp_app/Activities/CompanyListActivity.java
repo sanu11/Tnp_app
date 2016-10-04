@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +23,12 @@ public class CompanyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_list);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         localDatabase = new LocalDatabase(this);
         Cursor cur = localDatabase.get_company_cursor();
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -46,27 +52,9 @@ public class CompanyListActivity extends AppCompatActivity {
                                     long id) {
 
                 ListView listView = (ListView) findViewById(R.id.listView);
-
-                Cursor cursor = localDatabase.getCompanyDetails(position);
-                String name = cursor.getString(1);
-                Log.i("My_tag",name);
                 Intent intent = new Intent(CompanyListActivity.this,CompanyDisplayActivity.class);
-                String criteria = String.valueOf(cursor.getFloat(cursor.getColumnIndex("criteria")));
-                String salary = String.valueOf(cursor.getString(cursor.getColumnIndex("salary")));
-                String back = cursor.getString(cursor.getColumnIndex("back"));
-                String date_time = cursor.getString(cursor.getColumnIndex("ppt_date"));
-                String other_details = cursor.getString(cursor.getColumnIndex("other_details"));
-
-                intent.putExtra("name", name);
-                intent.putExtra("criteria", criteria);
-                intent.putExtra("salary", salary);
-                intent.putExtra("back", back);
-                intent.putExtra("other_details", other_details);
-                intent.putExtra("ppt_date", date_time);
-
-
-
-                startActivity(intent);
+                intent.putExtra("position",position);
+                 startActivity(intent);
 
             }
         });

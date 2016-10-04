@@ -1,21 +1,54 @@
-<!-- copyrighted content owned by Android Arena (www.androidarena.co.in)-->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Activities.StudentRegActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="#29a862"
+        android:layout_alignParentBottom="false"
+        android:foregroundGravity="fill_horizontal|top|left"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:paddingEnd="0dp">
 
-        android:orientation="vertical"
-        android:weightSum="1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="@android:color/white"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
         android:theme="@style/AppTheme"
-        android:baselineAligned="false"
-        android:background="#ffffff">
-
+        android:layout_marginTop="55dp">
 
         <LinearLayout android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -24,8 +57,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="30dp"
             android:orientation="vertical"
-            android:layout_weight="0.55">
-
+            android:gravity="top|left|bottom|right">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,27 +201,19 @@
                 android:textOn="YES"
                 android:checked="false" />
 
+
             <Button android:layout_width="190dp"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="0dp"
                 android:text="submit"
                 android:textColor="#fff"
                 android:id="@+id/button"
+                android:layout_weight="1.0"
                 android:onClick="onClick" />
 
         </LinearLayout>
-
-        <LinearLayout android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    </ScrollView>
 
 
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-
-</ScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -69,7 +69,7 @@ public class LocalDatabase extends SQLiteOpenHelper
     }
 
 
-    public boolean company_insert(String name, String criteria, String salary, String back,String ppt_date_time,String other_details ,int hired)
+    public long company_insert(String name, String criteria, String salary, String back,String ppt_date_time,String other_details ,int hired)
     {
 
         SQLiteDatabase db=this.getWritableDatabase();
@@ -87,9 +87,7 @@ public class LocalDatabase extends SQLiteOpenHelper
 
         long result=db.insert(table_1,null,contentValues);
         db.close();
-        if(result==-1)
-            return false;
-        return true;
+        return result;
 
     }
     public boolean company_insert_json(JSONObject obj) throws JSONException {
@@ -104,6 +102,9 @@ public class LocalDatabase extends SQLiteOpenHelper
         String back=obj.getString("back");
         String ppt_date_time=obj.getString("ppt_date");
         String other_details=obj.getString("other_details");
+        String reg_link=obj.getString("reg_link");
+        String reg_start=obj.getString("reg_start_date");
+        String reg_end=obj.getString("reg_end_date");
         int hired=obj.getInt("hired_people");
 
 
@@ -113,6 +114,9 @@ public class LocalDatabase extends SQLiteOpenHelper
         contentValues.put(col_4, back);
         contentValues.put(col_5, ppt_date_time);
         contentValues.put(col_6, other_details);
+        contentValues.put(col_7, reg_link);
+        contentValues.put(col_8, reg_start);
+        contentValues.put(col_9, reg_end);
         contentValues.put(col_10, hired);
 
         long result=db.insert(table_1,null,contentValues);

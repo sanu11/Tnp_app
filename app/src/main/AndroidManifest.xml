@@ -3,6 +3,7 @@
     package="com.example.jerry_san.tnp_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -38,7 +39,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity
-            android:name=".Activities.CompanyRegActivity"
+            android:name=".Activities.Upload.CompanyRegActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Defining Services -->
@@ -54,22 +55,22 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".Activities.MessageActivity"
-            android:label="@string/title_activity_general_message"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.MessageDisplayActivity" />
         <activity
-            android:name=".Activities.UpdateCompanyActivity"
+            android:name=".Activities.Upload.UpdateCompanyActivity"
             android:label="@string/title_activity_update_company"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".Activities.CompanyDisplayActivity"
             android:label="@string/title_activity_company_display"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity android:name=".Activities.CompanyListActivity" />
         <activity android:name=".Activities.MessageListActivity" />
-        <activity android:name=".Activities.CompanyUpdateDisplayActivity"></activity>
+        <activity android:name=".Activities.CompanyUpdateDisplayActivity" />
+        <activity android:name=".Activities.Upload.MessageActivity" />
+        <activity android:name=".Activities.ContactActivity"></activity>
     </application>
 
 </manifest>

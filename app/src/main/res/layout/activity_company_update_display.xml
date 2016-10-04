@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.jerry_san.tnp_app.Activities.CompanyUpdateDisplayActivity"
-    android:background="#ffffff"
-    android:theme="@style/AppTheme">
+    android:fitsSystemWindows="true"
+    tools:context=".Activities.StudentRegActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="#29a862"
+        android:layout_alignParentBottom="false"
+        android:foregroundGravity="fill_horizontal|top|left"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:paddingEnd="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:textColor="@android:color/white"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:theme="@style/AppTheme"
+        android:layout_marginTop="55dp">
+
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:gravity="top|left|bottom|right">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -18,7 +66,7 @@
         android:id="@+id/linearLayout7"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,7 +168,7 @@
             android:text="10-10-2016 10:00:00"
             android:id="@+id/reg_end"
             android:textSize="20dp"
-            android:layout_marginLeft="80dp" />
+            android:layout_marginLeft="70dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -159,17 +207,9 @@
             android:layout_marginLeft="0dp" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update "
-        android:id="@+id/textView36"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="107dp"
-        android:layout_marginStart="107dp"
-        android:layout_marginTop="20dp" />
-</RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>
+

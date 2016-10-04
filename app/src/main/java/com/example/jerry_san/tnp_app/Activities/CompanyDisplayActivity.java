@@ -1,21 +1,20 @@
 package com.example.jerry_san.tnp_app.Activities;
 
+import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
-
-import static java.security.AccessController.getContext;
 
 public class CompanyDisplayActivity extends AppCompatActivity {
 
+    LocalDatabase localDatabase;
     boolean flag=false;
     boolean length=false;
     @Override
@@ -25,79 +24,130 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company_display);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        toolbar.setBackgroundResource(Color.);
+//        setSupportActionBar(toolbar);
 
-        String name_str = getIntent().getExtras().getString("name");
+        localDatabase= new LocalDatabase(this);
+        int position = getIntent().getExtras().getInt("position");
+        Log.i("My_tag",String.valueOf(position));
 
-        float criteria_float = Float.parseFloat(getIntent().getExtras().getString("criteria"));
-        String criteria_str=String.valueOf(criteria_float);
+        if(position==-1)
+            Toast.makeText(CompanyDisplayActivity.this, "Error ", Toast.LENGTH_SHORT).show();
 
-        if(criteria_str.equals("0.0"))
-            flag=true;
-        float salary_float = Float.parseFloat(getIntent().getExtras().getString("salary"));
-        String salary_str=String.valueOf(salary_float);
+        else {
+            Cursor cursor = localDatabase.getCompanyDetails(position);
 
-        String back_str = getIntent().getExtras().getString("back");
-        String other_det_str = getIntent().getExtras().getString("other_details");
-        String date_time_str = getIntent().getExtras().getString("ppt_date");
+            String name_str = String.valueOf(cursor.getString(cursor.getColumnIndex("name")));
+            String criteria_str = String.valueOf(cursor.getFloat(cursor.getColumnIndex("criteria")));
+            String salary_str = String.valueOf(cursor.getFloat(cursor.getColumnIndex("salary")));
+            String back_str = cursor.getString(cursor.getColumnIndex("back"));
+            String date_time_str = cursor.getString(cursor.getColumnIndex("ppt_date"));
+            String other_det_str = cursor.getString(cursor.getColumnIndex("other_details"));
+            String reg_link_str = cursor.getString(cursor.getColumnIndex("reg_link"));
+            String reg_start_str = cursor.getString(cursor.getColumnIndex("reg_start"));
+            String reg_end_str = cursor.getString(cursor.getColumnIndex("reg_end"));
+            String hired_str = String.valueOf(cursor.getInt(cursor.getColumnIndex("hired_people")));
 
-        if(other_det_str.length()!=0)
-            length=true;
+            Log.i("My_tag","compnay " + name_str);
+            Log.i("My_tag","other " + other_det_str);
 
-        assert date_time_str != null;
-
-        Log.i("My_tag",date_time_str);
-        String array[] = date_time_str.split("\\s+");
-        String date_str=array[0];
-        String time_str=array[1];
-
-
-        TextView textview =(TextView) findViewById (R.id.name);
-        TextView textview2 =(TextView) findViewById (R.id.criteria);
-        TextView textview3 =(TextView) findViewById (R.id.salary);
-        TextView textview4 =(TextView) findViewById (R.id.back);
-        TextView textview5 =(TextView) findViewById (R.id.date);
-        TextView textview6 =(TextView) findViewById (R.id.time);
-        TextView textView7=(TextView) findViewById(R.id.other_details) ;
-
-        CharSequence name = name_str.subSequence(0, name_str.length());
-        CharSequence criteria = null;
-        if(flag==false)
-             criteria = criteria_str.subSequence(0, criteria_str.length());
-        CharSequence salary = salary_str.subSequence(0, salary_str.length());
-        CharSequence back = back_str.subSequence(0,back_str.length());
-        CharSequence date = date_str.subSequence(0, date_str.length());
-        CharSequence time= time_str.subSequence(0, time_str.length());
-        CharSequence other_details="";
-        if(length)
-            other_details=other_det_str.subSequence(0, other_det_str.length());
-
-        assert textview != null;
-        textview.setText(name);
+            assert date_time_str != null;
+            Log.i("My_tag", date_time_str);
+            String array[] = date_time_str.split("\\s+");
+            String ppt_date_str = array[0];
+            String ppt_time_str = array[1];
 
 
-        assert textview2 != null;
-        if(flag)
-            textview2.setText("No Criteria");
-        else
-            textview2.setText(criteria);
+            assert reg_start_str != null;
+            Log.i("My_tag", reg_start_str);
+            String array2[] = reg_start_str.split("\\s+");
+            String reg_start_date_str = array[0];
+            String reg_start_time_str = array[1];
 
-        assert textview3 != null;
-        textview3.setText(salary);
 
-        assert textview4 != null;
-        textview4.setText(back);
+            assert reg_end_str != null;
+            Log.i("My_tag", reg_end_str);
+            String array3[] = reg_end_str.split("\\s+");
+            String reg_end_date_str = array[0];
+            String reg_end_time_str = array[1];
 
-        assert textview5 != null;
-        textview5.setText(date);
 
-        assert textview6 != null;
-        textview6.setText(time);
+            TextView textview = (TextView) findViewById(R.id.name);
+            TextView textview2 = (TextView) findViewById(R.id.criteria);
+            TextView textview3 = (TextView) findViewById(R.id.salary);
+            TextView textview4 = (TextView) findViewById(R.id.back);
+            TextView textview5 = (TextView) findViewById(R.id.ppt_date);
+            TextView textview6 = (TextView) findViewById(R.id.ppt_time);
+            TextView textview7 = (TextView) findViewById(R.id.other_details);
+            TextView textview8 = (TextView) findViewById(R.id.reg_link);
+            TextView textview9 = (TextView) findViewById(R.id.reg_start_date);
+            TextView textview10 = (TextView) findViewById(R.id.reg_start_time);
+            TextView textview11 = (TextView) findViewById(R.id.reg_end_date);
+            TextView textview12 = (TextView) findViewById(R.id.reg_end_time);
+            TextView textview13 = (TextView) findViewById(R.id.hired);
 
-        if(length) {
-            textView7.setText(other_details);
-            LinearLayout ll =(LinearLayout) findViewById(R.id.linearLayout12);
-            Log.i("My_tag","viisible");
-            ll.setVisibility(View.VISIBLE);
+
+            CharSequence name = name_str.subSequence(0, name_str.length());
+            CharSequence criteria = null;
+            if (flag == false)
+                criteria = criteria_str.subSequence(0, criteria_str.length());
+            CharSequence salary = salary_str.subSequence(0, salary_str.length());
+            CharSequence back = back_str.subSequence(0, back_str.length());
+            CharSequence date = ppt_date_str.subSequence(0, ppt_date_str.length());
+            CharSequence time = ppt_time_str.subSequence(0, ppt_time_str.length());
+
+            if (!reg_link_str.equals("null")) {
+                CharSequence reg_link = reg_link_str.subSequence(0, reg_link_str.length());
+                textview8.setText(reg_link);
+            }
+            if (!reg_start_date_str.equals("null")) {
+                CharSequence reg_start_date = reg_start_date_str.subSequence(0, reg_start_date_str.length());
+                textview9.setText(reg_start_date);
+            }
+            if (!reg_start_time_str.equals("null")) {
+                CharSequence reg_start_time = reg_start_time_str.subSequence(0, reg_start_time_str.length());
+                textview10.setText(reg_start_time);
+            }
+
+            if(!reg_end_date_str.equals("null")){
+            CharSequence reg_end_date = reg_end_date_str.subSequence(0, reg_end_date_str.length());
+            textview11.setText(reg_end_date);
+            }
+
+            if(!reg_end_time_str.equals("null")){
+                CharSequence reg_end_time = reg_end_time_str.subSequence(0, reg_end_time_str.length());
+                textview12.setText(reg_end_time);
+            }
+
+            if(!hired_str.equals("0")) {
+                CharSequence hired = hired_str.subSequence(0, hired_str.length());
+                textview13.setText(hired);
+            }
+
+            if(other_det_str.length()>0) {
+                CharSequence other_details = other_det_str.subSequence(0, other_det_str.length());
+                textview7.setText(other_details);
+            }
+
+
+            textview.setText(name);
+
+            if (flag)
+                textview2.setText("No Criteria");
+            else
+                textview2.setText(criteria);
+
+            textview3.setText(salary);
+
+            textview4.setText(back);
+
+            textview5.setText(date);
+
+            textview6.setText(time);
+
+
         }
 
     }
