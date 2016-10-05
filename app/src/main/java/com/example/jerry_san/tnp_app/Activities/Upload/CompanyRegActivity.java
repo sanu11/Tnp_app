@@ -139,6 +139,8 @@ public class CompanyRegActivity extends AppCompatActivity {
         TextView e7=(TextView) findViewById(R.id.ppt_time);
 
         String name = e1.getText().toString();
+        String date=null;
+        String time=null;
         float criteria;
         if(flag)
             criteria = Float.parseFloat(e2.getText().toString());
@@ -147,10 +149,14 @@ public class CompanyRegActivity extends AppCompatActivity {
         float salary = Float.parseFloat(e3.getText().toString());
         String other_details=e4.getText().toString();
         String back= String.valueOf(e5.getSelectedItem());
-        String date=e6.getText().toString();
-        String time =e7.getText().toString();
 
-        String dateTime=date+" " + time;
+        assert e6 != null;
+        date=e6.getText().toString();
+        assert e7 != null;
+        time =e7.getText().toString();
+        String dateTime=null;
+        if(date!=null && time!=null)
+        dateTime=date+" " + time;
 
         JSONObject obj = new JSONObject();
         try {
@@ -160,6 +166,7 @@ public class CompanyRegActivity extends AppCompatActivity {
             obj.put("salary", salary);
             obj.put("other_details", other_details);
             obj.put("back", back);
+            if(dateTime!=null)
             obj.put("ppt_date", dateTime);
 
             Log.i("My_tag", obj.toString(0));

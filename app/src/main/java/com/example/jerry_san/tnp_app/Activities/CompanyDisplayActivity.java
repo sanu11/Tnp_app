@@ -26,8 +26,6 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        toolbar.setBackgroundResource(Color.);
-//        setSupportActionBar(toolbar);
 
         localDatabase= new LocalDatabase(this);
         int position = getIntent().getExtras().getInt("position");
@@ -60,18 +58,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
             String ppt_time_str = array[1];
 
 
-            assert reg_start_str != null;
-            Log.i("My_tag", reg_start_str);
-            String array2[] = reg_start_str.split("\\s+");
-            String reg_start_date_str = array[0];
-            String reg_start_time_str = array[1];
 
-
-            assert reg_end_str != null;
-            Log.i("My_tag", reg_end_str);
-            String array3[] = reg_end_str.split("\\s+");
-            String reg_end_date_str = array[0];
-            String reg_end_time_str = array[1];
 
 
             TextView textview = (TextView) findViewById(R.id.name);
@@ -98,54 +85,6 @@ public class CompanyDisplayActivity extends AppCompatActivity {
             CharSequence date = ppt_date_str.subSequence(0, ppt_date_str.length());
             CharSequence time = ppt_time_str.subSequence(0, ppt_time_str.length());
 
-            if (!reg_link_str.equals("null")) {
-                CharSequence reg_link = reg_link_str.subSequence(0, reg_link_str.length());
-                textview8.setText(reg_link);
-            }
-            if (!reg_start_date_str.equals("null")) {
-                CharSequence reg_start_date = reg_start_date_str.subSequence(0, reg_start_date_str.length());
-                textview9.setText(reg_start_date);
-            }
-            if (!reg_start_time_str.equals("null")) {
-                CharSequence reg_start_time = reg_start_time_str.subSequence(0, reg_start_time_str.length());
-                textview10.setText(reg_start_time);
-            }
-
-            if(!reg_end_date_str.equals("null")){
-            CharSequence reg_end_date = reg_end_date_str.subSequence(0, reg_end_date_str.length());
-            textview11.setText(reg_end_date);
-            }
-
-            if(!reg_end_time_str.equals("null")){
-                CharSequence reg_end_time = reg_end_time_str.subSequence(0, reg_end_time_str.length());
-                textview12.setText(reg_end_time);
-            }
-
-            if(!hired_str.equals("0")) {
-                CharSequence hired = hired_str.subSequence(0, hired_str.length());
-                textview13.setText(hired);
-            }
-
-            if(other_det_str.length()>0) {
-                CharSequence other_details = other_det_str.subSequence(0, other_det_str.length());
-                textview7.setText(other_details);
-            }
-
-
-            textview.setText(name);
-
-            if (flag)
-                textview2.setText("No Criteria");
-            else
-                textview2.setText(criteria);
-
-            textview3.setText(salary);
-
-            textview4.setText(back);
-
-            textview5.setText(date);
-
-            textview6.setText(time);
 
 
         }
