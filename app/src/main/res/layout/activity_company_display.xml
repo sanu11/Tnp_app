@@ -345,13 +345,6 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="2dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/reg_end"
-                android:layout_marginLeft="85dp"
-                android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout

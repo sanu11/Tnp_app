@@ -127,7 +127,6 @@ public class UpdateCompanyActivity extends AppCompatActivity {
         JSONObject obj = new JSONObject();
         try {
             obj.put("name", name);
-
             obj.put("other_details", other_details);
             obj.put("reg_link", reg_link);
             obj.put("reg_start", reg_start);

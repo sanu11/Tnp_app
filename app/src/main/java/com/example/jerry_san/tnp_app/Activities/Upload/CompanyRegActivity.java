@@ -31,7 +31,7 @@ public class CompanyRegActivity extends AppCompatActivity {
 
 
     int hour, min;
-    boolean flag=false;
+    boolean flag=true;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -117,58 +117,77 @@ public class CompanyRegActivity extends AppCompatActivity {
     public void onClickCheckbox(View v) {
         CheckBox box = (CheckBox) findViewById(R.id.checkBox);
         TextView criteria = (TextView) findViewById(R.id.criteria);
-        if ( box.isChecked())
+        if (box.isChecked()) {
             criteria.setVisibility(View.GONE);
-        else
-        {
+            flag = false;
+        } else{
             criteria.setVisibility(View.VISIBLE);
             flag = true;
         }
-
     }
 
 
-    public void Reg_company(View v) throws ExecutionException, InterruptedException {
+    public void Reg_company(View v) throws ExecutionException, InterruptedException, JSONException {
 
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.criteria);
         EditText e3 = (EditText) findViewById(R.id.salary);
         EditText e4 = (EditText) findViewById(R.id.other_details);
-        Spinner e5  = (Spinner) findViewById(R.id.back);
+        Spinner e5 = (Spinner) findViewById(R.id.back);
         TextView e6 = (TextView) findViewById(R.id.ppt_date);
-        TextView e7=(TextView) findViewById(R.id.ppt_time);
+        TextView e7 = (TextView) findViewById(R.id.ppt_time);
 
-        String name = e1.getText().toString();
-        String date=null;
-        String time=null;
-        float criteria;
-        if(flag)
-            criteria = Float.parseFloat(e2.getText().toString());
-        else
-            criteria=0;
-        float salary = Float.parseFloat(e3.getText().toString());
-        String other_details=e4.getText().toString();
-        String back= String.valueOf(e5.getSelectedItem());
+        String name = "";
+        String date = "";
+        String time = "";
+        String dateTime = "";
+        float salary = 0;
+        float criteria = 0;
+        String other_details = null;
+        String back = null;
 
-        assert e6 != null;
+        name = e1.getText().toString();
+
+        if(name.equals(""))
+            Toast.makeText(CompanyRegActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
+
+        if (flag){
+            String crit=null;
+            crit = e2.getText().toString();
+
+            if(!crit.equals(""))
+            criteria=Float.parseFloat(crit);
+        }
+
+        String sal=null;
+        sal=e3.getText().toString();
+
+        if(!sal.equals(""))
+            salary=Float.parseFloat(sal);
+
+        other_details=e4.getText().toString();
+
+        back= String.valueOf(e5.getSelectedItem());
+
         date=e6.getText().toString();
-        assert e7 != null;
-        time =e7.getText().toString();
-        String dateTime=null;
-        if(date!=null && time!=null)
-        dateTime=date+" " + time;
 
+        time =e7.getText().toString();
+
+        if(date!=null && time!=null&&!date.equals("Select Date")) {
+            if(!time.equals("Select Time"))
+                dateTime = date + " " + time;
+            else
+                dateTime=date;
+        }
         JSONObject obj = new JSONObject();
+
         try {
             obj.put("name", name);
-
             obj.put("criteria", criteria);
             obj.put("salary", salary);
             obj.put("other_details", other_details);
             obj.put("back", back);
-            if(dateTime!=null)
             obj.put("ppt_date", dateTime);
-
             Log.i("My_tag", obj.toString(0));
         } catch (JSONException e) {
             // TODO Auto-generated catch block

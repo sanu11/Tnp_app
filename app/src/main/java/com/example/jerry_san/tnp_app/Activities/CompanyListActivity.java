@@ -57,8 +57,8 @@ public class CompanyListActivity extends AppCompatActivity {
                  startActivity(intent);
 
             }
-        });
 
+        });
 
     }
 
