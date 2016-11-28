@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -54,7 +55,8 @@ public class CompanyListActivity extends AppCompatActivity {
                 ListView listView = (ListView) findViewById(R.id.listView);
                 Intent intent = new Intent(CompanyListActivity.this,CompanyDisplayActivity.class);
                 intent.putExtra("position",position);
-                 startActivity(intent);
+                Log.i("My_tag"," position " + position);
+                startActivity(intent);
 
             }
 

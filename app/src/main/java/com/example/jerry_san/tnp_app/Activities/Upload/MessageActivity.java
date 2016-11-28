@@ -27,14 +27,10 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-
-
-
     }
 
     public void  onClickPost(View v) {
+
         EditText editText = (EditText) findViewById(R.id.title);
         EditText editText2 = (EditText) findViewById(R.id.body);
         String title = editText.getText().toString();
@@ -50,13 +46,16 @@ public class MessageActivity extends AppCompatActivity {
 
         sendMessage = new SendMessagetoServer();
         String res = null;
+
         try {
             res = sendMessage.execute(obj.toString()).get();
-            Log.i("My_tag",res);
+            Log.i("My_tag", "response " + res);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        finish();
     }
+
 }

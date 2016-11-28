@@ -147,9 +147,9 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        boolean res= localDatabase.company_update(name,reg_link,reg_start,reg_end,other_details);
+        long res= localDatabase.company_update(name,reg_link,reg_start,reg_end,other_details);
 
-        if(res)
+        if(res>0)
             Log.i("My_tag","Updated Successfully Locally");
         else
             Log.i("My_tag","Updation to Local database failed");

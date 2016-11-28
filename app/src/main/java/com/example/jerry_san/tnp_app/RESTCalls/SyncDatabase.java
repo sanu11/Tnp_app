@@ -57,7 +57,7 @@ public class SyncDatabase extends AsyncTask<String,String,String >
             int num=jsonArray.length();
             JSONObject jObject;
             String name;
-            Log.i("My_tag",String.valueOf(num));
+            Log.i("My_tag","array size "+String.valueOf(num));
 
             for(int i=0;i<num;i++) {
 

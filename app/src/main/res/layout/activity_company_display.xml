@@ -44,7 +44,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
@@ -82,7 +82,7 @@
                    android:layout_height="wrap_content"
                    android:text="---"
                    android:id="@+id/salary"
-                   android:layout_marginLeft="92dp"
+                   android:layout_marginLeft="100dp"
                    android:textSize="15dp" />
            </LinearLayout>
 
@@ -177,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ppt_date"
-                android:layout_marginLeft="97dp"
+                android:layout_marginLeft="68dp"
                 android:layout_weight="0.24"
                 android:text="---"
                 android:textSize="15dp" />
@@ -209,12 +209,58 @@
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/ppt_time"
-                android:layout_marginLeft="112dp"
+                android:layout_marginLeft="81dp"
                 android:layout_weight="0.24"
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <LinearLayout
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:id="@+id/other_det_layout"
+               android:layout_below="@+id/linearLayout18"
+               android:layout_alignLeft="@+id/linearLayout2"
+               android:layout_alignStart="@+id/linearLayout2"
+               android:layout_marginTop="20dp" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Other Details :"
+                   android:id="@+id/textView61"
+                   android:textSize="18dp"
+                   android:textStyle="bold"
+                   android:layout_marginLeft="2dp" />
+           </LinearLayout>
+
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="---"
+               android:id="@+id/other_details"
+               android:layout_marginLeft="30dp"
+               android:layout_marginTop="20dp"
+               android:textSize="15dp"
+               android:layout_weight="1" />
+
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:id="@+id/UpdateCompanyLayout"
+               android:layout_below="@+id/linearLayout18"
+               android:layout_alignLeft="@+id/linearLayout2"
+               android:layout_alignStart="@+id/linearLayout2"
+               android:layout_marginTop="0dp"
+               android:weightSum="1">
+               >
+
+
+
+               <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -222,7 +268,10 @@
             android:layout_below="@+id/linearLayout18"
             android:layout_alignLeft="@+id/linearLayout2"
             android:layout_alignStart="@+id/linearLayout2"
-            android:layout_marginTop="20dp" >
+            android:layout_marginTop="20dp"
+            android:weightSum="1">
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -233,38 +282,40 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="2dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/reg_link"
-                android:layout_marginLeft="82dp"
-                android:textSize="15dp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout21"
-            android:layout_below="@+id/linearLayout21"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:weightSum="1" >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="---"
+                       android:id="@+id/reg_link"
+                       android:layout_marginLeft="86dp"
+                       android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reg Start :"
-                android:id="@+id/textView57"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="2dp" />
+               </LinearLayout>
 
-        </LinearLayout>
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/linearLayout21"
+               android:layout_below="@+id/linearLayout21"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true"
+               android:layout_marginTop="20dp"
+               android:weightSum="1" >
 
-        <LinearLayout
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Reg Start :"
+                   android:id="@+id/textView57"
+                   android:textSize="18dp"
+                   android:textStyle="bold"
+                   android:layout_marginLeft="2dp" />
+
+           </LinearLayout>
+
+           <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -288,13 +339,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reg_start_date"
-                android:layout_marginLeft="97dp"
+                android:layout_marginLeft="65dp"
                 android:layout_weight="0.24"
                 android:text="---"
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <LinearLayout
+           <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -320,7 +371,7 @@
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/reg_start_time"
-                android:layout_marginLeft="112dp"
+                android:layout_marginLeft="80dp"
                 android:layout_weight="0.24"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -370,10 +421,10 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="---"
                 android:id="@+id/reg_end_date"
-                android:layout_marginLeft="105dp"
+                android:layout_marginLeft="84dp"
                 android:layout_weight="0.24"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -402,69 +453,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reg_end_time"
-                android:layout_marginLeft="97dp"
+                android:layout_marginLeft="77dp"
                 android:layout_weight="0.24"
                 android:text="---"
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout23"
-            android:layout_below="@+id/linearLayout18"
-            android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignStart="@+id/linearLayout2"
-            android:layout_marginTop="20dp" >
+           </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other Details :"
-                android:id="@+id/textView61"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="2dp" />
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="---"
-            android:id="@+id/other_details"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15dp" />
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/hired_layout"
+               android:layout_below="@+id/linearLayout19"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true"
+               android:layout_marginTop="20dp"
+               android:weightSum="1"
+               android:layout_marginLeft="30dp" >
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout"
-            android:layout_below="@+id/linearLayout18"
-            android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignStart="@+id/linearLayout2"
-            android:layout_marginTop="20dp">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Hired"
+                   android:id="@+id/textView38"
+                   android:textSize="18dp"
+                   android:textStyle="bold"
+                   android:layout_marginLeft="0dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hired "
-                android:id="@+id/textView"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="2dp" />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="---"
+                   android:id="@+id/hired"
+                   android:layout_marginLeft="93dp"
+                   android:layout_weight="0.24"
+                   android:textSize="15dp" />
+           </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/hired"
-                android:layout_marginLeft="85dp"
-                android:textSize="15dp" />
-        </LinearLayout>
        </LinearLayout>
+
 
 
     </ScrollView>

@@ -107,7 +107,6 @@ public class LocalDatabase extends SQLiteOpenHelper
         String reg_end=obj.getString("reg_end_date");
         int hired=obj.getInt("hired_people");
 
-
         contentValues.put(col_1,name );
         contentValues.put(col_2, criteria);
         contentValues.put(col_3, sal);
@@ -195,17 +194,19 @@ public class LocalDatabase extends SQLiteOpenHelper
             return false;
         return true;
 
-
     }
 
-    public boolean company_update(String name, String reg_link, String reg_start, String reg_end,String other_details) {
+    public long company_update(String name, String reg_link, String reg_start, String reg_end,String other_details) {
         SQLiteDatabase db=this.getReadableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("reg_link",reg_link);
         cv.put("reg_start",reg_start);
         cv.put("reg_end",reg_end);
-        db.update(table_1, cv, "name= ' " + name + "'", null);
-        return true;
+
+        long res = db.update(table_1, cv, "name= '" + name + "'", null);
+        Log.i("My_tag", String.valueOf(res));
+        db.close();
+        return res;
 
     }
 }

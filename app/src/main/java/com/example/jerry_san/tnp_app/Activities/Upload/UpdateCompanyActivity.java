@@ -152,10 +152,8 @@ public class UpdateCompanyActivity extends AppCompatActivity {
         } else {
             Toast.makeText(UpdateCompanyActivity.this, "Updated Successfullly", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Updated Successfully");
-
         }
+
         finish();
-
-
     }
 }

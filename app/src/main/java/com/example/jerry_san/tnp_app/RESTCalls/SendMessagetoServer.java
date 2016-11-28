@@ -16,6 +16,7 @@ import java.net.URL;
 /**
  * Created by jerry-san on 9/14/16.
  */
+
 public class SendMessagetoServer extends AsyncTask<String,String,String >  {
 
         protected String doInBackground(String... params) {
@@ -62,7 +63,6 @@ public class SendMessagetoServer extends AsyncTask<String,String,String >  {
 
             //response data
             JsonResponse = buffer.toString();
-            Log.i("My_tag",JsonResponse+"  data");
 
             try {
                 //send to post execute

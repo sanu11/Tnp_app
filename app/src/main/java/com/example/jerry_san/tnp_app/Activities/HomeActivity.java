@@ -20,6 +20,7 @@ import com.example.jerry_san.tnp_app.Activities.Upload.UpdateCompanyActivity;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.SessionManager;
 import com.example.jerry_san.tnp_app.RESTCalls.SyncDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

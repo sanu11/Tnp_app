@@ -47,11 +47,15 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <service android:name=".Service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+
             </intent-filter>
         </service>
+
         <service android:name=".Service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
+
             </intent-filter>
         </service>
 

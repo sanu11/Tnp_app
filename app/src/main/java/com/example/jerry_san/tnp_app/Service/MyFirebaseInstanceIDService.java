@@ -18,9 +18,19 @@ import java.util.concurrent.ExecutionException;
 public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
     private static final String TAG = "My_tag";
     private SessionManager sessionManager;
-    @Override
+
 
 //  String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
+    @Override
+    public  void  onCreate()
+    {
+        Log.i("My_tag","hi");
+        String CurrentToken = FirebaseInstanceId.getInstance().getToken();
+        Log.i("My_tag", "Refreshed token: " + CurrentToken);
+        super.onCreate();
+
+    }
 
     public void onTokenRefresh() {
 
