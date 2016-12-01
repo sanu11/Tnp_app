@@ -108,7 +108,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         } else {
             layout3.setVisibility(View.VISIBLE);
-            textViews[i].setText(hired);
+            textViews[10].setText(""+hired);
         }
 
         //if company isn't  updated  ( registration info isn't present) hide registration info
@@ -122,6 +122,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         layout1.setVisibility(View.VISIBLE);
         textViews[i].setText(reg_link);
+        i++;
         String reg_start = cursor.getString(cursor.getColumnIndex("reg_start"));
         textViews[i].setText(reg_start);
         i++;

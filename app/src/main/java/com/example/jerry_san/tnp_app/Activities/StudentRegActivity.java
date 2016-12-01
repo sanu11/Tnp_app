@@ -55,13 +55,35 @@ public class StudentRegActivity extends AppCompatActivity {
         String password = e3.getText().toString();
         String phone = e4.getText().toString();
         String branch = String.valueOf(e5.getSelectedItem());
-        float average = Float.parseFloat(e6.getText().toString());
+        String avg = e6.getText().toString();
         String placed = null;
         String active_back = null;
+
+        if (name.trim().equals("") || email.trim().equals("") || password.trim().equals("") || phone.trim().equals("") || avg.trim().equals("")) {
+            Toast.makeText(StudentRegActivity.this, "Please Enter All Details", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        email.trim();
+        CharSequence mail = email.subSequence(0, email.length());
+        boolean matches = android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        if (!matches) {
+            Toast.makeText(StudentRegActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (phone.length() != 10) {
+            Toast.makeText(StudentRegActivity.this, "Invalid Mobile", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Float average = Float.parseFloat(avg);
+
         if (e7.isChecked())
             placed = "YES";
         else
             placed = "NO";
+
         if (e8.isChecked())
             active_back = "YES";
         else
@@ -78,6 +100,7 @@ public class StudentRegActivity extends AppCompatActivity {
             obj.put("placed", placed);
             obj.put("activeBack", active_back);
             Log.i("My_tag", obj.toString(0));
+
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

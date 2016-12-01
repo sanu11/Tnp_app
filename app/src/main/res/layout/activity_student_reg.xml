@@ -72,7 +72,9 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/name"
-                android:hint="name" />
+                android:hint="name"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,7 +91,9 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/email"
-                android:hint="defaultemail@gmail.com" />
+                android:hint="defaultemail@gmail.com"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,7 +110,9 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/password"
-                android:hint="password" />
+                android:hint="password"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +129,9 @@
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/phone"
-                android:hint="mobile" />
+                android:hint="mobile"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,7 +169,9 @@
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/average"
-                android:hint="average" />
+                android:hint="average"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"

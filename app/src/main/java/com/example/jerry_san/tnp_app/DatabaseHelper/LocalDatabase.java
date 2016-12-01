@@ -249,6 +249,18 @@ public class LocalDatabase extends SQLiteOpenHelper {
         cv.put("reg_start", reg_start);
         cv.put("reg_end", reg_end);
 
+        String query = "select * from " + table_1 + " where name = '" + name + "'";
+        Cursor cur = db.rawQuery(query, null);
+        cur.moveToFirst();
+        String other = cur.getString(cur.getColumnIndex("other_details"));
+        if(other!=null){
+            if(other_details!=null)
+                other= other + " " + other_details;
+        }
+        else
+            other=other_details;
+
+        cv.put("other_details",other);
         long res = db.update(table_1, cv, "name= '" + name + "'", null);
         Log.i("My_tag", String.valueOf(res));
         db.close();
