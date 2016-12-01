@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,13 +26,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class CompanyRegActivity extends AppCompatActivity {
 
 
     int hour, min;
-    boolean flag=true;
+    boolean flag = true;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -61,8 +64,7 @@ public class CompanyRegActivity extends AppCompatActivity {
             return "0" + String.valueOf(c);
     }
 
-    public void onClickDate(View view)
-    {
+    public void onClickDate(View view) {
         final View vv = view;
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -74,17 +76,17 @@ public class CompanyRegActivity extends AppCompatActivity {
 
                 TextView tv;
 
-                if(vv.getId()==R.id.ppt_date) {
+                if (vv.getId() == R.id.ppt_date) {
                     tv = (TextView) findViewById(R.id.ppt_date);
                     assert tv != null;
-                    tv.setText(year1 +"-" + month1 + "-" + day1);
+                    tv.setText(year1 + "-" + month1 + "-" + day1);
 
                 }
 
             }
-        },2016,9,10);
+        }, 2016, 9, 10);
 
-            datePickerDialog.show();
+        datePickerDialog.show();
 
     }
 
@@ -92,35 +94,36 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         final View vv = view;
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-        TextView tv;
+            TextView tv;
 
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
                 hour = hourOfDay;
                 min = minute;
 
-                 if (vv.getId() == R.id.ppt_time) {
+                if (vv.getId() == R.id.ppt_time) {
                     tv = (TextView) findViewById(R.id.ppt_time);
                     tv.setText(new StringBuilder()
                             .append(pad(hour)).append(":")
                             .append(pad(min)));
-                 }
+                }
 
             }
         }, 10, 00, false);
 
-    timePickerDialog.show();
+        timePickerDialog.show();
 
     }
 
 
     public void onClickCheckbox(View v) {
+
         CheckBox box = (CheckBox) findViewById(R.id.checkBox);
         TextView criteria = (TextView) findViewById(R.id.criteria);
         if (box.isChecked()) {
             criteria.setVisibility(View.GONE);
             flag = false;
-        } else{
+        } else {
             criteria.setVisibility(View.VISIBLE);
             flag = true;
         }
@@ -137,58 +140,67 @@ public class CompanyRegActivity extends AppCompatActivity {
         TextView e6 = (TextView) findViewById(R.id.ppt_date);
         TextView e7 = (TextView) findViewById(R.id.ppt_time);
 
-        String name = "";
-        String date = "";
-        String time = "";
-        String dateTime = "";
-        float salary = 0;
-        float criteria = 0;
-        String other_details = null;
-        String back = null;
+        Object name = JSONObject.NULL;
+        Object date = JSONObject.NULL;
+        Object time = JSONObject.NULL;
+        Object dateTime = JSONObject.NULL;
+        Object salary = JSONObject.NULL;
+        Object criteria = JSONObject.NULL;
+        Object other_details = JSONObject.NULL;
+        Object back = JSONObject.NULL;
 
         name = e1.getText().toString();
 
-        if(name.equals(""))
+        if (((String) name).trim().length() == 0) {
             Toast.makeText(CompanyRegActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (flag){
-            String crit=null;
+        if (flag) {
+            String crit = null;
             crit = e2.getText().toString();
 
-            if(!crit.equals(""))
-            criteria=Float.parseFloat(crit);
+            if (!crit.equals(""))
+                criteria = Float.parseFloat(crit);
         }
 
-        String sal=null;
-        sal=e3.getText().toString();
+        String sal = null;
+        sal = e3.getText().toString();
 
-        if(!sal.equals(""))
-            salary=Float.parseFloat(sal);
+        if (!sal.equals(""))
+            salary = Float.parseFloat(sal);
 
-        other_details=e4.getText().toString();
 
-        back= String.valueOf(e5.getSelectedItem());
+        String temp = e4.getText().toString();
+        if (temp.trim().length()!=0)
+            other_details = temp;
 
-        date=e6.getText().toString();
+        back = String.valueOf(e5.getSelectedItem());
 
-        time =e7.getText().toString();
+        date = e6.getText().toString();
 
-        if(date!=null && time!=null&&!date.equals("Select Date")) {
-            if(!time.equals("Select Time"))
+        time = e7.getText().toString();
+
+        if (!date.equals("Select Date")) {
+            if (!time.equals("Select Time"))
                 dateTime = date + " " + time;
             else
-                dateTime=date;
+                dateTime = date;
         }
+
         JSONObject obj = new JSONObject();
 
         try {
+
             obj.put("name", name);
             obj.put("criteria", criteria);
             obj.put("salary", salary);
             obj.put("other_details", other_details);
             obj.put("back", back);
             obj.put("ppt_date", dateTime);
-            Log.i("My_tag", obj.toString(0));
+
+            Log.i("My_tag", " in obj put " + obj.toString(0));
+
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -202,16 +214,14 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         if (res == null) {
             Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
-            Log.i("My_tag","Registration Unsuccessful");
+            Log.i("My_tag", "Registration Unsuccessful");
+        } else {
+            Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
+            Log.i("My_tag", "Registration Successful");
+
+            finish();
+
         }
-
-        else {
-        Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
-        Log.i("My_tag","Registration Successful");
-
-        finish();
-
-    }
 
 
     }

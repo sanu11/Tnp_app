@@ -61,11 +61,11 @@ public class SyncDatabase extends AsyncTask<String,String,String >
 
             for(int i=0;i<num;i++) {
 
-
+                Log.i("My_tag",String.valueOf(i));
                 jObject = jsonArray.getJSONObject(i).getJSONObject("fields");
                 name = jObject.getString("name");
                 Log.i("My_tag",name);
-                boolean val =localDatabase.checkifexists(name);
+                boolean val =localDatabase.checkCompanyifExists(name);
 
 
                 if ( ! val ) {
@@ -92,7 +92,7 @@ public class SyncDatabase extends AsyncTask<String,String,String >
                         jObject.put("reg_end_date", reg_end);
                     }
 
-                    boolean res=localDatabase.company_insert_json(jObject);
+                    boolean res=localDatabase.companyInsertJson(jObject);
                     Log.i("My_tag",String.valueOf(res));
 
                 }

@@ -14,5 +14,5 @@ public class NetworkConnection {
 //    NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 //    boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-
 }
+

@@ -31,7 +31,7 @@ public class CompanyListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         localDatabase = new LocalDatabase(this);
-        Cursor cur = localDatabase.get_company_cursor();
+        Cursor cur = localDatabase.getCompanyCursor();
         ListView listView = (ListView) findViewById(R.id.listView);
 
         String[] columns = new String[]{"name"};

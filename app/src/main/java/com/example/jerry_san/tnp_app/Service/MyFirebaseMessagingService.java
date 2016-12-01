@@ -70,7 +70,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        long res= localDatabase.company_insert(name,criteria,salary,back,ppt_date,other_details,0);
+        long res= localDatabase.companyInsert(name,criteria,salary,back,ppt_date,other_details);
 
         if(res>0)
             Log.i("My_tag","Added Successfully Locally");
@@ -111,7 +111,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
         intent.putExtra("body",body);
 
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        boolean res= localDatabase.message_insert(title,body);
+        boolean res= localDatabase.messageInsert(title,body);
         if(res)
             Log.i("My_tag","Added Successfully Locally");
         else
@@ -147,7 +147,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
-        long res= localDatabase.company_update(name,reg_link,reg_start,reg_end,other_details);
+        long res= localDatabase.companyUpdate(name,reg_link,reg_start,reg_end,other_details);
 
         if(res>0)
             Log.i("My_tag","Updated Successfully Locally");
