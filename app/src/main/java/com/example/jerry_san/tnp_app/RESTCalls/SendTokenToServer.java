@@ -35,8 +35,9 @@ public class SendTokenToServer extends AsyncTask<String,String,String >
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept", "application/json");
 
-            // is output buffer writter
+            // is output buffer writer
             Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+            //write token
             writer.write(JsonDATA);
 
             writer.close();
@@ -49,6 +50,7 @@ public class SendTokenToServer extends AsyncTask<String,String,String >
                 // Nothing to do.
                 return null;
             }
+
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String inputLine;

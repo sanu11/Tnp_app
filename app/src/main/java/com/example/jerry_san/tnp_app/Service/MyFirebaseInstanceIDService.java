@@ -1,10 +1,14 @@
 package com.example.jerry_san.tnp_app.Service;
+import android.content.Context;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.example.jerry_san.tnp_app.RESTCalls.SendTokenToServer;
 import com.example.jerry_san.tnp_app.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+
+import android.provider.Settings.Secure;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,9 +29,9 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
     @Override
     public  void  onCreate()
     {
-        Log.i("My_tag","hi");
-        String CurrentToken = FirebaseInstanceId.getInstance().getToken();
-        Log.i("My_tag", "Refreshed token: " + CurrentToken);
+//        Log.i("My_tag","hi");
+//        String CurrentToken = FirebaseInstanceId.getInstance().getToken();
+//        Log.i("My_tag", "Refreshed token: " + CurrentToken);
         super.onCreate();
 
     }
@@ -55,25 +59,23 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
         //You can implement this method to store the token on your server
         //Not required for current project
         //
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        String android_id = tm.getDeviceId();
+//        String android_id = Secure.getString(getContentResolver(),
+//                Secure.ANDROID_ID);
 
-        sessionManager=new SessionManager(getApplicationContext());
-        String array[]= sessionManager.getUserDetails();
+        Log.i("My_tag",android_id);
 
-        String user=array[0];
         JSONObject obj = new JSONObject();
-        Log.i("My_tag","in firebase " + user);
         try {
-            obj.put("dev_id", 2);
+            obj.put("dev_id", android_id);
             obj.put("reg_id", token);
-            obj.put("name","2");
         }
         catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-
         }
 
-        Log.i("My_tag","firebase");
         SendTokenToServer token_obj = new SendTokenToServer();
         String res = null;
         try {

@@ -13,18 +13,21 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.Activities.CompanyUpdateDisplayActivity;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.UpdateCompany;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class UpdateCompanyActivity extends AppCompatActivity {
 
 
-    int hour,min;
+    int hour, min;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +46,7 @@ public class UpdateCompanyActivity extends AppCompatActivity {
             return "0" + String.valueOf(c);
     }
 
-    public void onClickRegDate(View view)
-    {
+    public void onClickRegDate(View view) {
         final View vv = view;
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -56,26 +58,25 @@ public class UpdateCompanyActivity extends AppCompatActivity {
 
                 TextView tv;
 
-                if(vv.getId()==R.id.reg_start_date) {
+                if (vv.getId() == R.id.reg_start_date) {
                     tv = (TextView) findViewById(R.id.reg_start_date);
                     assert tv != null;
-                    tv.setText(year1 +"-" + month1 + "-" + day1);
+                    tv.setText(year1 + "-" + month1 + "-" + day1);
 
-                }else if(vv.getId()==R.id.reg_end_date) {
+                } else if (vv.getId() == R.id.reg_end_date) {
                     tv = (TextView) findViewById(R.id.reg_end_date);
                     assert tv != null;
-                    tv.setText(year1 +"-" + month1 + "-" + day1);
+                    tv.setText(year1 + "-" + month1 + "-" + day1);
 
                 }
 
             }
-        },2016,9,10);
+        }, 2016, 9, 10);
 
         datePickerDialog.show();
     }
 
-    public void onClickRegTime(View view)
-    {
+    public void onClickRegTime(View view) {
         final View vv = view;
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             TextView tv;
@@ -90,7 +91,7 @@ public class UpdateCompanyActivity extends AppCompatActivity {
                     tv.setText(new StringBuilder()
                             .append(pad(hour)).append(":")
                             .append(pad(min)));
-                }else if (vv.getId() == R.id.reg_end_time) {
+                } else if (vv.getId() == R.id.reg_end_time) {
                     tv = (TextView) findViewById(R.id.reg_end_time);
                     tv.setText(new StringBuilder()
                             .append(pad(hour)).append(":")
@@ -105,24 +106,43 @@ public class UpdateCompanyActivity extends AppCompatActivity {
 
 
     public void onClickUpdate(View v) throws ExecutionException, InterruptedException {
+
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.reg_link);
-        EditText e3 = (EditText) findViewById(R.id.other_details);
-        TextView e4 = (TextView) findViewById(R.id.reg_start_date);
-        TextView e5 = (TextView) findViewById(R.id.reg_start_time);
-        TextView e6 = (TextView) findViewById(R.id.reg_end_date);
-        TextView e7 = (TextView) findViewById(R.id.reg_end_time);
+        TextView e3 = (TextView) findViewById(R.id.reg_start_date);
+        TextView e4 = (TextView) findViewById(R.id.reg_start_time);
+        TextView e5 = (TextView) findViewById(R.id.reg_end_date);
+        TextView e6 = (TextView) findViewById(R.id.reg_end_time);
+        EditText e7 = (EditText) findViewById(R.id.other_details);
 
-        String name = e1.getText().toString();
-        String reg_link = e2.getText().toString();
-        String other_details = e3.getText().toString();
-        String reg_start_date = e4.getText().toString();
-        String reg_start_time = e5.getText().toString();
-        String reg_end_date = e6.getText().toString();
-        String reg_end_time = e7.getText().toString();
+        Object name = e1.getText().toString();
+        Object reg_link = e2.getText().toString();
 
-        String reg_start = reg_start_date + " " + reg_start_time;
-        String reg_end = reg_end_date + " " + reg_end_time;
+        String reg_start_date = e3.getText().toString();
+        String reg_start_time = e4.getText().toString();
+        String reg_end_date = e5.getText().toString();
+        String reg_end_time = e6.getText().toString();
+
+        Object other_details = e7.getText().toString();
+
+        Object reg_start = reg_start_date + " " + reg_start_time;
+        Object reg_end = reg_end_date + " " + reg_end_time;
+
+        if (((String) name).trim().length() == 0) {
+            Toast.makeText(UpdateCompanyActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (((String) reg_link).trim().length() == 0)
+            reg_link = JSONObject.NULL;
+
+        if (reg_start.toString().trim().length() == 0)
+            reg_start = JSONObject.NULL;
+
+        if (reg_end.toString().trim().length() == 0)
+            reg_end = JSONObject.NULL;
+
+        if (other_details.toString().trim().length() == 0)
+            other_details = JSONObject.NULL;
 
         JSONObject obj = new JSONObject();
         try {
@@ -150,8 +170,8 @@ public class UpdateCompanyActivity extends AppCompatActivity {
             Toast.makeText(UpdateCompanyActivity.this, "Update Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Update Unsuccessful");
         } else {
-            Toast.makeText(UpdateCompanyActivity.this, "Updated Successfullly", Toast.LENGTH_SHORT).show();
-            Log.i("My_tag", "Updated Successfully");
+            Toast.makeText(UpdateCompanyActivity.this, res, Toast.LENGTH_SHORT).show();
+            Log.i("My_tag", res);
         }
 
         finish();

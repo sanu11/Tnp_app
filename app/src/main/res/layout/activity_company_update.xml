@@ -50,7 +50,7 @@
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="16dp"
 
         android:orientation="vertical"
@@ -98,22 +98,6 @@
             android:textSize="16sp"
             android:textStyle="normal|bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Other Details"
-            android:id="@+id/textView14"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/other_details"
-            android:hint="Other Info"
-            android:textSize="16sp"
-            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,13 +105,13 @@
             android:text="Registration :"
             android:id="@+id/textView9"
             android:textSize="18dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -170,7 +154,7 @@
                 android:layout_weight="1"
                 android:text="Select Date"
                 android:textStyle="normal|bold"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:onClick="onClickRegDate"/>
 
             <TextView
@@ -245,6 +229,23 @@
                 android:onClick="onClickRegTime"/>
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Details"
+            android:id="@+id/textView14"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/other_details"
+            android:hint="Other Info"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
 
         <Button android:layout_width="190dp"
             android:layout_height="38dp"

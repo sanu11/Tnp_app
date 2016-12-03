@@ -141,8 +141,6 @@ public class CompanyRegActivity extends AppCompatActivity {
         TextView e7 = (TextView) findViewById(R.id.ppt_time);
 
         Object name = JSONObject.NULL;
-        Object date = JSONObject.NULL;
-        Object time = JSONObject.NULL;
         Object dateTime = JSONObject.NULL;
         Object salary = JSONObject.NULL;
         Object criteria = JSONObject.NULL;
@@ -150,6 +148,13 @@ public class CompanyRegActivity extends AppCompatActivity {
         Object back = JSONObject.NULL;
 
         name = e1.getText().toString();
+        back = String.valueOf(e5.getSelectedItem());
+
+        String crit = e2.getText().toString();
+        String sal = e3.getText().toString();
+        String other = e4.getText().toString();
+        String date = e6.getText().toString();
+        String time = e7.getText().toString();
 
         if (((String) name).trim().length() == 0) {
             Toast.makeText(CompanyRegActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
@@ -157,29 +162,16 @@ public class CompanyRegActivity extends AppCompatActivity {
         }
 
         if (flag) {
-            String crit = null;
-            crit = e2.getText().toString();
-
-            if (!crit.equals(""))
+            if (crit.trim().length()!=0)
                 criteria = Float.parseFloat(crit);
         }
 
-        String sal = null;
-        sal = e3.getText().toString();
-
-        if (!sal.equals(""))
+        if (sal.trim().length()!=0)
             salary = Float.parseFloat(sal);
 
+        if (other.trim().length()!=0)
+            other_details = other;
 
-        String temp = e4.getText().toString();
-        if (temp.trim().length()!=0)
-            other_details = temp;
-
-        back = String.valueOf(e5.getSelectedItem());
-
-        date = e6.getText().toString();
-
-        time = e7.getText().toString();
 
         if (!date.equals("Select Date")) {
             if (!time.equals("Select Time"))
@@ -216,8 +208,8 @@ public class CompanyRegActivity extends AppCompatActivity {
             Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Registration Unsuccessful");
         } else {
-            Toast.makeText(CompanyRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
-            Log.i("My_tag", "Registration Successful");
+            Toast.makeText(CompanyRegActivity.this, res, Toast.LENGTH_SHORT).show();
+            Log.i("My_tag", res);
 
             finish();
 

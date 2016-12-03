@@ -59,7 +59,8 @@ public class StudentRegActivity extends AppCompatActivity {
         String placed = null;
         String active_back = null;
 
-        if (name.trim().equals("") || email.trim().equals("") || password.trim().equals("") || phone.trim().equals("") || avg.trim().equals("")) {
+        String temp = name;
+        if (temp.trim().equals("") || email.trim().equals("") || password.trim().equals("") || phone.trim().equals("") || avg.trim().equals("")) {
             Toast.makeText(StudentRegActivity.this, "Please Enter All Details", Toast.LENGTH_SHORT).show();
             return;
         }
