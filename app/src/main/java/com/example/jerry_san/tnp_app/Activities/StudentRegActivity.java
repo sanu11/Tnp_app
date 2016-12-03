@@ -115,9 +115,13 @@ public class StudentRegActivity extends AppCompatActivity {
 
         if (res == null)
             Toast.makeText(StudentRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
-        else {
-
-            Toast.makeText(StudentRegActivity.this, "Registered Successfullly", Toast.LENGTH_SHORT).show();
+        else if (res.equals("Already Registered\n")) {
+            Toast.makeText(StudentRegActivity.this, "Already Registered , Please Login", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+            finish();
+        } else {
+            Toast.makeText(StudentRegActivity.this, res, Toast.LENGTH_SHORT).show();
             SessionManager sessionManager = new SessionManager(this);
             sessionManager.createLoginSession(name, email);
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);

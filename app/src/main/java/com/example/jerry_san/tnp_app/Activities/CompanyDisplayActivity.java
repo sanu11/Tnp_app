@@ -67,8 +67,6 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         int temp1 = cursor.getType(6);
 
-        Log.i("My_tag", "false" + temp1);
-
         for (i = 1; i <= count; i++) {
 
             int type = cursor.getType(i);
@@ -89,11 +87,14 @@ public class CompanyDisplayActivity extends AppCompatActivity {
             } else if (type == Cursor.FIELD_TYPE_FLOAT) {
 
                 Float var = cursor.getFloat(i);
-                if (var != null)
-                    textViews[i].setText("" + var);
-
+                if (var != null) {
+                    if (cur_col.equals("criteria") && var == 0)
+                        textViews[i].setText("No criteria");
+                    else
+                        textViews[i].setText("" + var);
+                }
             } else if (type == Cursor.FIELD_TYPE_NULL) {
-                if(cur_col.equals(other_det_col))
+                if (cur_col.equals(other_det_col))
                     findViewById(R.id.other_det_layout).setVisibility(View.GONE);
 
             }
@@ -101,14 +102,14 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         }
 
         int hired = cursor.getInt(cursor.getColumnIndex("hired_people"));
-        Log.i("My_tag", "hired " + hired);
+
         LinearLayout layout3 = (LinearLayout) findViewById(R.id.hired_layout);
         if (hired == 0) {
             layout3.setVisibility(View.GONE);
 
         } else {
             layout3.setVisibility(View.VISIBLE);
-            textViews[10].setText(""+hired);
+            textViews[10].setText("" + hired);
         }
 
         //if company isn't  updated  ( registration info isn't present) hide registration info

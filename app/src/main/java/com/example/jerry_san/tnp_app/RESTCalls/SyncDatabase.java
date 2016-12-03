@@ -64,32 +64,35 @@ public class SyncDatabase extends AsyncTask<String,String,String >
                 Log.i("My_tag",String.valueOf(i));
                 jObject = jsonArray.getJSONObject(i).getJSONObject("fields");
                 name = jObject.getString("name");
-                Log.i("My_tag",name);
                 boolean val =localDatabase.checkCompanyifExists(name);
-
+                Log.i("My_tag",jObject.toString());
+                String temp=null;
 
                 if ( ! val ) {
                     //since we get dat_time in this format2016-10-10T10:00:00Z
+                    if(!jObject.isNull("ppt_date")) {
 
-                    String arr[] = jObject.getString("ppt_date").split("T");
-                    String temp = arr[1].split("Z")[0];
-                    String ppt_date = arr[0] + " " + temp;
-                    jObject.put("ppt_date", ppt_date);
-
-                    String reg_start_date = jObject.getString("reg_start_date");
-                    if (reg_start_date!= null) {
-                        String arr2[] =reg_start_date.split("T");
-                        temp = arr2[1].split("Z")[0];
-                        String reg_start = arr[0] + " " + temp;
-                        jObject.put("reg_start_date", reg_start_date);
+                        temp = jObject.getString("ppt_date");
+                        String arr[] =temp.split("T");
+                        temp = arr[1].split("Z")[0];
+                        String ppt_date = arr[0] + " " + temp;
+                        jObject.put("ppt_date", ppt_date);
                     }
 
-                    String reg_end_date = jObject.getString("reg_end_date");
-                    if(reg_end_date!=null) {
-                        String arr3[] = reg_end_date.split("T");
+                    if (!jObject.isNull("reg_start_date")) {
+                        temp=jObject.getString("reg_start_date");
+                        String arr2[] =temp.split("T");
+                        temp = arr2[1].split("Z")[0];
+                        String reg_start = arr2[0] + " " + temp;
+                        jObject.put("reg_start_date", reg_start);
+                    }
+
+                    if(!jObject.isNull("reg_end_date")) {
+                        temp=jObject.getString("reg_end_date");
+                        String arr3[] = temp.split("T");
                         temp = arr3[1].split("Z")[0];
-                        String reg_end = arr[0] + " " + temp;
-                        jObject.put("reg_end_date", reg_end_date);
+                        String reg_end = arr3[0] + " " + temp;
+                        jObject.put("reg_end_date", reg_end);
                     }
 
                     boolean res=localDatabase.companyInsertJson(jObject);

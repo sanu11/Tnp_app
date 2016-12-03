@@ -18,6 +18,20 @@ import java.util.Iterator;
  */
 public class LocalDatabase extends SQLiteOpenHelper {
 
+    public static final String col[]={
+            "id",
+            "name",
+            "criteria",
+            "salary",
+            "back",
+            "ppt_date",
+            "other_details",
+            "reg_link",
+            "reg_start",
+            "reg_end",
+            "hired_people"
+    };
+
     public static final String db_name = "Tnp.db";
     public static final String table_1 = "Company";
     public static final String table_2 = "Message";
@@ -138,27 +152,28 @@ public class LocalDatabase extends SQLiteOpenHelper {
             contentValues.put(col_5, ppt_date_time);
         }
 
-        if (obj.isNull("other_details")) {
+        if (!obj.isNull("other_details")) {
             String other_details = obj.getString("other_details");
             contentValues.put(col_6, other_details);
         }
 
-        if (obj.isNull("reg_link")) {
+        if (!obj.isNull("reg_link")) {
             String reg_link = obj.getString("reg_link");
             contentValues.put(col_7, reg_link);
         }
 
-        if (obj.isNull("reg_start_date")) {
+        if (!obj.isNull("reg_start_date")) {
+
             String reg_start = obj.getString("reg_start_date");
             contentValues.put(col_8, reg_start);
         }
 
-        if (obj.isNull("reg_end_date")) {
+        if (!obj.isNull("reg_end_date")) {
             String reg_end = obj.getString("reg_end_date");
             contentValues.put(col_9, reg_end);
         }
 
-        if (obj.isNull("hired_people")) {
+        if (!obj.isNull("hired_people")) {
             int hired = obj.getInt("hired_people");
             contentValues.put(col_10, hired);
         }

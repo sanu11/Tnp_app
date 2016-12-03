@@ -165,6 +165,8 @@ public class CompanyRegActivity extends AppCompatActivity {
             if (crit.trim().length()!=0)
                 criteria = Float.parseFloat(crit);
         }
+        else
+            criteria=0.0;
 
         if (sal.trim().length()!=0)
             salary = Float.parseFloat(sal);
@@ -210,7 +212,6 @@ public class CompanyRegActivity extends AppCompatActivity {
         } else {
             Toast.makeText(CompanyRegActivity.this, res, Toast.LENGTH_SHORT).show();
             Log.i("My_tag", res);
-
             finish();
 
         }

@@ -30,7 +30,7 @@ public class CompanyUpdateDisplayActivity extends AppCompatActivity {
         TextView textview2 =(TextView) findViewById (R.id.reg_link);
         TextView textview3 =(TextView) findViewById (R.id.reg_start);
         TextView textview4 =(TextView) findViewById (R.id.reg_end);
-//        TextView textview5 =(TextView) findViewById (R.id.name);
+
 
         CharSequence name = name_str.subSequence(0, name_str.length());
         CharSequence reg_link = reg_link_str.subSequence(0, reg_link_str.length());
