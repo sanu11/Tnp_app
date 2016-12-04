@@ -211,9 +211,8 @@
                 android:textOn="YES"
                 android:checked="false" />
 
-
             <Button android:layout_width="190dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
                 android:text="submit"

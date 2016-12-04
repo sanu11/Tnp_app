@@ -121,6 +121,8 @@ public class StudentRegActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else {
+            res.replace("\n"," ");
+            res.trim();
             Toast.makeText(StudentRegActivity.this, res, Toast.LENGTH_SHORT).show();
             SessionManager sessionManager = new SessionManager(this);
             sessionManager.createLoginSession(name, email);

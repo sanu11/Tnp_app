@@ -210,6 +210,8 @@ public class CompanyRegActivity extends AppCompatActivity {
             Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Registration Unsuccessful");
         } else {
+            res.replace("\n"," ");
+            res.trim();
             Toast.makeText(CompanyRegActivity.this, res, Toast.LENGTH_SHORT).show();
             Log.i("My_tag", res);
             finish();

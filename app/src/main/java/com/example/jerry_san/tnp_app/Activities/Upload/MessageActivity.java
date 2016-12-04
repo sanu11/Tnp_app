@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.SendMessagetoServer;
@@ -18,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 public class MessageActivity extends AppCompatActivity {
 
     SendMessagetoServer sendMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    public void  onClickPost(View v) {
+    public void onClickPost(View v) throws ExecutionException, InterruptedException {
 
         EditText editText = (EditText) findViewById(R.id.title);
         EditText editText2 = (EditText) findViewById(R.id.body);
@@ -37,7 +39,7 @@ public class MessageActivity extends AppCompatActivity {
         String body = editText2.getText().toString();
         JSONObject obj = new JSONObject();
         try {
-            obj.put("title",title);
+            obj.put("title", title);
             obj.put("body", body);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -47,14 +49,20 @@ public class MessageActivity extends AppCompatActivity {
         sendMessage = new SendMessagetoServer();
         String res = null;
 
-        try {
-            res = sendMessage.execute(obj.toString()).get();
-            Log.i("My_tag", "response " + res);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+
+        res = sendMessage.execute(obj.toString()).get();
+        Log.i("My_tag", "response " + res);
+        if (res == null) {
+            Toast.makeText(MessageActivity.this, "Message sending Failed", Toast.LENGTH_SHORT).show();
+            Log.i("My_tag", "Message sending Failed");
+        } else {
+            res.replace("\n", " ");
+            res.trim();
+            Toast.makeText(MessageActivity.this, res, Toast.LENGTH_SHORT).show();
+            Log.i("My_tag", res);
         }
+
+
         finish();
     }
 

@@ -51,7 +51,6 @@ public class SendMessagetoServer extends AsyncTask<String,String,String >  {
                 return null;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
-            Log.i("My_tag","in");
 
             String inputLine;
             while ((inputLine = reader.readLine()) != null)

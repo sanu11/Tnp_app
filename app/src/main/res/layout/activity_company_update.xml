@@ -68,18 +68,15 @@
             android:theme="@style/AppTheme"
             android:background="#ffffff" />
 
-        <EditText
+
+        <!--android:entries="@array/bool"-->
+
+        <!--android:entries="@array/bool"-->
+
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:hint="Company"
-            android:textSize="16sp"
-            android:textStyle="normal|bold" />
-
-
-        <!--android:entries="@array/bool"-->
-
-        <!--android:entries="@array/bool"-->
+            android:id="@+id/name_spinner" />
 
         <TextView
             android:layout_width="wrap_content"

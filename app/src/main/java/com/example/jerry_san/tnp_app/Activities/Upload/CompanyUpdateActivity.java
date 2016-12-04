@@ -2,31 +2,38 @@ package com.example.jerry_san.tnp_app.Activities.Upload;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.jerry_san.tnp_app.Activities.CompanyUpdateDisplayActivity;
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.UpdateCompany;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-public class UpdateCompanyActivity extends AppCompatActivity {
+import static com.example.jerry_san.tnp_app.R.id.listView;
+
+public class CompanyUpdateActivity extends AppCompatActivity {
 
 
     int hour, min;
+    LocalDatabase localDatabase;
+    SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,24 @@ public class UpdateCompanyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //populate spinner with names of companies from database
+        final Spinner spinner = (Spinner)findViewById(R.id.name_spinner);
+        localDatabase = new LocalDatabase(this);
+        Cursor cur = localDatabase.getCompanyCursor();
+        String[] columns = new String[]{"name"};
+
+        int[] views = new int[]{R.id.company_name};
+
+        if (cur.getCount() > 0) {
+            adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
+
+            spinner.setAdapter(adapter);
+        } else {
+            Toast.makeText(CompanyUpdateActivity.this, "Sorry No Companies found to update", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
 
     }
 
@@ -107,7 +132,7 @@ public class UpdateCompanyActivity extends AppCompatActivity {
 
     public void onClickUpdate(View v) throws ExecutionException, InterruptedException {
 
-        EditText e1 = (EditText) findViewById(R.id.name);
+       final Spinner e1 = (Spinner) findViewById(R.id.name_spinner);
         EditText e2 = (EditText) findViewById(R.id.reg_link);
         TextView e3 = (TextView) findViewById(R.id.reg_start_date);
         TextView e4 = (TextView) findViewById(R.id.reg_start_time);
@@ -115,24 +140,27 @@ public class UpdateCompanyActivity extends AppCompatActivity {
         TextView e6 = (TextView) findViewById(R.id.reg_end_time);
         EditText e7 = (EditText) findViewById(R.id.other_details);
 
-        Object name = e1.getText().toString();
-        Object reg_link = e2.getText().toString();
+
+
+        Cursor cursor = (Cursor)e1.getSelectedItem();
+        int count = cursor.getColumnCount();
+        String name = cursor.getString(1);
 
         String reg_start_date = e3.getText().toString();
         String reg_start_time = e4.getText().toString();
         String reg_end_date = e5.getText().toString();
         String reg_end_time = e6.getText().toString();
 
+        Object reg_link = e2.getText().toString();
         Object other_details = e7.getText().toString();
-
         Object reg_start = reg_start_date + " " + reg_start_time;
         Object reg_end = reg_end_date + " " + reg_end_time;
 
-        if (((String) name).trim().length() == 0) {
-            Toast.makeText(UpdateCompanyActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
+        if (name.trim().length() == 0) {
+            Toast.makeText(CompanyUpdateActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (((String) reg_link).trim().length() == 0)
+        if (reg_link.toString().trim().length() == 0)
             reg_link = JSONObject.NULL;
 
         if (reg_start.toString().trim().length() == 0)
@@ -159,7 +187,7 @@ public class UpdateCompanyActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(UpdateCompanyActivity.this, "Please Wait ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CompanyUpdateActivity.this, "Please Wait ", Toast.LENGTH_SHORT).show();
 
         UpdateCompany data = new UpdateCompany();
 
@@ -167,10 +195,12 @@ public class UpdateCompanyActivity extends AppCompatActivity {
         Log.i("My_tag", "Response  " + res);
 
         if (res == null) {
-            Toast.makeText(UpdateCompanyActivity.this, "Update Unsuccessful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CompanyUpdateActivity.this, "Update Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Update Unsuccessful");
         } else {
-            Toast.makeText(UpdateCompanyActivity.this, res, Toast.LENGTH_SHORT).show();
+            res.replace("\n","");
+            res.trim();
+            Toast.makeText(CompanyUpdateActivity.this ,res, Toast.LENGTH_SHORT).show();
             Log.i("My_tag", res);
         }
 
