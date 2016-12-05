@@ -13,12 +13,14 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
+import static com.example.jerry_san.tnp_app.R.id.name;
+
 /**
  * Created by jerry-san on 8/9/16.
  */
 public class LocalDatabase extends SQLiteOpenHelper {
 
-    public static final String col[]={
+    public static final String col[] = {
             "id",
             "name",
             "criteria",
@@ -60,9 +62,11 @@ public class LocalDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //create table for companies
-        db.execSQL("create table " + table_1 + "( " + col_0
-                + " integer primary key autoincrement, " + col_1
-                + " text not null, " + col_2 + " real, " + col_3 + " real ," + col_4 + " text , " + col_5 + " text ," + col_6 + " text , " + col_7 + " text ," + col_8 + "  text ," + col_9 + " text ," + col_10 + " integer  );");
+        db.execSQL("create table " + table_1 + "( " + col[0]
+                + " integer primary key autoincrement, " + col[1]
+                + " text not null, " + col[2] + " real, " + col[3] + " real ," + col[4] + " text , " + col[5]
+                + " text ," + col[6] + " text , " + col[7] + " text ,"
+                + col[8] + "  text ," + col[9] + " text ," + col[10] + " integer  );");
 
         //create Table for storing notifications(general messages)
         db.execSQL("create table " + table_2 + "( _id integer primary key autoincrement , Title text , Body text )");
@@ -79,53 +83,11 @@ public class LocalDatabase extends SQLiteOpenHelper {
     }
 
 
-    public long companyInsert(String name, String criteria, String salary, String back, String ppt_date_time, String other_details) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(col_1, name);
-
-        if (criteria != null) {
-            Float crit = Float.parseFloat(criteria);
-            contentValues.put(col_2, crit);
-        }
-
-        if (salary != null) {
-            Float sal = Float.parseFloat(salary);
-            contentValues.put(col_3, sal);
-        }
-        if (back != null)
-            contentValues.put(col_4, back);
-
-        if (ppt_date_time != null)
-            contentValues.put(col_5, ppt_date_time);
-
-        if (other_details != null) {
-            contentValues.put(col_6, other_details);
-        }
-
-        long result = db.insert(table_1, null, contentValues);
-        db.close();
-        return result;
-
-    }
-
-    public boolean companyInsertJson(JSONObject obj) throws JSONException {
+    public long companyInsertJson(JSONObject obj) throws JSONException {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-
-        Iterator<String> stringIterator = obj.keys();
-
-        while (stringIterator.hasNext()) {
-            String key = stringIterator.next();
-            if (obj.isNull(key)) {
-
-            }
-
-        }
 
         if (!obj.isNull("name")) {
             String name = obj.getString("name");
@@ -133,13 +95,13 @@ public class LocalDatabase extends SQLiteOpenHelper {
         }
 
         if (!obj.isNull("criteria")) {
-            Double criteria = obj.getDouble("criteria");
+            String criteria = obj.getString("criteria");
             contentValues.put(col_2, criteria);
         }
 
         if (!obj.isNull("salary")) {
-            Double sal = obj.getDouble("salary");
-            contentValues.put(col_3, sal);
+            String salary = obj.getString("salary");
+            contentValues.put(col_3, salary);
         }
 
         if (!obj.isNull("back")) {
@@ -173,18 +135,10 @@ public class LocalDatabase extends SQLiteOpenHelper {
             contentValues.put(col_9, reg_end);
         }
 
-        if (!obj.isNull("hired_people")) {
-            int hired = obj.getInt("hired_people");
-            contentValues.put(col_10, hired);
-        }
-
-
         long result = db.insert(table_1, null, contentValues);
         db.close();
-        if (result == -1)
-            return false;
-        return true;
 
+        return result;
 
     }
 
@@ -257,25 +211,31 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
     }
 
-    public long companyUpdate(String name, String reg_link, String reg_start, String reg_end, String other_details) {
+    public long companyUpdate(JSONObject object) throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("reg_link", reg_link);
-        cv.put("reg_start", reg_start);
-        cv.put("reg_end", reg_end);
+
 
         String query = "select * from " + table_1 + " where name = '" + name + "'";
         Cursor cur = db.rawQuery(query, null);
         cur.moveToFirst();
         String other = cur.getString(cur.getColumnIndex("other_details"));
-        if(other!=null){
-            if(other_details!=null)
-                other= other + " " + other_details;
-        }
-        else
-            other=other_details;
+        String other_details = object.getString("other_details");
+        if (other != null) {
+            if (other_details != null)
+                other = other + " " + other_details;
+        } else
+            other = other_details;
+        object.put("other_details", other);
 
-        cv.put("other_details",other);
+        int i = 6;
+        String key;
+        Iterator<String> stringIterator = object.keys();
+        while (i < 10) {
+            key = stringIterator.next();
+            cv.put(col[i], object.getString(key));
+        }
+
         long res = db.update(table_1, cv, "name= '" + name + "'", null);
         Log.i("My_tag", String.valueOf(res));
         db.close();
@@ -283,3 +243,4 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
     }
 }
+

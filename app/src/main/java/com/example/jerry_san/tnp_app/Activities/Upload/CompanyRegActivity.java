@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.RegisterCompany;
 import com.google.android.gms.appindexing.Action;
@@ -26,8 +26,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class CompanyRegActivity extends AppCompatActivity {
@@ -55,6 +53,14 @@ public class CompanyRegActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     private static String pad(int c) {
@@ -132,6 +138,13 @@ public class CompanyRegActivity extends AppCompatActivity {
 
     public void Reg_company(View v) throws ExecutionException, InterruptedException, JSONException {
 
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.criteria);
         EditText e3 = (EditText) findViewById(R.id.salary);

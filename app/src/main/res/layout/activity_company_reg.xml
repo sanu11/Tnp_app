@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activities.StudentRegActivity">
+    tools:context=".Activities.Upload.StudentRegActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -148,23 +148,6 @@
                 android:entries="@array/back_array"
                 android:spinnerMode="dropdown" />
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Other Details"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/other_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:hint="Other Info"
-                android:textSize="16sp"
-                android:textStyle="normal|bold" />
 
             <include
                 layout="@layout/content_company"
@@ -238,17 +221,34 @@
                     android:textStyle="normal|bold" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Other Details"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/submit_button"
-                    android:layout_width="190dp"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="50dp"
-                    android:layout_marginTop="16dp"
-                    android:onClick="Reg_company"
-                    android:text="submit"
-                    android:textColor="#fff" />
+            <EditText
+                android:id="@+id/other_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Other Info"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="190dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="16dp"
+                android:onClick="Reg_company"
+                android:text="submit"
+                android:textColor="#fff" />
 
         </LinearLayout>
     </ScrollView>

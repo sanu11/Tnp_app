@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.SendMessagetoServer;
 
@@ -29,10 +30,25 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(MessageActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     public void onClickPost(View v) throws ExecutionException, InterruptedException {
 
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(MessageActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
         EditText editText = (EditText) findViewById(R.id.title);
         EditText editText2 = (EditText) findViewById(R.id.body);
         String title = editText.getText().toString();

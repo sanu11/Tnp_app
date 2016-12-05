@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.UpdateCompany;
 
@@ -59,6 +60,14 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         } else {
             Toast.makeText(CompanyUpdateActivity.this, "Sorry No Companies found to update", Toast.LENGTH_SHORT).show();
             finish();
+        }
+
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
         }
 
 
@@ -132,7 +141,15 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
     public void onClickUpdate(View v) throws ExecutionException, InterruptedException {
 
-       final Spinner e1 = (Spinner) findViewById(R.id.name_spinner);
+
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final Spinner e1 = (Spinner) findViewById(R.id.name_spinner);
         EditText e2 = (EditText) findViewById(R.id.reg_link);
         TextView e3 = (TextView) findViewById(R.id.reg_start_date);
         TextView e4 = (TextView) findViewById(R.id.reg_start_time);

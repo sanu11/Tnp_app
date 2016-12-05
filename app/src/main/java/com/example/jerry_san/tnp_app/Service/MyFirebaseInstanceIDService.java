@@ -1,5 +1,11 @@
 package com.example.jerry_san.tnp_app.Service;
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -59,16 +65,26 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
         //You can implement this method to store the token on your server
         //Not required for current project
         //
-        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        String android_id = tm.getDeviceId();
-//        String android_id = Secure.getString(getContentResolver(),
-//                Secure.ANDROID_ID);
+        WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = manager.getConnectionInfo();
+        String address = info.getMacAddress();
 
-        Log.i("My_tag",android_id);
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            ActivityCompat.requestPermissions(getApplicationContext(),
+//                    new String[]{Manifest.permission.READ_PHONE_STATE},
+//                    0);
+//
+//        }
+//        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String android_id = tm.getDeviceId();
+
+        Log.i("My_tag",address);
 
         JSONObject obj = new JSONObject();
         try {
-            obj.put("dev_id", android_id);
+            obj.put("dev_id", address);
             obj.put("reg_id", token);
         }
         catch (JSONException e) {

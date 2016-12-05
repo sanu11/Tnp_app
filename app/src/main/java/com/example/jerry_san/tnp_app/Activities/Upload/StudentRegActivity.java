@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app.Activities;
+package com.example.jerry_san.tnp_app.Activities.Upload;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.Activities.HomeActivity;
+import com.example.jerry_san.tnp_app.Activities.LoginActivity;
+import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.RESTCalls.RegisterStudent;
 import com.example.jerry_san.tnp_app.SessionManager;
@@ -35,12 +38,27 @@ public class StudentRegActivity extends AppCompatActivity {
         Switch sw = (Switch) findViewById(R.id.placed);
         sw.setTextOff("NO");
         sw.setTextOn("YES");
+
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
 
     public void onClick(View v) throws JSONException, ExecutionException, InterruptedException {
 
 
+        NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
+        boolean con = connection.checkNetwork();
+        Log.i("My_tag","connection "+con);
+        if(!con) {
+            Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
+            return;
+        }
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.email);
         EditText e3 = (EditText) findViewById(R.id.password);

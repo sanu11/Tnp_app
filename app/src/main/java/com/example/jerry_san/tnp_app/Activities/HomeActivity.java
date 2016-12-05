@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.jerry_san.tnp_app.Activities.List.CompanyListActivity;
+import com.example.jerry_san.tnp_app.Activities.List.MessageListActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.MessageActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyUpdateActivity;

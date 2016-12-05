@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app.Activities;
+package com.example.jerry_san.tnp_app.Activities.Display;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -30,7 +30,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".Activities.CompanyDisplayActivity"
+        tools:context=".Activities.Display.CompanyDisplayActivity"
         android:theme="@style/AppTheme"
         android:background="#ffffff">
 

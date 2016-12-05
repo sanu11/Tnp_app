@@ -1,4 +1,4 @@
-package com.example.jerry_san.tnp_app.Activities;
+package com.example.jerry_san.tnp_app.Activities.List;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.example.jerry_san.tnp_app.Activities.Display.MessageDisplayActivity;
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
 

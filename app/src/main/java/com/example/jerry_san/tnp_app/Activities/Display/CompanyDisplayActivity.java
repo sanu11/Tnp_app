@@ -1,11 +1,9 @@
-package com.example.jerry_san.tnp_app.Activities;
+package com.example.jerry_san.tnp_app.Activities.Display;
 
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,8 +12,6 @@ import android.widget.Toast;
 
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
-
-import org.json.JSONObject;
 
 public class CompanyDisplayActivity extends AppCompatActivity {
 
