@@ -19,6 +19,7 @@ import com.example.jerry_san.tnp_app.Activities.List.MessageListActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.MessageActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyUpdateActivity;
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
 import com.example.jerry_san.tnp_app.SessionManager;
 import com.example.jerry_san.tnp_app.RESTCalls.SyncDatabase;
@@ -45,7 +46,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         else {
 
-            Log.i("My_tag", "start");
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             toolbar.setTitle("");

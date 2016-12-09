@@ -1,27 +1,34 @@
 package com.example.jerry_san.tnp_app.DatabaseHelper;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.renderscript.Float2;
+import android.os.Build;
 import android.util.Log;
+
+import com.example.jerry_san.tnp_app.Receiver;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
+import java.util.Calendar;
 
-import static com.example.jerry_san.tnp_app.R.id.name;
+import static android.content.Context.ALARM_SERVICE;
 
 /**
  * Created by jerry-san on 8/9/16.
  */
+
 public class LocalDatabase extends SQLiteOpenHelper {
 
+    Context context;
     public static final String col[] = {
-            "id",
+            "_id",
             "name",
             "criteria",
             "salary",
@@ -37,24 +44,10 @@ public class LocalDatabase extends SQLiteOpenHelper {
     public static final String db_name = "Tnp.db";
     public static final String table_1 = "Company";
     public static final String table_2 = "Message";
-    public static final String col_0 = "_id";
-
-    public static final String col_1 = "name";
-    public static final String col_2 = "criteria";
-    public static final String col_3 = "salary";
-    public static final String col_4 = "back";
-
-    public static final String col_5 = "ppt_date";
-    public static final String col_6 = "other_details";
-    public static final String col_7 = "reg_link";
-    public static final String col_8 = "reg_start";
-    public static final String col_9 = "reg_end";
-    public static final String col_10 = "hired_people";
-
 
     public LocalDatabase(Context context) {
         super(context, db_name, null, 1);
-
+        this.context = context;
     }
 
 
@@ -91,48 +84,50 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
         if (!obj.isNull("name")) {
             String name = obj.getString("name");
-            contentValues.put(col_1, name);
+            contentValues.put(col[1], name);
         }
 
+
         if (!obj.isNull("criteria")) {
-            String criteria = obj.getString("criteria");
-            contentValues.put(col_2, criteria);
+            Log.i("My_tag", "crit " + obj.getDouble("criteria"));
+            Double criteria = obj.getDouble("criteria");
+            contentValues.put(col[2], criteria);
         }
 
         if (!obj.isNull("salary")) {
-            String salary = obj.getString("salary");
-            contentValues.put(col_3, salary);
+            Double salary = obj.getDouble("salary");
+            contentValues.put(col[3], salary);
         }
 
         if (!obj.isNull("back")) {
             String back = obj.getString("back");
-            contentValues.put(col_4, back);
+            contentValues.put(col[4], back);
         }
 
         if (!obj.isNull("ppt_date")) {
             String ppt_date_time = obj.getString("ppt_date");
-            contentValues.put(col_5, ppt_date_time);
+            contentValues.put(col[5], ppt_date_time);
         }
 
         if (!obj.isNull("other_details")) {
             String other_details = obj.getString("other_details");
-            contentValues.put(col_6, other_details);
+            contentValues.put(col[6], other_details);
         }
 
         if (!obj.isNull("reg_link")) {
             String reg_link = obj.getString("reg_link");
-            contentValues.put(col_7, reg_link);
+            contentValues.put(col[7], reg_link);
         }
 
         if (!obj.isNull("reg_start_date")) {
 
             String reg_start = obj.getString("reg_start_date");
-            contentValues.put(col_8, reg_start);
+            contentValues.put(col[8], reg_start);
         }
 
         if (!obj.isNull("reg_end_date")) {
             String reg_end = obj.getString("reg_end_date");
-            contentValues.put(col_9, reg_end);
+            contentValues.put(col[9], reg_end);
         }
 
         long result = db.insert(table_1, null, contentValues);
@@ -158,19 +153,19 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getCompanyCursor() {
+    public Cursor getCompanyReverseCursor() {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("select * from " + table_1, null);
+        Cursor res = db.rawQuery("select * from " + table_1 + " order by _id desc ", null);
         res.moveToFirst();
         return res;
 
     }
 
-    public Cursor getMessageCursor() {
+    public Cursor getMessageReverseCursor() {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("select * from " + table_2, null);
+        Cursor res = db.rawQuery("select * from " + table_2 + " order by _id desc ", null);
         res.moveToFirst();
         return res;
 
@@ -210,37 +205,135 @@ public class LocalDatabase extends SQLiteOpenHelper {
         return true;
 
     }
+    public  int getCompanyPosition(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select _id from " + table_1 + " where name = '" + name + "'";
+        Cursor cur = db.rawQuery(query,null);
+        cur.moveToFirst();
+        return cur.getInt(0);
+    }
+
+    public int getCompanyCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + table_1;
+        Cursor cur = db.rawQuery(query,null);
+        cur.moveToFirst();
+        return cur.getCount();
+    }
+    public int getMessageCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + table_2;
+        Cursor cur = db.rawQuery(query,null);
+        cur.moveToFirst();
+        return cur.getCount();
+
+    }
 
     public long companyUpdate(JSONObject object) throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues cv = new ContentValues();
 
+        String name = object.getString("name");
 
         String query = "select * from " + table_1 + " where name = '" + name + "'";
         Cursor cur = db.rawQuery(query, null);
         cur.moveToFirst();
-        String other = cur.getString(cur.getColumnIndex("other_details"));
-        String other_details = object.getString("other_details");
-        if (other != null) {
-            if (other_details != null)
-                other = other + " " + other_details;
-        } else
-            other = other_details;
-        object.put("other_details", other);
-
-        int i = 6;
-        String key;
-        Iterator<String> stringIterator = object.keys();
-        while (i < 10) {
-            key = stringIterator.next();
-            cv.put(col[i], object.getString(key));
+        String reg_start = null;
+        String reg_end = null;
+        String reg_link = null;
+        if (!object.isNull("reg_link")) {
+            reg_link = object.getString("reg_link");
+            cv.put("reg_link", reg_link);
         }
+        if (!object.isNull("reg_start")) {
+            reg_start = object.getString("reg_start");
+            cv.put("reg_start", reg_start);
+        }
+        if (!object.isNull("reg_end")) {
+            reg_end = object.getString("reg_end");
+            cv.put("reg_end", reg_end);
+        }
+        if (!object.isNull("other_details")) {
+            String other_details = object.getString("other_details");
+            String other = cur.getString(cur.getColumnIndex("other_details"));
+            if (other != null)
+                other = other + " " + other_details;
+            else
+                other = other_details;
+            cv.put("other_details", other);
+        }
+
 
         long res = db.update(table_1, cv, "name= '" + name + "'", null);
         Log.i("My_tag", String.valueOf(res));
         db.close();
+        cur.close();
+        if(reg_end!=null)
+            setAlarm(name,reg_link,reg_end);
         return res;
 
     }
-}
 
+    public void setAlarm(String name ,String reg_link,String reg_end) {
+
+        //reg_end yy-mm-dd
+        String datetime[] = reg_end.split("\\s+");
+        String date = datetime[0];
+        String time =null ;
+        if(datetime.length==1){
+            time = "23:30:00";
+        }
+        else if(datetime.length==2){
+            time = datetime[1];
+        }
+        else
+            return;
+
+        String arr[] = datetime[0].split("-");
+        int year = Integer.parseInt(arr[0]);
+        int month = Integer.parseInt(arr[1]);
+        int day = Integer.parseInt(arr[2]);
+
+        String arr2[] = time.split(":");
+        int hour = Integer.valueOf(arr2[0]);
+        int min = Integer.valueOf(arr2[1]);
+        int sec;
+        if(arr2.length==3)
+            sec=Integer.parseInt(arr2[2]);
+        else
+            sec=0;
+
+        PendingIntent pendingIntent;
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.MONTH, month-1);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.DATE, day);
+
+        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.MINUTE, min);
+        calendar.set(Calendar.SECOND, sec);
+        calendar.set(Calendar.AM_PM, Calendar.PM);
+
+
+        int hr = calendar.get(Calendar.HOUR);
+        calendar.set(Calendar.HOUR_OF_DAY, hr-1);
+
+        Intent myIntent = new Intent(context, Receiver.class);
+        myIntent.putExtra("name",name);
+        myIntent.putExtra("reg_link",reg_link);
+        pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+
+        String temp = calendar.getTime().toString();
+        Log.i("My_tag", "Alarm set at " + temp);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            temp = alarmManager.getNextAlarmClock().toString();
+            Log.i("My_tag", "Alarm set at " + temp);
+        }
+    } //end onCreate
+}

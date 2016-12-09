@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -38,6 +39,13 @@ public class StudentRegActivity extends AppCompatActivity {
         Switch sw = (Switch) findViewById(R.id.placed);
         sw.setTextOff("NO");
         sw.setTextOn("YES");
+
+
+        String[] testArray = getResources().getStringArray(R.array.branch_array);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_layout,R.id.name,testArray);
+        Spinner spinner = (Spinner)findViewById(R.id.branch);
+        spinner.setAdapter(adapter);
+
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
@@ -133,14 +141,13 @@ public class StudentRegActivity extends AppCompatActivity {
 
         if (res == null)
             Toast.makeText(StudentRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
-        else if (res.equals("Already Registered\n")) {
+        else if (res.equals("Already Registered")) {
             Toast.makeText(StudentRegActivity.this, "Already Registered , Please Login", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);
             finish();
-        } else {
-            res.replace("\n"," ");
-            res.trim();
+        } else if(res.equals("Success")){
+
             Toast.makeText(StudentRegActivity.this, res, Toast.LENGTH_SHORT).show();
             SessionManager sessionManager = new SessionManager(this);
             sessionManager.createLoginSession(name, email);
@@ -148,6 +155,9 @@ public class StudentRegActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
+        else
+            Toast.makeText(StudentRegActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

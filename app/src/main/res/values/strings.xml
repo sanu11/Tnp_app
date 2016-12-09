@@ -13,11 +13,10 @@
         <item>No Criteria</item>
         <item> Active Not Allowed</item>
         <item> Passive Not Allowed</item>
-        <item>1 Active Allowed</item>
-        <item>2 Active Allowed</item>
     </string-array>
 
-
+    <string name = "heroku">http://tnp-app.herokuapp.com/</string>
+    <string name= "digitalocean">http://139.59.29.45/</string>
     <string name="new_user"><u> New user ? Click to Register</u> </string>
 
     <string name="ok">OK</string>
@@ -126,5 +125,6 @@
     </string>
     <string name="title_activity_company_display">CompanyDisplayActivity</string>
     <string name="title_activity_company_list">CompanyListActivity</string>
+    <string name="title_activity_verify">VerifyActivity</string>
 
 </resources>

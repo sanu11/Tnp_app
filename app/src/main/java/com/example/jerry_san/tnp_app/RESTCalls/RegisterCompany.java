@@ -7,6 +7,8 @@ package com.example.jerry_san.tnp_app.RESTCalls;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.R;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://tnp-app.herokuapp.com/register_company/");
+            URL url = new URL(R.string.digitalocean + "register_company/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -55,6 +57,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
             String inputLine;
             while ((inputLine = reader.readLine()) != null)
                 buffer.append(inputLine + "\n");
+            buffer.deleteCharAt(buffer.length()-1);
             if (buffer.length() == 0) {
                 // Stream was empty. No point in parsing.
                 return null;

@@ -32,16 +32,15 @@ public class CompanyListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         localDatabase = new LocalDatabase(this);
-        Cursor cur = localDatabase.getCompanyCursor();
+        Cursor cur = localDatabase.getCompanyReverseCursor();
         ListView listView = (ListView) findViewById(R.id.listView);
 
         String[] columns = new String[]{"name"};
 
-        int[] views = new int[]{R.id.company_name};
+        int[] views = new int[]{R.id.name};
 
         if (cur.getCount() > 0) {
              adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
-
             listView.setAdapter(adapter);
         } else {
             Toast.makeText(CompanyListActivity.this, "Sorry No data found ", Toast.LENGTH_SHORT).show();
@@ -55,7 +54,8 @@ public class CompanyListActivity extends AppCompatActivity {
 
                 ListView listView = (ListView) findViewById(R.id.listView);
                 Intent intent = new Intent(CompanyListActivity.this,CompanyDisplayActivity.class);
-                intent.putExtra("position",position);
+                int n = localDatabase.getCompanyCount();
+                intent.putExtra("position",n-position-1);
                 Log.i("My_tag"," position " + position);
                 startActivity(intent);
 

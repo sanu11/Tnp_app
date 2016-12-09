@@ -73,7 +73,8 @@
                 android:ems="10"
                 android:id="@+id/name"
                 android:hint="name"
-                android:textStyle="normal|bold"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="?android:attr/textColorTertiary"
                 android:textSize="16sp" />
 
             <TextView
@@ -91,6 +92,7 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/email"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:hint="defaultemail@gmail.com"
                 android:textStyle="normal|bold"
                 android:textSize="16sp" />
@@ -98,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set Ur Password"
+                android:text="Set  Password"
                 android:id="@+id/textView6"
                 android:textSize="18dp"
                 android:layout_marginTop="10dp"
@@ -111,6 +113,7 @@
                 android:ems="10"
                 android:id="@+id/password"
                 android:hint="password"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:textStyle="normal|bold"
                 android:textSize="16sp" />
 
@@ -129,6 +132,7 @@
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/phone"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:hint="mobile"
                 android:textStyle="normal|bold"
                 android:textSize="16sp" />
@@ -136,7 +140,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ur Branch Please"
+                android:text="Branch"
                 android:id="@+id/textView"
                 android:textSize="18dp"
                 android:layout_marginTop="10dp"
@@ -148,8 +152,7 @@
                 android:id="@+id/branch"
                 android:layout_gravity="center_horizontal"
                 android:spinnerMode="dropdown"
-                android:layout_marginTop="10dp"
-                android:entries="@array/branch_array"
+                android:layout_marginTop="5dp"
                 android:textColor="#000000"
                 />
 
@@ -170,6 +173,7 @@
                 android:ems="10"
                 android:id="@+id/average"
                 android:hint="average"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:textStyle="normal|bold"
                 android:textSize="16sp" />
 

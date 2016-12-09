@@ -14,35 +14,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="0dp"
-        android:background="#20a862"
-        android:foregroundGravity="fill_horizontal|top|left"
-        android:minHeight="?attr/actionBarSize"
-        android:paddingEnd="0dp"
-        app:titleTextColor="@android:color/white">
-
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Company"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-    </android.support.v7.widget.Toolbar>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -131,7 +102,6 @@
                     android:text="Back"
                     android:textStyle="normal|bold"
                     android:textSize="18sp" />
-
                 <TextView
                     android:id="@+id/back"
                     android:layout_width="match_parent"
@@ -238,10 +208,16 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:text="--"
+                        android:autoLink="web"
+                        android:onClick="onClickURL"
+                        android:textStyle="italic"
+                        android:textColor="#473ee6"
                         android:layout_marginLeft="20dp"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:clickable="true"
+                        android:contextClickable="true"
+                        android:linksClickable="true" />
 
                 </LinearLayout>
 
@@ -342,6 +318,35 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="0dp"
+        android:background="#20a862"
+        android:foregroundGravity="fill_horizontal|top|left"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingEnd="0dp"
+        app:titleTextColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Company"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </android.support.v7.widget.Toolbar>
 
 
 </android.support.design.widget.CoordinatorLayout>

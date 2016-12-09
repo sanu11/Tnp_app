@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+import com.example.jerry_san.tnp_app.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,7 +37,7 @@ public class SyncDatabase extends AsyncTask<String, String, String> {
         localDatabase = new LocalDatabase(context);
         try {
 
-            URL url = new URL("http://tnp-app.herokuapp.com/sync/");
+            URL url = new URL(R.string.digitalocean + "sync/");
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = urlConnection.getInputStream();
 

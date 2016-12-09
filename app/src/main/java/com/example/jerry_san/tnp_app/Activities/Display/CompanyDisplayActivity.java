@@ -1,16 +1,22 @@
 package com.example.jerry_san.tnp_app.Activities.Display;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormatSymbols;
+
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
+import com.example.jerry_san.tnp_app.DateTime;
 import com.example.jerry_san.tnp_app.R;
 
 public class CompanyDisplayActivity extends AppCompatActivity {
@@ -18,6 +24,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
     LocalDatabase localDatabase;
     boolean flag = false;
     boolean length = false;
+    DateTime dateTime = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +44,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
             Toast.makeText(CompanyDisplayActivity.this, "Error ", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        Cursor cursor = localDatabase.getCompanyDetails(position);
+        dateTime = new DateTime();
 
 
         TextView textViews[] = {
@@ -56,53 +62,43 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         };
 
-        int count = 6;
+        Cursor cursor = localDatabase.getCompanyDetails(position);
 
-        String other_det_col = "other_details";
-        int i = 1;
+        String name = cursor.getString(1);
+        textViews[1].setText(name);
 
-        int temp1 = cursor.getType(6);
+        Log.i("My_tag", String.valueOf(cursor.getFloat(2)));
+        Float criteria = cursor.getFloat(2);
+        if (criteria == null || criteria == 0)
+            textViews[2].setText("No Criteria");
+        else
+            textViews[2].setText(String.valueOf(criteria));
 
-        for (i = 1; i <= count; i++) {
+        Float salary = cursor.getFloat(3);
+        if (salary != null && salary != 0)
+            textViews[3].setText(String.valueOf(salary));
 
-            int type = cursor.getType(i);
-            String cur_col = cursor.getColumnName(i);
+        String back = cursor.getString(4);
+        if (back != null)
+            textViews[4].setText(back);
 
-
-            if (type == Cursor.FIELD_TYPE_INTEGER) {
-
-                Integer integer = cursor.getInt(i);
-                if (integer != null)
-                    textViews[i].setText("" + integer);
-
-            } else if (type == Cursor.FIELD_TYPE_STRING) {
-
-                String temp = cursor.getString(i);
-                textViews[i].setText(temp);
-
-            } else if (type == Cursor.FIELD_TYPE_FLOAT) {
-
-                Float var = cursor.getFloat(i);
-                if (var != null) {
-                    if (cur_col.equals("criteria") && var == 0)
-                        textViews[i].setText("No criteria");
-                    else
-                        textViews[i].setText("" + var);
-                }
-            } else if (type == Cursor.FIELD_TYPE_NULL) {
-                if (cur_col.equals(other_det_col))
-                    findViewById(R.id.other_det_layout).setVisibility(View.GONE);
-
-            }
-
+        String ppt = cursor.getString(5);
+        if (ppt != null) {
+            String ppt_new = dateTime.convert(ppt);
+            textViews[5].setText(ppt_new);
         }
 
-        int hired = cursor.getInt(cursor.getColumnIndex("hired_people"));
+        String other = cursor.getString(6);
+        if (other != null)
+            textViews[6].setText(other);
+        else
+            findViewById(R.id.other_det_layout).setVisibility(View.GONE);
+
+        int hired = cursor.getInt(10);
 
         LinearLayout layout3 = (LinearLayout) findViewById(R.id.hired_layout);
         if (hired == 0) {
             layout3.setVisibility(View.GONE);
-
         } else {
             layout3.setVisibility(View.VISIBLE);
             textViews[10].setText("" + hired);
@@ -110,7 +106,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
 
         //if company isn't  updated  ( registration info isn't present) hide registration info
         LinearLayout layout1 = (LinearLayout) findViewById(R.id.update_company_layout);
-        String reg_link = cursor.getString(cursor.getColumnIndex("reg_link"));
+        String reg_link = cursor.getString(7);
 
         if (reg_link == null) {
             layout1.setVisibility(View.GONE);
@@ -118,13 +114,25 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         }
 
         layout1.setVisibility(View.VISIBLE);
-        textViews[i].setText(reg_link);
-        i++;
-        String reg_start = cursor.getString(cursor.getColumnIndex("reg_start"));
-        textViews[i].setText(reg_start);
-        i++;
-        String reg_end = cursor.getString(cursor.getColumnIndex("reg_end"));
-        textViews[i].setText(reg_end);
+        textViews[7].setText(reg_link);
 
+        String reg_start = cursor.getString(8);
+        if (reg_start != null) {
+            String reg_start_new = dateTime.convert(reg_start);
+            textViews[8].setText(reg_start_new);
+        }
+        String reg_end = cursor.getString(9);
+        if (reg_end != null) {
+            String reg_end_new = dateTime.convert(reg_end);
+            textViews[9].setText(reg_end_new);
+        }
     }
+
+    public void onClickURL(View view) {
+        TextView textView= (TextView) findViewById(R.id.reg_link);
+        String url = textView.getText().toString();
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+    }
+
 }
+

@@ -61,7 +61,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
             try {
                 object.put("name",name);
-                object.put("crieria",criteria);
+                object.put("criteria",criteria);
                 object.put("salary",salary);
                 object.put("back",back);
                 object.put("other_details",other_details);
@@ -91,13 +91,12 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
             String reg_end=remoteMessage.getData().get("reg_end");
             String other_details=remoteMessage.getData().get("other_details");
 
-
             try {
                 object.put("name",name);
                 object.put("reg_link",reg_link);
                 object.put("reg_start",reg_start);
                 object.put("reg_end",reg_end);
-                object.put("oher_details",other_details);
+                object.put("other_details",other_details);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -127,7 +126,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
         int pos=(int)res;
         pos--;
-        intent.putExtra("position",pos);
+        intent.putExtra("position", pos);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -185,8 +184,8 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
 
     private void sendNotification(JSONObject object,int i) throws JSONException {
         Intent intent = new Intent(this, CompanyUpdateDisplayActivity.class);
-        intent.putExtra("json", (Serializable) object);
 
+        intent.putExtra("update",object.toString());
         //add to local database
         LocalDatabase localDatabase= new LocalDatabase(getApplicationContext());
         long res= localDatabase.companyUpdate(object);
@@ -195,6 +194,8 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService{
             Log.i("My_tag","Updated Successfully Locally");
         else
             Log.i("My_tag","Updation to Local database failed");
+
+        int pos = (int)res;
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,

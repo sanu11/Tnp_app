@@ -5,14 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
-    <!--<uses-permission android:name="android.permission.READ_PROFILE" />-->
-    <!--<uses-permission android:name="android.permission.READ_CONTACTS" />-->
-
+    <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_PROFILE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,34 +48,37 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <service android:name=".Service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-
             </intent-filter>
         </service>
-
         <service android:name=".Service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
-
-
             </intent-filter>
         </service>
+
+        <service android:name=".Service.AlarmService"
+            android:enabled="true" />
+
+        <receiver android:name=".Receiver"/>
 
         <activity android:name=".Activities.Display.MessageDisplayActivity" />
         <activity
             android:name=".Activities.Upload.CompanyUpdateActivity"
             android:label="@string/title_activity_update_company"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".Activities.Display.CompanyDisplayActivity"
             android:label="@string/title_activity_company_display"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity android:name=".Activities.List.CompanyListActivity" />
         <activity android:name=".Activities.List.MessageListActivity" />
         <activity android:name=".Activities.Display.CompanyUpdateDisplayActivity" />
         <activity android:name=".Activities.Upload.MessageActivity" />
-        <activity android:name=".Activities.ContactActivity"></activity>
+        <activity android:name=".Activities.ContactActivity" />
+        <activity
+            android:name=".Activities.VerifyActivity"
+            android:label="@string/title_activity_verify"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

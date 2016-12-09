@@ -2,12 +2,14 @@ package com.example.jerry_san.tnp_app.Activities.Upload;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -53,11 +55,15 @@ public class CompanyRegActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        String[] testArray = getResources().getStringArray(R.array.back_array);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_layout,R.id.name,testArray);
+        Spinner spinner = (Spinner)findViewById(R.id.back);
+        spinner.setAdapter(adapter);
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
-        if(!con) {
+        Log.i("My_tag", "connection " + con);
+        if (!con) {
             Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -90,7 +96,7 @@ public class CompanyRegActivity extends AppCompatActivity {
                 }
 
             }
-        }, 2016, 9, 10);
+        }, 2016, 11, 15);
 
         datePickerDialog.show();
 
@@ -136,15 +142,18 @@ public class CompanyRegActivity extends AppCompatActivity {
     }
 
 
+
     public void Reg_company(View v) throws ExecutionException, InterruptedException, JSONException {
+
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
-        if(!con) {
+        Log.i("My_tag", "connection " + con);
+        if (!con) {
             Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
+
         EditText e1 = (EditText) findViewById(R.id.name);
         EditText e2 = (EditText) findViewById(R.id.criteria);
         EditText e3 = (EditText) findViewById(R.id.salary);
@@ -175,16 +184,14 @@ public class CompanyRegActivity extends AppCompatActivity {
         }
 
         if (flag) {
-            if (crit.trim().length()!=0)
+            if (crit.trim().length() != 0)
                 criteria = Float.parseFloat(crit);
         }
-        else
-            criteria=0.0;
 
-        if (sal.trim().length()!=0)
+        if (sal.trim().length() != 0)
             salary = Float.parseFloat(sal);
 
-        if (other.trim().length()!=0)
+        if (other.trim().length() != 0)
             other_details = other;
 
 
@@ -217,20 +224,19 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         RegisterCompany data = new RegisterCompany();
         String res = data.execute(obj.toString()).get();
-        Log.i("My_tag", "Response  " + res);
+        Log.i("My_tag", "Company Reg Response  " + res);
 
         if (res == null) {
             Toast.makeText(CompanyRegActivity.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Registration Unsuccessful");
-        } else {
-            res.replace("\n"," ");
-            res.trim();
+        } else if (res.equals("Already Registered")) {
             Toast.makeText(CompanyRegActivity.this, res, Toast.LENGTH_SHORT).show();
-            Log.i("My_tag", res);
-            finish();
-
+        } else if (res.equals("Success")) {
+            Toast.makeText(CompanyRegActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(CompanyRegActivity.this, "Error", Toast.LENGTH_SHORT).show();
         }
-
+        finish();
 
     }
 

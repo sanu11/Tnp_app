@@ -1,9 +1,5 @@
 package com.example.jerry_san.tnp_app.RESTCalls;
 
-/**
- * Created by jerry-san on 9/8/16.
- */
-
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -19,8 +15,11 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class UpdateCompany extends AsyncTask<String,String,String >
-{
+/**
+ * Created by Sanika on 07-Dec-16.
+ */
+
+public class VerifyPRN extends AsyncTask < String , String,String > {
     protected String doInBackground(String... params) {
         String JsonResponse = null;
         String JsonDATA = params[0];
@@ -28,8 +27,8 @@ public class UpdateCompany extends AsyncTask<String,String,String >
         BufferedReader reader = null;
         String TAG="My_tag";
         try {
+            URL url = new URL(R.string.digitalocean + "verify/");
 
-            URL url = new URL(R.string.digitalocean + "update_company/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -57,7 +56,6 @@ public class UpdateCompany extends AsyncTask<String,String,String >
             String inputLine;
             while ((inputLine = reader.readLine()) != null)
                 buffer.append(inputLine + "\n");
-
             buffer.deleteCharAt(buffer.length()-1);
             if (buffer.length() == 0) {
                 // Stream was empty. No point in parsing.
@@ -66,7 +64,6 @@ public class UpdateCompany extends AsyncTask<String,String,String >
 
             //response data
             JsonResponse = buffer.toString();
-//            Log.i("My_tag",JsonResponse);
 
             try {
                 //send to post execute
@@ -114,3 +111,4 @@ public class UpdateCompany extends AsyncTask<String,String,String >
 
     }
 }
+

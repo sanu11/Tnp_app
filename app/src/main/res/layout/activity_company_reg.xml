@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activities.Upload.StudentRegActivity">
+    tools:context=".Activities.Upload.CompanyRegActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
@@ -74,6 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="?android:attr/textColorTertiary"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
 
@@ -94,7 +96,12 @@
                 android:checked="false"
                 android:nestedScrollingEnabled="false"
                 android:onClick="onClickCheckbox"
-                android:text="No Criteria" />
+                android:text="No Criteria"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:fontFamily="sans-serif"
+                android:textColor="?android:attr/textColorTertiary"
+                android:textStyle="normal|bold"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/criteria"
@@ -103,6 +110,8 @@
                 android:ems="10"
                 android:hint="Percentage"
                 android:inputType="number"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="?android:attr/textColorTertiary"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
 
@@ -123,7 +132,9 @@
                 android:ems="10"
                 android:hint="Lpa"
                 android:inputType="numberDecimal"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:textSize="16sp"
+                android:textColor="?android:attr/textColorTertiary"
                 android:textStyle="normal|bold" />
 
             <!--android:entries="@array/bool"-->
@@ -144,8 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:entries="@array/back_array"
+                android:layout_marginTop="2dp"
                 android:spinnerMode="dropdown" />
 
 
@@ -236,6 +246,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="Other Info"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="?android:attr/textColorTertiary"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
 

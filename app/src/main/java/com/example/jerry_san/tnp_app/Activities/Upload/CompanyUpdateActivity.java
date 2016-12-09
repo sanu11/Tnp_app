@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
@@ -27,8 +26,6 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-import static com.example.jerry_san.tnp_app.R.id.listView;
-
 public class CompanyUpdateActivity extends AppCompatActivity {
 
 
@@ -46,12 +43,12 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //populate spinner with names of companies from database
-        final Spinner spinner = (Spinner)findViewById(R.id.name_spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.name_spinner);
         localDatabase = new LocalDatabase(this);
-        Cursor cur = localDatabase.getCompanyCursor();
+        Cursor cur = localDatabase.getCompanyReverseCursor();
         String[] columns = new String[]{"name"};
 
-        int[] views = new int[]{R.id.company_name};
+        int[] views = new int[]{R.id.name};
 
         if (cur.getCount() > 0) {
             adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
@@ -64,12 +61,11 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
-        if(!con) {
+        Log.i("My_tag", "connection " + con);
+        if (!con) {
             Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
     }
 
@@ -82,7 +78,8 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
     public void onClickRegDate(View view) {
         final View vv = view;
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
 
             // when dialog box is closed, below method will be called.
             public void onDateSet(DatePicker v, int selectedYear, int selectedMonth, int selectedDay) {
@@ -105,14 +102,14 @@ public class CompanyUpdateActivity extends AppCompatActivity {
                 }
 
             }
-        }, 2016, 9, 10);
+        }, 2016, 11, 15);
 
         datePickerDialog.show();
     }
 
     public void onClickRegTime(View view) {
         final View vv = view;
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,new TimePickerDialog.OnTimeSetListener() {
             TextView tv;
 
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -141,11 +138,10 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
     public void onClickUpdate(View v) throws ExecutionException, InterruptedException {
 
-
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
-        if(!con) {
+        Log.i("My_tag", "connection " + con);
+        if (!con) {
             Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -157,9 +153,7 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         TextView e6 = (TextView) findViewById(R.id.reg_end_time);
         EditText e7 = (EditText) findViewById(R.id.other_details);
 
-
-
-        Cursor cursor = (Cursor)e1.getSelectedItem();
+        Cursor cursor = (Cursor) e1.getSelectedItem();
         int count = cursor.getColumnCount();
         String name = cursor.getString(1);
 
@@ -167,24 +161,42 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         String reg_start_time = e4.getText().toString();
         String reg_end_date = e5.getText().toString();
         String reg_end_time = e6.getText().toString();
-
+        Object reg_start ;
+        Object reg_end ;
         Object reg_link = e2.getText().toString();
         Object other_details = e7.getText().toString();
-        Object reg_start = reg_start_date + " " + reg_start_time;
-        Object reg_end = reg_end_date + " " + reg_end_time;
+
+
 
         if (name.trim().length() == 0) {
             Toast.makeText(CompanyUpdateActivity.this, "Enter name of company ", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (reg_link.toString().trim().length() == 0)
-            reg_link = JSONObject.NULL;
 
-        if (reg_start.toString().trim().length() == 0)
+        if (reg_link.toString().trim().length() == 0) {
+            Toast.makeText(CompanyUpdateActivity.this, "Enter Registration Link ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (!reg_start_date.equals("Select Date")) {
+            if (!reg_start_time.equals("Select Time"))
+                reg_start = reg_start_date + " " + reg_start_time;
+            else
+                reg_start = reg_start_date;
+        }
+        else
             reg_start = JSONObject.NULL;
 
-        if (reg_end.toString().trim().length() == 0)
+        if(!reg_end_date.equals("Select Date")){
+            if(!reg_end_time.equals("Select Time"))
+                reg_end = reg_end_date +  " " + reg_end_time;
+            else
+                reg_end = reg_end_date;
+        }
+        else
             reg_end = JSONObject.NULL;
+
 
         if (other_details.toString().trim().length() == 0)
             other_details = JSONObject.NULL;
@@ -209,17 +221,13 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         UpdateCompany data = new UpdateCompany();
 
         String res = data.execute(obj.toString()).get();
-        Log.i("My_tag", "Response  " + res);
+        Log.i("My_tag", "Update Company Response  " + res);
 
         if (res == null) {
             Toast.makeText(CompanyUpdateActivity.this, "Update Unsuccessful", Toast.LENGTH_SHORT).show();
             Log.i("My_tag", "Update Unsuccessful");
-        } else {
-            res.replace("\n","");
-            res.trim();
-            Toast.makeText(CompanyUpdateActivity.this ,res, Toast.LENGTH_SHORT).show();
-            Log.i("My_tag", res);
-        }
+        } else
+            Toast.makeText(CompanyUpdateActivity.this, res, Toast.LENGTH_SHORT).show();
 
         finish();
     }

@@ -31,7 +31,7 @@ public class MessageListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         localDatabase = new LocalDatabase(this);
-        Cursor cur = localDatabase.getMessageCursor();
+        Cursor cur = localDatabase.getMessageReverseCursor();
         ListView listView = (ListView) findViewById(R.id.listView);
 
         String[] columns = new String[]{"Title"};
@@ -52,7 +52,6 @@ public class MessageListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                ListView listView = (ListView) findViewById(R.id.listView);
 
                 Cursor cursor = localDatabase.getMessageDetails(position);
                 String name = cursor.getString(1);

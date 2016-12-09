@@ -35,11 +35,7 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
     @Override
     public  void  onCreate()
     {
-//        Log.i("My_tag","hi");
-//        String CurrentToken = FirebaseInstanceId.getInstance().getToken();
-//        Log.i("My_tag", "Refreshed token: " + CurrentToken);
         super.onCreate();
-
     }
 
     public void onTokenRefresh() {
@@ -69,17 +65,6 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
         WifiInfo info = manager.getConnectionInfo();
         String address = info.getMacAddress();
 
-//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//
-//            ActivityCompat.requestPermissions(getApplicationContext(),
-//                    new String[]{Manifest.permission.READ_PHONE_STATE},
-//                    0);
-//
-//        }
-//        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-//        String android_id = tm.getDeviceId();
-
         Log.i("My_tag",address);
 
         JSONObject obj = new JSONObject();
@@ -106,3 +91,13 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
 
     }
 }
+//       if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            ActivityCompat.requestPermissions(getApplicationContext(),
+//                    new String[]{Manifest.permission.READ_PHONE_STATE},
+//                    0);
+//
+//        }
+//        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String android_id = tm.getDeviceId();
