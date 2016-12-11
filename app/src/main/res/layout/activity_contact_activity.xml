@@ -55,32 +55,42 @@
         android:gravity="top|left|bottom|right"
         android:theme="@style/AppTheme">
 
-        <TextView
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:srcCompat="@drawable/imageedit_2_4690914086"
+            android:id="@+id/imageView2" />
+         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sanika Shah"
             android:id="@+id/textView22"
-            android:layout_marginTop="60dp"
+             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:theme="@style/AppTheme"
             android:textStyle="bold"
             android:textSize="20dp" />
-
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="8007650622"
             android:id="@+id/textView18"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:theme="@style/AppTheme"
             android:textStyle="bold"
             android:textSize="20dp" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sanikashah1110@gmail.com"
             android:id="@+id/textView20"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:theme="@style/AppTheme"
             android:textStyle="bold"
             android:textSize="20dp"

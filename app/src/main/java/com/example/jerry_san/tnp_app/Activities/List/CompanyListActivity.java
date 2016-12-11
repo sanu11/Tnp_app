@@ -35,9 +35,9 @@ public class CompanyListActivity extends AppCompatActivity {
         Cursor cur = localDatabase.getCompanyReverseCursor();
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        String[] columns = new String[]{"name"};
+        String[] columns = new String[]{"name","salary"};
 
-        int[] views = new int[]{R.id.name};
+        int[] views = new int[]{R.id.name,R.id.salary};
 
         if (cur.getCount() > 0) {
              adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
@@ -52,7 +52,6 @@ public class CompanyListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                ListView listView = (ListView) findViewById(R.id.listView);
                 Intent intent = new Intent(CompanyListActivity.this,CompanyDisplayActivity.class);
                 int n = localDatabase.getCompanyCount();
                 intent.putExtra("position",n-position-1);

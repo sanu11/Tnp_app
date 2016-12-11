@@ -51,7 +51,7 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         int[] views = new int[]{R.id.name};
 
         if (cur.getCount() > 0) {
-            adapter = new SimpleCursorAdapter(this, R.layout.company_list_layout, cur, columns, views);
+            adapter = new SimpleCursorAdapter(this, R.layout.item_layout, cur, columns, views);
 
             spinner.setAdapter(adapter);
         } else {
@@ -61,7 +61,7 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -140,7 +140,7 @@ public class CompanyUpdateActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(CompanyUpdateActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;

@@ -37,7 +37,7 @@ public class SyncDatabase extends AsyncTask<String, String, String> {
         localDatabase = new LocalDatabase(context);
         try {
 
-            URL url = new URL(R.string.digitalocean + "sync/");
+            URL url = new URL("http://139.59.34.20:8090/sync/");
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = urlConnection.getInputStream();
 

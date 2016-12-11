@@ -32,7 +32,6 @@ import java.util.concurrent.ExecutionException;
 
 public class CompanyRegActivity extends AppCompatActivity {
 
-
     int hour, min;
     boolean flag = true;
     /**
@@ -62,7 +61,7 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+       //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -148,7 +147,7 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;

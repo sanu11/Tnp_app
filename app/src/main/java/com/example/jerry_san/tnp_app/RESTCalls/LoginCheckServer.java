@@ -28,8 +28,8 @@ public class LoginCheckServer extends AsyncTask<String,String,String >
         BufferedReader reader = null;
         String TAG="My_tag";
         try {
-            
-            URL url = new URL(R.string.digitalocean +"login/");
+
+            URL url = new URL("http://139.59.34.20:8090/login/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 

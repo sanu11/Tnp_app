@@ -311,13 +311,12 @@ public class LocalDatabase extends SQLiteOpenHelper {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.DATE, day);
 
-        calendar.set(Calendar.HOUR, hour);
+        Log.i("My_tag",""+hour +"hour");
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, min);
         calendar.set(Calendar.SECOND, sec);
-        calendar.set(Calendar.AM_PM, Calendar.PM);
 
-
-        int hr = calendar.get(Calendar.HOUR);
+        int hr = calendar.get(Calendar.HOUR_OF_DAY);
         calendar.set(Calendar.HOUR_OF_DAY, hr-1);
 
         Intent myIntent = new Intent(context, Receiver.class);
@@ -330,10 +329,5 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
         String temp = calendar.getTime().toString();
         Log.i("My_tag", "Alarm set at " + temp);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            temp = alarmManager.getNextAlarmClock().toString();
-            Log.i("My_tag", "Alarm set at " + temp);
-        }
     } //end onCreate
 }

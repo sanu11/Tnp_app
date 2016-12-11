@@ -28,7 +28,7 @@ public class SendTokenToServer extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL(R.string.digitalocean + "gcm/v1/device/register/");
+            URL url = new URL("http://139.59.34.20:8090/gcm/v1/device/register/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 

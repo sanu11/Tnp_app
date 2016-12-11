@@ -29,7 +29,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL(R.string.digitalocean + "register_company/");
+            URL url = new URL("http://139.59.34.20:8090/register_company/");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 

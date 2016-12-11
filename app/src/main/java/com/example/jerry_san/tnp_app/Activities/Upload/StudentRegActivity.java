@@ -36,10 +36,6 @@ public class StudentRegActivity extends AppCompatActivity {
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        Switch sw = (Switch) findViewById(R.id.placed);
-        sw.setTextOff("NO");
-        sw.setTextOn("YES");
-
 
         String[] testArray = getResources().getStringArray(R.array.branch_array);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_layout,R.id.name,testArray);
@@ -49,7 +45,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
+        //Log.i("My_tag","connection "+con);
         if(!con) {
             Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -62,7 +58,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag","connection "+con);
+        //Log.i("My_tag","connection "+con);
         if(!con) {
             Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -73,7 +69,6 @@ public class StudentRegActivity extends AppCompatActivity {
         EditText e4 = (EditText) findViewById(R.id.phone);
         Spinner e5 = (Spinner) findViewById(R.id.branch);
         EditText e6 = (EditText) findViewById(R.id.average);
-        Switch e7 = (Switch) findViewById(R.id.placed);
         Switch e8 = (Switch) findViewById(R.id.active_back);
 
         String name = e1.getText().toString();
@@ -82,7 +77,6 @@ public class StudentRegActivity extends AppCompatActivity {
         String phone = e4.getText().toString();
         String branch = String.valueOf(e5.getSelectedItem());
         String avg = e6.getText().toString();
-        String placed = null;
         String active_back = null;
 
         String temp = name;
@@ -106,11 +100,6 @@ public class StudentRegActivity extends AppCompatActivity {
 
         Float average = Float.parseFloat(avg);
 
-        if (e7.isChecked())
-            placed = "YES";
-        else
-            placed = "NO";
-
         if (e8.isChecked())
             active_back = "YES";
         else
@@ -124,7 +113,6 @@ public class StudentRegActivity extends AppCompatActivity {
             obj.put("phone", phone);
             obj.put("branch", branch);
             obj.put("average", average);
-            obj.put("placed", placed);
             obj.put("activeBack", active_back);
             Log.i("My_tag", obj.toString(0));
 

@@ -130,9 +130,8 @@
                     android:text="PPT/Apti"
                     android:textStyle="normal|bold"
                     android:textSize="18sp" />
-
                 <TextView
-                    android:id="@+id/ppt"
+                    android:id="@+id/ppt_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -140,7 +139,6 @@
                     android:text="--"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
 
             </LinearLayout>
 
@@ -209,6 +207,7 @@
                         android:layout_width="match_parent"
                         android:text="--"
                         android:autoLink="web"
+                        android:singleLine="false"
                         android:onClick="onClickURL"
                         android:textStyle="italic"
                         android:textColor="#473ee6"
@@ -279,41 +278,41 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/hired_layout"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv12"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:text="Hired"
+                        android:layout_marginLeft="55dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal|bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/hired"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:text="--"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
 
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="2"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
-                android:id="@+id/hired_layout">
-
-                <TextView
-                    android:id="@+id/tv10"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:text="Hired"
-                    android:layout_marginLeft="30dp"
-                    android:layout_height="wrap_content"
-                    android:textStyle="normal|bold"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/hired"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:text="--"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -350,3 +349,4 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+

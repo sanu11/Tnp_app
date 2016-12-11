@@ -52,8 +52,9 @@ public class MessageListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
+                int n = localDatabase.getMessageCount();
 
-                Cursor cursor = localDatabase.getMessageDetails(position);
+                Cursor cursor = localDatabase.getMessageDetails(n-position-1);
                 String name = cursor.getString(1);
                 Log.i("My_tag",name);
                 Intent intent = new Intent(MessageListActivity.this,MessageDisplayActivity.class);

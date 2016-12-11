@@ -1,6 +1,7 @@
 package com.example.jerry_san.tnp_app.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.jerry_san.tnp_app.Activities.List.CompanyListActivity;
@@ -26,25 +28,24 @@ import com.example.jerry_san.tnp_app.RESTCalls.SyncDatabase;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    SessionManager sessionManager ;
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        sessionManager=new SessionManager(getApplicationContext());
+        sessionManager = new SessionManager(getApplicationContext());
         SyncDatabase sync = new SyncDatabase(this);
         sync.execute();
 
-        if(sessionManager.isLoggedIn()==false) {
+        if (sessionManager.isLoggedIn() == false) {
 
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, VerifyActivity.class);
             startActivity(intent);
             finish();
 
-        }
-
-        else {
+        } else {
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -89,8 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             finish();
         }
     }
@@ -140,12 +140,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, MessageActivity.class);
             startActivity(intent);
 
-        }  else if (id == R.id.nav_Notifications) {
-            Intent intent = new Intent(this,MessageListActivity.class);
+        } else if (id == R.id.nav_Notifications) {
+            Intent intent = new Intent(this, MessageListActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_contact) {
-            Intent intent = new Intent(this,ContactActivity.class);
+            Intent intent = new Intent(this, ContactActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_log_out) {
@@ -158,5 +158,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onClickLink(View view) {
+
+        TextView textView = (TextView) findViewById(R.id.pict_site);
+        String url = textView.getText().toString();
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 }

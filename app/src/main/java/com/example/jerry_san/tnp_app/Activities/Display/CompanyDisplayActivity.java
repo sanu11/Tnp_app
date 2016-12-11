@@ -8,13 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.webkit.URLUtil;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.URLUtil.*;
 
-import java.text.DateFormatSymbols;
-
+import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.DateTime;
 import com.example.jerry_san.tnp_app.R;
@@ -53,7 +53,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
                 (TextView) findViewById(R.id.criteria),
                 (TextView) findViewById(R.id.salary),
                 (TextView) findViewById(R.id.back),
-                (TextView) findViewById(R.id.ppt),
+                (TextView) findViewById(R.id.ppt_date),
                 (TextView) findViewById(R.id.other_details),
                 (TextView) findViewById(R.id.reg_link),
                 (TextView) findViewById(R.id.reg_start),
@@ -85,7 +85,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         String ppt = cursor.getString(5);
         if (ppt != null) {
             String ppt_new = dateTime.convert(ppt);
-            textViews[5].setText(ppt_new);
+            ((TextView) findViewById(R.id.ppt_date)).setText(ppt_new);
         }
 
         String other = cursor.getString(6);
@@ -129,10 +129,15 @@ public class CompanyDisplayActivity extends AppCompatActivity {
     }
 
     public void onClickURL(View view) {
+
         TextView textView= (TextView) findViewById(R.id.reg_link);
         String url = textView.getText().toString();
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        Log.i("My_tag",url);
+        if(URLUtil.isValidUrl(url))
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        else
+            Toast.makeText(CompanyDisplayActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
+
     }
 
 }
-

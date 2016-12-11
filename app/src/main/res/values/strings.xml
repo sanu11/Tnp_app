@@ -8,6 +8,7 @@
         <item>ENTC</item>
     </string-array>
 
+    <string name="pict_site">http://pict.edu/placement/</string>
     //back
     <string-array name="back_array">
         <item>No Criteria</item>
@@ -15,9 +16,9 @@
         <item> Passive Not Allowed</item>
     </string-array>
 
-    <string name = "heroku">http://tnp-app.herokuapp.com/</string>
-    <string name= "digitalocean">http://139.59.29.45/</string>
     <string name="new_user"><u> New user ? Click to Register</u> </string>
+    <string name="tnp_info">The Training and Placement cell is headed by Dr. G.S.Mundada (TPO) who is keen in encouraging students to prefer jobs that better suit their profile. The placement season commences in the first month of every academic year and continues till the end of the academic year. Pre-Placement Talks are conducted for the final year students prior to the  placement session every year.</string>
+
 
     <string name="ok">OK</string>
 

@@ -4,24 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_upload_company"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_send"
             android:title="Upload Company" />
         <item
             android:id="@+id/nav_update_company"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_send"
             android:title="Update Company" />
 
         <item
             android:id="@+id/nav_stats"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_send"
             android:title="Statistics" />
         <item
             android:id="@+id/nav_send_message"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_send"
             android:title="Send Message" />
         <item
             android:id="@+id/nav_Notifications"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_send"
             android:title="Notifications" />
     </group>
 
@@ -29,7 +29,7 @@
         <menu>
             <item
                 android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_menu_send"
                 android:title="Contact" />
             <item
                 android:id="@+id/nav_log_out"

@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(LoginActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(LoginActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;

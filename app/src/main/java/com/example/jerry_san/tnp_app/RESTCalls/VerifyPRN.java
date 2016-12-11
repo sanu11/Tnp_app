@@ -1,5 +1,6 @@
 package com.example.jerry_san.tnp_app.RESTCalls;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -27,7 +28,8 @@ public class VerifyPRN extends AsyncTask < String , String,String > {
         BufferedReader reader = null;
         String TAG="My_tag";
         try {
-            URL url = new URL(R.string.digitalocean + "verify/");
+            String  urlstr = "http://139.59.34.20:8090/verify/";
+            URL url = new URL(urlstr);
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);

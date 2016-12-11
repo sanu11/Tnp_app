@@ -29,9 +29,12 @@ public class VerifyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(VerifyActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -42,7 +45,7 @@ public class VerifyActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        Log.i("My_tag", "connection " + con);
+        //Log.i("My_tag", "connection " + con);
         if (!con) {
             Toast.makeText(VerifyActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;

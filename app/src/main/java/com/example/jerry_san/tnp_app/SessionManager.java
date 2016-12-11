@@ -33,6 +33,8 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static  String KEY_EMAIL = "email";
 
+    //Notifiction id
+    public String NOTIFY_ID ="notifyId";
     // Constructor
     public SessionManager(Context context){
         this._context = context;
@@ -54,7 +56,7 @@ public class SessionManager {
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
-
+        editor.putInt(NOTIFY_ID,0);
 
         // commit changes
         editor.commit();
