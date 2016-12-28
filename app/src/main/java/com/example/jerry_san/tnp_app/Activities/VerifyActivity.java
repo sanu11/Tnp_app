@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.R;
-import com.example.jerry_san.tnp_app.RESTCalls.VerifyPRN;
+import com.example.jerry_san.tnp_app.RESTCalls.Verify;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,10 +64,10 @@ public class VerifyActivity extends AppCompatActivity {
 
         obj.put("prn", prn);
         Log.i("My_tag","prn " + prn);
-        VerifyPRN verifyPRN = new VerifyPRN();
+        Verify verify = new Verify();
         String res = null;
         try {
-            res = verifyPRN.execute(obj.toString()).get();
+            res = verify.execute(obj.toString()).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -45,7 +45,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         if (type.equals("gen_msg")) {
             String title = remoteMessage.getData().get("title");
             String body = remoteMessage.getData().get("body");
-            Log.i("My_tag", title + " " + body);
+
             sendNotification(title, body);
         } else if (type.equals("company_reg")) {
             JSONObject object = new JSONObject();
@@ -62,7 +62,8 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
                 object.put("criteria", criteria);
                 object.put("salary", salary);
                 object.put("back", back);
-                object.put("other_details", other_details);
+                if(other_details!=null)
+                    object.put("other_details", other_details);
                 object.put("ppt_date", ppt_date);
                 object.put("reg_link", JSONObject.NULL);
                 object.put("reg_start", JSONObject.NULL);
@@ -73,7 +74,6 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
             }
 
             try {
-                Log.i("My_tag", "notify");
                 sendNotification(object);
             } catch (JSONException e) {
                 e.printStackTrace();

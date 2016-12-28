@@ -83,9 +83,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="20dp"
                     android:hint="C2K13104366"
+                    android:textSize="16dp"
                     android:textAppearance="@android:style/TextAppearance.Material.Small"
                     android:textColor="?android:attr/textColorTertiary" />
-
 
             <Button
                 android:layout_width="wrap_content"

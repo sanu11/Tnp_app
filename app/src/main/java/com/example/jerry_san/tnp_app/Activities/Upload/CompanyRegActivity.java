@@ -212,7 +212,7 @@ public class CompanyRegActivity extends AppCompatActivity {
             obj.put("back", back);
             obj.put("ppt_date", dateTime);
 
-            Log.i("My_tag", " in obj put " + obj.toString(0));
+            Log.i("My_tag", obj.toString(0));
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block

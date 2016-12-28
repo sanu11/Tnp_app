@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.Constants;
 import com.example.jerry_san.tnp_app.R;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ import java.net.URL;
  * Created by Sanika on 07-Dec-16.
  */
 
-public class VerifyPRN extends AsyncTask < String , String,String > {
+public class Verify extends AsyncTask < String , String,String > {
     protected String doInBackground(String... params) {
         String JsonResponse = null;
         String JsonDATA = params[0];
@@ -28,9 +29,8 @@ public class VerifyPRN extends AsyncTask < String , String,String > {
         BufferedReader reader = null;
         String TAG="My_tag";
         try {
-            String  urlstr = "http://139.59.34.20:8090/verify/";
-            URL url = new URL(urlstr);
 
+            URL url = new URL(Constants.idVerifyUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -53,6 +53,7 @@ public class VerifyPRN extends AsyncTask < String , String,String > {
                 // Nothing to do.
                 return null;
             }
+
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String inputLine;

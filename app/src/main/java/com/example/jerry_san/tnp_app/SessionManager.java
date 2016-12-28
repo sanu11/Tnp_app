@@ -78,6 +78,7 @@ public class SessionManager {
         array[0]=name;
         array[1]=email;
 
+        Log.i("My_tag",name+"session");
         Log.i("My_tag","Logged in to "+ email);
         return array;
     }

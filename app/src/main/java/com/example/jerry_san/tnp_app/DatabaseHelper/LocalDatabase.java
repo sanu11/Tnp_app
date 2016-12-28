@@ -50,7 +50,6 @@ public class LocalDatabase extends SQLiteOpenHelper {
         this.context = context;
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -111,6 +110,7 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
         if (!obj.isNull("other_details")) {
             String other_details = obj.getString("other_details");
+            Log.i("My_tag",other_details+ " other ");
             contentValues.put(col[6], other_details);
         }
 
@@ -197,8 +197,6 @@ public class LocalDatabase extends SQLiteOpenHelper {
         String query = "select * from " + table_1 + " where name = '" + name + "'";
         Cursor cur = db.rawQuery(query, null);
         int count = cur.getCount();
-        Log.i("My_tag", String.valueOf(count));
-        Log.i("My_tag", query);
 
         if (cur.getCount() == 0)
             return false;
@@ -265,7 +263,7 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
 
         long res = db.update(table_1, cv, "name= '" + name + "'", null);
-        Log.i("My_tag", String.valueOf(res));
+
         db.close();
         cur.close();
         if(reg_end!=null)
@@ -311,7 +309,6 @@ public class LocalDatabase extends SQLiteOpenHelper {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.DATE, day);
 
-        Log.i("My_tag",""+hour +"hour");
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, min);
         calendar.set(Calendar.SECOND, sec);

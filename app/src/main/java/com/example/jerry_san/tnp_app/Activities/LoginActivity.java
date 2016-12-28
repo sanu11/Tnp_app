@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText pass = (EditText) findViewById(R.id.password);
         String email = user.getText().toString();
         String password = pass.getText().toString();
-        Log.i("My_tag", email + " " + password);
 
         if (email.trim().length() == 0 || password.trim().length() == 0) {
             alertDialogBuilder.setMessage("Enter all Details");
@@ -115,18 +114,13 @@ public class LoginActivity extends AppCompatActivity {
         } else if (res.equals(user_found)) {
             alertDialogBuilder.setMessage("User not Found");
             alertDialogBuilder.show();
-        } else if (res.equals(success)) {
+        } else {
             //create session
             sessionManager.createLoginSession(res, email);
             // Staring MainActivity
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(i);
             finish();
-            Log.i("My_tag", "Login Successful");
-        }
-        else {
-            alertDialogBuilder.setMessage("Error");
-            alertDialogBuilder.show();
         }
     }
 

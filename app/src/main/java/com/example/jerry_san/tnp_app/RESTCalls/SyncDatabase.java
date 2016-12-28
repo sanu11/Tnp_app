@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.Constants;
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
 
@@ -37,7 +38,7 @@ public class SyncDatabase extends AsyncTask<String, String, String> {
         localDatabase = new LocalDatabase(context);
         try {
 
-            URL url = new URL("http://139.59.34.20:8090/sync/");
+            URL url = new URL(Constants.syncDatabaseUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = urlConnection.getInputStream();
 
@@ -127,7 +128,6 @@ public class SyncDatabase extends AsyncTask<String, String, String> {
 
     }
 }
-
 
 //                         Iterator<String> keys = jObject.keys();
 //                          while (keys.hasNext()) {

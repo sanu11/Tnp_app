@@ -18,6 +18,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import com.example.jerry_san.tnp_app.Constants;
 
 public class LoginCheckServer extends AsyncTask<String,String,String >
 {
@@ -29,7 +30,7 @@ public class LoginCheckServer extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://139.59.34.20:8090/login/");
+            URL url = new URL(Constants.studentLoginUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 

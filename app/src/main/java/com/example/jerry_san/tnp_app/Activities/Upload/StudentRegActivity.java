@@ -45,7 +45,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        //Log.i("My_tag","connection "+con);
+
         if(!con) {
             Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
@@ -58,7 +58,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
-        //Log.i("My_tag","connection "+con);
+
         if(!con) {
             Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;

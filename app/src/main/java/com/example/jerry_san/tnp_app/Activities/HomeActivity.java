@@ -68,15 +68,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             //get session details
             String array[] = sessionManager.getUserDetails();
 
-            String u = array[0];
-            String e = array[1];
+            String username = array[0];
+            String email_id = array[1];
 
             TextView email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
             TextView user = (TextView) navigationView.getHeaderView(0).findViewById(R.id.username);
 
-            CharSequence username = u.subSequence(0, u.length());
-            CharSequence email_id = e.subSequence(0, e.length());
-
+            Log.i("My_tag",username);
             user.setText(username);
             email.setText(email_id);
 

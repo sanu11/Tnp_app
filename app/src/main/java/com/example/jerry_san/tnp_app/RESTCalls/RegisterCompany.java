@@ -7,6 +7,7 @@ package com.example.jerry_san.tnp_app.RESTCalls;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.jerry_san.tnp_app.Constants;
 import com.example.jerry_san.tnp_app.R;
 
 import java.io.BufferedReader;
@@ -29,7 +30,7 @@ public class RegisterCompany extends AsyncTask<String,String,String >
         String TAG="My_tag";
         try {
 
-            URL url = new URL("http://139.59.34.20:8090/register_company/");
+            URL url = new URL(Constants.companyRegUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
 
@@ -96,7 +97,6 @@ public class RegisterCompany extends AsyncTask<String,String,String >
     }
 
 
-
     @Override
     protected void onPreExecute() {
         // TODO Auto-generated method stub
@@ -109,7 +109,6 @@ public class RegisterCompany extends AsyncTask<String,String,String >
     @Override
     protected void onPostExecute(String args) {
         // TODO Auto-generated method stub
-
 
     }
 }
