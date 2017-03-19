@@ -35,6 +35,7 @@ public class CompanyDisplayActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         localDatabase = new LocalDatabase(this);
         int position = getIntent().getExtras().getInt("position");
@@ -126,6 +127,11 @@ public class CompanyDisplayActivity extends AppCompatActivity {
             String reg_end_new = dateTime.convert(reg_end);
             textViews[9].setText(reg_end_new);
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void onClickURL(View view) {

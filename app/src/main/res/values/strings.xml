@@ -127,5 +127,6 @@
     <string name="title_activity_company_display">CompanyDisplayActivity</string>
     <string name="title_activity_company_list">CompanyListActivity</string>
     <string name="title_activity_verify">VerifyActivity</string>
+    <string name="title_activity_result_display">ResultDisplayActivity</string>
 
 </resources>

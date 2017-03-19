@@ -30,6 +30,7 @@ public class CompanyListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         localDatabase = new LocalDatabase(this);
         Cursor cur = localDatabase.getCompanyReverseCursor();
@@ -62,6 +63,11 @@ public class CompanyListActivity extends AppCompatActivity {
 
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 }

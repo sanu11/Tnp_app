@@ -35,7 +35,7 @@ public class StudentRegActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String[] testArray = getResources().getStringArray(R.array.branch_array);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_layout,R.id.name,testArray);
@@ -50,6 +50,11 @@ public class StudentRegActivity extends AppCompatActivity {
             Toast.makeText(StudentRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 

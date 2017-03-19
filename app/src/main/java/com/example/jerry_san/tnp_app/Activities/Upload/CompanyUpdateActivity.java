@@ -41,7 +41,7 @@ public class CompanyUpdateActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //populate spinner with names of companies from database
         final Spinner spinner = (Spinner) findViewById(R.id.name_spinner);
         localDatabase = new LocalDatabase(this);
@@ -67,6 +67,12 @@ public class CompanyUpdateActivity extends AppCompatActivity {
             return;
         }
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private static String pad(int c) {

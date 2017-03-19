@@ -61,7 +61,7 @@ public class LocalDatabase extends SQLiteOpenHelper {
                 + col[8] + "  text ," + col[9] + " text ," + col[10] + " integer  );");
 
         //create Table for storing notifications(general messages)
-        db.execSQL("create table " + table_2 + "( _id integer primary key autoincrement , Title text , Body text )");
+        db.execSQL("create table " + table_2 + "( _id integer primary key autoincrement , Title text , Body text , url integer )");
 
     }
 

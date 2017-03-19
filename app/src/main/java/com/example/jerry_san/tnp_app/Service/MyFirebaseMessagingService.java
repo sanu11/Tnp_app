@@ -21,11 +21,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-
-import static com.example.jerry_san.tnp_app.R.id.other_details;
-import static com.example.jerry_san.tnp_app.R.id.reg_end;
-
 /**
  * Created by jerry-san on 9/11/16.
  */
@@ -174,6 +169,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         notificationManager.notify(n, notificationBuilder.build());
         Log.i("My_tag", "Message Notification sent");
     }
+
 
     private void sendNotification(JSONObject object, int i) throws JSONException {
         Intent intent = new Intent(this, CompanyUpdateDisplayActivity.class);

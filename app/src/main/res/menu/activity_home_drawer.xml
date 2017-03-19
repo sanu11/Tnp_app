@@ -25,17 +25,4 @@
             android:title="Notifications" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Contact" />
-            <item
-                android:id="@+id/nav_log_out"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Log out" />
-        </menu>
-    </item>
-
 </menu>

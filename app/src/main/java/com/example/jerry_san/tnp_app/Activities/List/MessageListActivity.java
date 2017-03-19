@@ -29,6 +29,7 @@ public class MessageListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         localDatabase = new LocalDatabase(this);
         Cursor cur = localDatabase.getMessageReverseCursor();

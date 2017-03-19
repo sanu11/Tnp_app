@@ -28,6 +28,7 @@ DateTime dateTime=null;
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String json = getIntent().getExtras().getString("update");
         JSONObject object = null;
@@ -84,6 +85,11 @@ DateTime dateTime=null;
         }
         if(other_details!=null)
             textview5.setText(other_details);
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
     public  void onClickURL(View view){
         EditText editText = (EditText)findViewById(R.id.reg_link);

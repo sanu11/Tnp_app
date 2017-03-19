@@ -52,6 +52,7 @@ public class CompanyRegActivity extends AppCompatActivity {
 
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         String[] testArray = getResources().getStringArray(R.array.back_array);
@@ -66,6 +67,11 @@ public class CompanyRegActivity extends AppCompatActivity {
             Toast.makeText(CompanyRegActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private static String pad(int c) {

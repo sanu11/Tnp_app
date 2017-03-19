@@ -30,7 +30,7 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NetworkConnection connection = new NetworkConnection(this.getApplicationContext());
         boolean con = connection.checkNetwork();
 
@@ -38,6 +38,12 @@ public class MessageActivity extends AppCompatActivity {
             Toast.makeText(MessageActivity.this, "Check your Network", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void onClickPost(View v) throws ExecutionException, InterruptedException {
@@ -50,7 +56,7 @@ public class MessageActivity extends AppCompatActivity {
             return;
         }
         EditText editText = (EditText) findViewById(R.id.title);
-        EditText editText2 = (EditText) findViewById(R.id.body);
+        EditText editText2 = (EditText) findViewById(R.id.url);
         String title = editText.getText().toString();
         String body = editText2.getText().toString();
         JSONObject obj = new JSONObject();

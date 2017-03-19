@@ -109,7 +109,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            sessionManager.logoutUser();
+            finish();
+            return true;
+        }
+        if(id == R.id.action_contact) {
+            Intent intent = new Intent(this, ContactActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -142,15 +149,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, MessageListActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_contact) {
-            Intent intent = new Intent(this, ContactActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_log_out) {
-            sessionManager.logoutUser();
-            finish();
-
         }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

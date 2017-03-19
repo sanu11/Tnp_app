@@ -19,18 +19,25 @@ public class MessageDisplayActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String t = getIntent().getExtras().getString("title");
         String b = getIntent().getExtras().getString("body");
 
         TextView textview =(TextView) findViewById (R.id.title);
-        TextView textview2 =(TextView) findViewById (R.id.body);
+        TextView textview2 =(TextView) findViewById (R.id.url);
 
+        textview2.setAutoLinkMask(1);
         CharSequence title = t.subSequence(0, t.length());
         CharSequence  body = b.subSequence(0, b.length());
 
         textview.setText(title);
         textview2.setText(body);
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
