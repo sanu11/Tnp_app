@@ -33,6 +33,8 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static  String KEY_EMAIL = "email";
 
+    private static final String KEY_TYPE = "type";
+
     //Notifiction id
     public String NOTIFY_ID ="notifyId";
     // Constructor
@@ -46,14 +48,18 @@ public class SessionManager {
      * Create login session
      * */
 
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(String nameandtype, String email){
         // Storing login value as TRUE
 
         editor.putBoolean(IS_LOGIN, true);
-
+        String res[] = nameandtype.split(",");
+        String type = res[0];
+        String name = res[1];
         // Storing name in pref
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_TYPE, type);
 
+        Log.i("My_tag",nameandtype + "  " + name + " " + type);
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
         editor.putInt(NOTIFY_ID,0);
@@ -62,6 +68,7 @@ public class SessionManager {
         editor.commit();
 
     }
+
 
     /**
      * Get stored session data
@@ -82,6 +89,14 @@ public class SessionManager {
         Log.i("My_tag","Logged in to "+ email);
         return array;
     }
+    public String getLoginType()
+    {
+
+       String type =pref.getString(KEY_TYPE,"def");
+        return type;
+    }
+
+
 
     /**
      * Clear session details

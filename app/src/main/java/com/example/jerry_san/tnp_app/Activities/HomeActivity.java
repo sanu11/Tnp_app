@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (sessionManager.isLoggedIn() == false) {
 
-            Intent intent = new Intent(this, VerifyActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
 
@@ -79,7 +79,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             user.setText(username);
             email.setText(email_id);
 
+
+            if(sessionManager.getLoginType().equals("Student")){
+                navigationView.getMenu().findItem(R.id.nav_upload_company).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_update_company).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_send_message).setVisible(false);
+
+            }
+
         }
+
+
     }
 
 

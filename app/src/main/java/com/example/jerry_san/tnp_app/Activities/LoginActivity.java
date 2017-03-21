@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.StudentRegActivity;
+import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.NetworkConnection;
 import com.example.jerry_san.tnp_app.RESTCalls.LoginCheckServer;
 import com.example.jerry_san.tnp_app.R;
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             alertDialogBuilder.show();
         } else {
             //create session
+
             sessionManager.createLoginSession(res, email);
             // Staring MainActivity
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
