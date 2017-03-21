@@ -13,6 +13,7 @@ import android.util.Log;
 import com.example.jerry_san.tnp_app.Activities.Display.CompanyDisplayActivity;
 import com.example.jerry_san.tnp_app.Activities.Display.CompanyUpdateDisplayActivity;
 import com.example.jerry_san.tnp_app.Activities.Display.MessageDisplayActivity;
+import com.example.jerry_san.tnp_app.Activities.List.ResultListActivity;
 import com.example.jerry_san.tnp_app.DatabaseHelper.LocalDatabase;
 import com.example.jerry_san.tnp_app.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -99,9 +100,16 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
             }
 
         }
+        else if(type.equals("result")){
+            String title = remoteMessage.getData().get("title");
+            String url =  remoteMessage.getData().get("url");
+
+            sendNotification(title, url,1);
+        }
 
     }
 
+    //Register
     private void sendNotification(JSONObject object) throws JSONException {
         Intent intent = new Intent(this, CompanyDisplayActivity.class);
 
@@ -138,6 +146,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
 
     }
 
+    //Notification
     private void sendNotification(String title, String body) {
 
         Intent intent = new Intent(this, MessageDisplayActivity.class);
@@ -171,6 +180,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
     }
 
 
+    //Update
     private void sendNotification(JSONObject object, int i) throws JSONException {
         Intent intent = new Intent(this, CompanyUpdateDisplayActivity.class);
 
@@ -208,6 +218,38 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         Log.i("My_tag", "Company  Update Notification sent");
 
     }
+
+    //Result
+    private void sendNotification(String title, String body,int i) {
+
+        Intent intent = new Intent(this, ResultListActivity.class);
+
+        LocalDatabase localDatabase = new LocalDatabase(getApplicationContext());
+        boolean res = localDatabase.resultInsert(title, body);
+        if (res)
+            Log.i("My_tag", "Added Successfully Locally");
+        else
+            Log.i("My_tag", "Addition to Local database failed");
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        int n = getNotificationId();
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, n, intent, 0);
+
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(n, notificationBuilder.build());
+        Log.i("My_tag", "Result Notification sent");
+    }
+
 
     public int getNotificationId() {
 

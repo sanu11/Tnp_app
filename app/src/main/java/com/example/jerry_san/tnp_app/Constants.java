@@ -14,4 +14,5 @@ public class Constants {
     public static final String studentLoginUrl   =   "https://tnp-app.herokuapp.com/app_login/";
     public static final String syncDatabaseUrl   =   "https://tnp-app.herokuapp.com/app_sync/";
 
+    public static final String uploadResultUrl   =   "https://tnp-app.herokuapp.com/upload_result/" ;
 }

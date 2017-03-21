@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
@@ -29,7 +30,11 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
 
         <activity
             android:name=".Activities.Upload.StudentRegActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.LoginActivity" />
+        </activity>
         <activity
             android:name=".Activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -40,79 +45,69 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
-
         <activity
             android:name=".Activities.Upload.CompanyRegActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Activities.HomeActivity" />
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.Upload.CompanyUpdateActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.Display.MessageDisplayActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Activities.HomeActivity" />
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.Display.CompanyDisplayActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.List.CompanyListActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.List.MessageListActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.Display.CompanyUpdateDisplayActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.Upload.MessageActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.ContactActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".Activities.VerifyActivity"
             android:label="@string/title_activity_verify"
@@ -120,8 +115,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
 
         <!-- Defining Services -->
 
-        <service
-            android:name=".Service.MyFirebaseInstanceIDService">
+        <service android:name=".Service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
@@ -137,7 +131,10 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
 
         <receiver android:name=".Receiver" />
 
-
+        <activity
+            android:name=".Activities.List.ResultListActivity"
+            android:label="@string/title_activity_result_list"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

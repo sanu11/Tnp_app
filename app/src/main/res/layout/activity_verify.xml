@@ -94,7 +94,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:text="Verify"
-                android:onClick="onClickVerify"/>
+
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onClickVerify"
+                android:textColor="@android:color/background_light" />
 
             </LinearLayout>
         </LinearLayout>

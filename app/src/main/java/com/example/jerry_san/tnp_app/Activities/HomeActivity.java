@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.jerry_san.tnp_app.Activities.List.CompanyListActivity;
 import com.example.jerry_san.tnp_app.Activities.List.MessageListActivity;
+import com.example.jerry_san.tnp_app.Activities.List.ResultListActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyRegActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.MessageActivity;
 import com.example.jerry_san.tnp_app.Activities.Upload.CompanyUpdateActivity;
@@ -149,7 +150,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, MessageListActivity.class);
             startActivity(intent);
 
+        } else if (id == R.id.nav_Results) {
+            Intent intent = new Intent(this, ResultListActivity.class);
+            startActivity(intent);
+
         }
+
+
 
 
 

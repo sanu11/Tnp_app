@@ -232,10 +232,11 @@
             <Button
                 android:id="@+id/button"
                 android:layout_width="190dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:onClick="onClick"
                 android:text="submit"
+                android:background="@color/colorPrimaryDark"
                 android:textColor="#fff" />
 
         </LinearLayout>

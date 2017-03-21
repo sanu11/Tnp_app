@@ -56,7 +56,7 @@ public class MessageActivity extends AppCompatActivity {
             return;
         }
         EditText editText = (EditText) findViewById(R.id.title);
-        EditText editText2 = (EditText) findViewById(R.id.url);
+        EditText editText2 = (EditText) findViewById(R.id.body);
         String title = editText.getText().toString();
         String body = editText2.getText().toString();
         JSONObject obj = new JSONObject();

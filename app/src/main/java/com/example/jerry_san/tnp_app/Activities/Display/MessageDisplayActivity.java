@@ -25,7 +25,7 @@ public class MessageDisplayActivity extends AppCompatActivity {
         String b = getIntent().getExtras().getString("body");
 
         TextView textview =(TextView) findViewById (R.id.title);
-        TextView textview2 =(TextView) findViewById (R.id.url);
+        TextView textview2 =(TextView) findViewById (R.id.body);
 
         textview2.setAutoLinkMask(1);
         CharSequence title = t.subSequence(0, t.length());

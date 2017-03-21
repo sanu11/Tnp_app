@@ -23,6 +23,11 @@
             android:id="@+id/nav_Notifications"
             android:icon="@drawable/ic_menu_send"
             android:title="Notifications" />
+        <item
+            android:id="@+id/nav_Results"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Results" />
+
     </group>
 
 </menu>

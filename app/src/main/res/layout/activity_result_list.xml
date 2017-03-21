@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activities.Upload.CompanyRegActivity"
+    tools:context=".Activities.Upload.StudentRegActivity"
+    android:theme="@style/AppTheme"
     android:background="#ffffff">
 
     <android.support.design.widget.AppBarLayout
@@ -15,28 +16,27 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/white"
         android:background="#132238"
         android:layout_alignParentBottom="false"
         android:foregroundGravity="fill_horizontal|top|left"
         android:layout_marginLeft="0dp"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:paddingEnd="0dp"
-        android:layout_alignParentEnd="true"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_centerHorizontal="true"
+        android:paddingEnd="0dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message"
+            android:text="Results "
             android:textColor="@android:color/white"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_gravity="center"
@@ -44,7 +44,6 @@
             android:textSize="20dp" />
 
     </android.support.v7.widget.Toolbar>
-
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
@@ -55,31 +54,13 @@
         android:gravity="top|left|bottom|right"
         android:theme="@style/AppTheme">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title :"
-        android:id="@+id/title"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="80dp" />
-
-        <TextView
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Body :"
-            android:id="@+id/body"
-            android:textSize="20dp"
-            android:layout_below="@+id/title"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="64dp"
-            android:textStyle="normal|bold" />
-
+            android:id="@+id/listView"
+            android:dividerHeight="10dp"
+            android:layout_marginTop="50dp" />
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
 
+
+</android.support.design.widget.CoordinatorLayout>

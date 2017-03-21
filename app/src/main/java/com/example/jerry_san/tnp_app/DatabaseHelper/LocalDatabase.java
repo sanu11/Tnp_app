@@ -44,6 +44,8 @@ public class LocalDatabase extends SQLiteOpenHelper {
     public static final String db_name = "Tnp.db";
     public static final String table_1 = "Company";
     public static final String table_2 = "Message";
+    public static final String table_3 = "Result";
+
 
     public LocalDatabase(Context context) {
         super(context, db_name, null, 1);
@@ -62,6 +64,9 @@ public class LocalDatabase extends SQLiteOpenHelper {
 
         //create Table for storing notifications(general messages)
         db.execSQL("create table " + table_2 + "( _id integer primary key autoincrement , Title text , Body text , url integer )");
+
+        //create Table for storing Results
+        db.execSQL("create table " + table_3 + "( _id integer primary key autoincrement , Title text , url text)");
 
     }
 
@@ -152,6 +157,22 @@ public class LocalDatabase extends SQLiteOpenHelper {
         return true;
 
     }
+    public boolean resultInsert(String title, String url) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("Title", title);
+        contentValues.put("url", url);
+
+        long result = db.insert(table_3, null, contentValues);
+        db.close();
+        if (result == -1)
+            return false;
+        return true;
+
+    }
+
 
     public Cursor getCompanyReverseCursor() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -170,7 +191,13 @@ public class LocalDatabase extends SQLiteOpenHelper {
         return res;
 
     }
+    public Cursor getResultReverseCursor() {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        Cursor res = db.rawQuery("select * from " + table_3 + " order by _id desc ", null);
+        res.moveToFirst();
+        return res;
+    }
 
     public Cursor getCompanyDetails(int position) {
 
@@ -327,4 +354,6 @@ public class LocalDatabase extends SQLiteOpenHelper {
         String temp = calendar.getTime().toString();
         Log.i("My_tag", "Alarm set at " + temp);
     } //end onCreate
+
+
 }
